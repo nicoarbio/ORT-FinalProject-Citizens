@@ -1,6 +1,6 @@
 package com.example.gestiondereclamos.entities
 
-class TipoReclamo (var title: String){
+class Subcategoria (var title: String){
 
 
 }

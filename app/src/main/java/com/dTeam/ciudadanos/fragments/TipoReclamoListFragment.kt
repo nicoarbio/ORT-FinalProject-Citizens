@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.example.gestiondereclamos.adapters.TipoReclamoAdapter
-import com.example.gestiondereclamos.entities.TipoReclamoRepository
+import com.example.gestiondereclamos.entities.SubcategoriaRepository
 import com.example.gestiondereclamos.viewmodels.TipoReclamoListViewModel
 
 class TipoReclamoListFragment : Fragment() {
@@ -22,7 +22,7 @@ class TipoReclamoListFragment : Fragment() {
     private lateinit var viewModel: TipoReclamoListViewModel
     private lateinit var v : View
     private lateinit var recTipoReclamo: RecyclerView
-    private var tipoReclamoList = TipoReclamoRepository()
+    private var tipoReclamoList = SubcategoriaRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

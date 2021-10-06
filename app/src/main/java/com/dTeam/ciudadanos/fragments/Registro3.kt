@@ -1,4 +1,4 @@
-package com.example.gestiondereclamos.fragments
+package com.dTeam.ciudadanos.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,26 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dTeam.ciudadanos.R
-import com.example.gestiondereclamos.viewmodels.GenerarReclamoViewModel
+import com.dTeam.ciudadanos.viewmodels.Registro3ViewModel
 
-class GenerarReclamo : Fragment() {
+class Registro3 : Fragment() {
 
     companion object {
-        fun newInstance() = GenerarReclamo()
+        fun newInstance() = Registro3()
     }
 
-    private lateinit var viewModel: GenerarReclamoViewModel
+    private lateinit var viewModel: Registro3ViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.generar_reclamo_fragment, container, false)
+        return inflater.inflate(R.layout.registro3_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(GenerarReclamoViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(Registro3ViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

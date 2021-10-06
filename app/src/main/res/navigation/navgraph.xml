@@ -10,5 +10,32 @@
         android:name="com.dTeam.ciudadanos.fragments.FragmentNuevoReclamo"
         android:label="nuevo_reclamo"
         tools:layout="@layout/nuevo_reclamo" />
+    <fragment
+        android:id="@+id/estadoReclamo2"
+        android:name="com.example.gestiondereclamos.fragments.EstadoReclamo"
+        android:label="EstadoReclamo" />
+    <fragment
+        android:id="@+id/registro1"
+        android:name="com.dTeam.ciudadanos.fragments.Registro1"
+        android:label="registro1_fragment"
+        tools:layout="@layout/registro1_fragment">
+        <action
+            android:id="@+id/action_registro1_to_registro2"
+            app:destination="@id/registro2" />
+    </fragment>
+    <fragment
+        android:id="@+id/registro2"
+        android:name="com.dTeam.ciudadanos.fragments.Registro2"
+        android:label="registro2_fragment"
+        tools:layout="@layout/registro2_fragment">
+        <action
+            android:id="@+id/action_registro2_to_registro3"
+            app:destination="@id/registro3" />
+    </fragment>
+    <fragment
+        android:id="@+id/registro3"
+        android:name="com.dTeam.ciudadanos.fragments.Registro3"
+        android:label="registro3_fragment"
+        tools:layout="@layout/registro3_fragment" />
 
 </navigation>

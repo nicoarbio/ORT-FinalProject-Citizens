@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
-import com.dTeam.ciudadanos.entities.Reclamos
+import com.dTeam.ciudadanos.entities.Categoria
 
 
 
-class ReclamoAdapter (var reclamoList : MutableList <Reclamos>,
+class ReclamoAdapter (var reclamoList : MutableList <Categoria>,
                       var context :Context,
                       var onClick : (Int)->Unit) : RecyclerView.Adapter<ReclamoAdapter.ReclamoHolder>() {
 

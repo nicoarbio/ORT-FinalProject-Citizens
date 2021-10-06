@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 
 import com.example.gestiondereclamos.adapters.ReclamoAdapter
-import com.example.gestiondereclamos.entities.MovieRepository
+import com.example.gestiondereclamos.entities.ReclamoRepository
 
 import com.example.gestiondereclamos.viewmodels.MovieListViewModel
 
@@ -25,7 +25,7 @@ class ReclamoListFragment : Fragment() {
 
     private lateinit var v: View
 
-    private var repository = MovieRepository()
+    private var repository = ReclamoRepository()
 
     private lateinit var recMovie: RecyclerView
 

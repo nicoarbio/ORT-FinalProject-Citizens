@@ -9,9 +9,9 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 
-import com.example.gestiondereclamos.entities.TipoReclamo
+import com.example.gestiondereclamos.entities.Subcategoria
 
-class TipoReclamoAdapter(var reclamoList : MutableList <TipoReclamo>,
+class TipoReclamoAdapter(var reclamoList : MutableList <Subcategoria>,
                          var context : Context,
                          var onClick : (Int)->Unit) : RecyclerView.Adapter<TipoReclamoAdapter.TipoReclamoHolder>() {
 
