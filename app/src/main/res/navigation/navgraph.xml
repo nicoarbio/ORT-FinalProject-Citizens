@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/fragmentNuevoReclamo">
+    app:startDestination="@id/registro1">
 
     <fragment
         android:id="@+id/fragmentNuevoReclamo"
@@ -37,5 +37,9 @@
         android:name="com.dTeam.ciudadanos.fragments.Registro3"
         android:label="registro3_fragment"
         tools:layout="@layout/registro3_fragment" />
+    <fragment
+        android:id="@+id/exitoReclamo"
+        android:name="com.example.gestiondereclamos.fragments.ExitoReclamo"
+        android:label="ExitoReclamo" />
 
 </navigation>

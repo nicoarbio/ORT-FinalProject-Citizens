@@ -53,7 +53,7 @@ class ReclamoListFragment : Fragment() {
 
         recMovie.setHasFixedSize(true)
         recMovie.layoutManager = GridLayoutManager(context,2)
-        recMovie.adapter = ReclamoAdapter(repository.getMovies(), requireContext()) { x ->
+        recMovie.adapter = ReclamoAdapter(repository.getCategoria(), requireContext()) { x ->
             // onItemClick(x)
         }
 
