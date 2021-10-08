@@ -1,4 +1,9 @@
 package com.dTeam.ciudadanos.entities
 
-class Observacion {
+class Observacion(
+    var autor: String,
+    var contenido: String
+)
+{
+
 }
