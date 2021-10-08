@@ -2,7 +2,7 @@ package com.dTeam.ciudadanos.repositories
 
 import com.example.gestiondereclamos.entities.Subcategoria
 
-class SubcategoriaRepository {
+class CategoriaRepository {
 
 
     private var reclamoList : MutableList<Subcategoria> = mutableListOf()
