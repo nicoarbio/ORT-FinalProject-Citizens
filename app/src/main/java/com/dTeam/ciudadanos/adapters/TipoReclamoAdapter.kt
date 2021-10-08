@@ -1,4 +1,4 @@
-package com.example.gestiondereclamos.adapters
+package com.dTeam.ciudadanos.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 
-import com.example.gestiondereclamos.entities.Subcategoria
+import com.dTeam.ciudadanos.entities.Subcategoria
 
 class TipoReclamoAdapter(var reclamoList : MutableList <Subcategoria>,
                          var context : Context,
@@ -42,7 +42,7 @@ class TipoReclamoAdapter(var reclamoList : MutableList <Subcategoria>,
 
     override fun onBindViewHolder(holder: TipoReclamoHolder, position: Int) {
 
-        holder.setTitle(reclamoList[position].title)
+        holder.setTitle(reclamoList[position].nombre)
 
         /*var cardImage : ImageView =  holder.getImageView()
         Glide.with(context)

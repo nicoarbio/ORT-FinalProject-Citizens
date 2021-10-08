@@ -1,4 +1,4 @@
-package com.example.gestiondereclamos.viewmodels
+package com.dTeam.ciudadanos.viewmodels
 
 import androidx.lifecycle.ViewModel
 

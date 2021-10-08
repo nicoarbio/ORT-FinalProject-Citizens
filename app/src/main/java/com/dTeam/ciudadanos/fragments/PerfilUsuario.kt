@@ -7,28 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dTeam.ciudadanos.R
+import com.dTeam.ciudadanos.viewmodels.PerfilUsuarioViewModel
 
-import com.dTeam.ciudadanos.viewmodels.EstadoReclamoViewModel
-
-class EstadoReclamo : Fragment() {
+class PerfilUsuario : Fragment() {
 
     companion object {
-        fun newInstance() = EstadoReclamo()
+        fun newInstance() = PerfilUsuario()
     }
 
-    lateinit var v : View
-    private lateinit var viewModel: EstadoReclamoViewModel
+    private lateinit var viewModel: PerfilUsuarioViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return  inflater.inflate(R.layout.estado_reclamo_fragment, container, false)
+        return inflater.inflate(R.layout.perfil_usuario_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EstadoReclamoViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(PerfilUsuarioViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -1,4 +1,4 @@
-package com.example.gestiondereclamos.fragments
+package com.dTeam.ciudadanos.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 
-import com.example.gestiondereclamos.adapters.ReclamoAdapter
+import com.dTeam.ciudadanos.adapters.ReclamoAdapter
 import com.dTeam.ciudadanos.repositories.ReclamoRepository
 
-import com.example.gestiondereclamos.viewmodels.MovieListViewModel
+import com.dTeam.ciudadanos.viewmodels.MovieListViewModel
 
 class ReclamoListFragment : Fragment() {
 

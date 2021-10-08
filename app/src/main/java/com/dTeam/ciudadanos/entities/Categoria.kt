@@ -1,7 +1,5 @@
 package com.dTeam.ciudadanos.entities
 
-import com.example.gestiondereclamos.entities.Subcategoria
-
 class Categoria(
     var id: String,
     var nombre : String,

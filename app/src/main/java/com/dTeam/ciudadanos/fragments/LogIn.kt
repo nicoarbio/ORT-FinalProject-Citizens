@@ -1,4 +1,4 @@
-package com.example.gestiondereclamos.fragments
+package com.dTeam.ciudadanos.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dTeam.ciudadanos.R
-import com.example.gestiondereclamos.viewmodels.LogInViewModel
+import com.dTeam.ciudadanos.viewmodels.LogInViewModel
 
 class LogIn : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.gestiondereclamos.fragments
+package com.dTeam.ciudadanos.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
-import com.example.gestiondereclamos.adapters.TipoReclamoAdapter
+import com.dTeam.ciudadanos.adapters.TipoReclamoAdapter
 import com.dTeam.ciudadanos.repositories.CategoriaRepository
-import com.example.gestiondereclamos.viewmodels.TipoReclamoListViewModel
+import com.dTeam.ciudadanos.viewmodels.TipoReclamoListViewModel
 
 class TipoReclamoListFragment : Fragment() {
 

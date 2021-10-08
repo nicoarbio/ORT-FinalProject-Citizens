@@ -1,6 +1,6 @@
 package com.dTeam.ciudadanos.repositories
 
-import com.example.gestiondereclamos.entities.Subcategoria
+import com.dTeam.ciudadanos.entities.Subcategoria
 
 class CategoriaRepository {
 
