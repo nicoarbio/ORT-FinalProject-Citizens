@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 
 import com.example.gestiondereclamos.adapters.ReclamoAdapter
-import com.example.gestiondereclamos.entities.ReclamoRepository
+import com.dTeam.ciudadanos.repositories.ReclamoRepository
 
 import com.example.gestiondereclamos.viewmodels.MovieListViewModel
 

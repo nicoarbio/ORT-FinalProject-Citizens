@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.example.gestiondereclamos.adapters.TipoReclamoAdapter
-import com.example.gestiondereclamos.entities.SubcategoriaRepository
+import com.dTeam.ciudadanos.repositories.SubcategoriaRepository
 import com.example.gestiondereclamos.viewmodels.TipoReclamoListViewModel
 
 class TipoReclamoListFragment : Fragment() {

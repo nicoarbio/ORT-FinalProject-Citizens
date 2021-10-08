@@ -1,4 +1,4 @@
-package com.example.gestiondereclamos.entities
+package com.dTeam.ciudadanos.repositories
 
 import com.dTeam.ciudadanos.entities.Categoria
 
