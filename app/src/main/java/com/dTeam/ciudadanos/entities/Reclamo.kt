@@ -6,11 +6,13 @@ import android.text.Editable
 
 class Reclamo(categoria: String, subCategoria: String, direccion: String, descripcion: String, usuario:String) :
     Parcelable {
+    var id: String? = null
     var categoria: String
     var subCategoria: String
     var direccion: String
     var descripcion: String
     var usuario: String
+    var observaciones: MutableList<Observacion>
 
     constructor() : this("","","","","")
 
@@ -20,6 +22,7 @@ class Reclamo(categoria: String, subCategoria: String, direccion: String, descri
         this.direccion = direccion
         this.descripcion = descripcion
         this.usuario = usuario
+        this.observaciones = mutableListOf()
     }
 
     constructor(source: Parcel) : this(

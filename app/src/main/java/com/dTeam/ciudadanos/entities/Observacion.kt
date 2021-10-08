@@ -1,7 +1,7 @@
 package com.dTeam.ciudadanos.entities
 
 class Observacion(
-    var autor: String,
+    var autor: Usuario,
     var contenido: String
 )
 {
