@@ -10,10 +10,10 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Categoria
+import com.dTeam.ciudadanos.entities.Reclamo
 
 
-
-class ReclamoAdapter (var reclamoList : MutableList <Categoria>,
+class ReclamoAdapter (var reclamoList : MutableList <Reclamo>,
                       var context :Context,
                       var onClick : (Int)->Unit) : RecyclerView.Adapter<ReclamoAdapter.ReclamoHolder>() {
 
@@ -46,7 +46,7 @@ class ReclamoAdapter (var reclamoList : MutableList <Categoria>,
 
     override fun onBindViewHolder(holder: ReclamoHolder, position: Int) {
 
-        holder.setTitle(reclamoList[position].nombre)
+        holder.setTitle(reclamoList[position].descripcion)
 
        /* var cardImage : ImageView =  holder.getImageView()
         Glide.with(context)
