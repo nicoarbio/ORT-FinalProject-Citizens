@@ -1,12 +1,14 @@
 package com.dTeam.ciudadanos.repositories
 
 import com.dTeam.ciudadanos.entities.Categoria
+import com.dTeam.ciudadanos.entities.Reclamo
 
 class ReclamoRepository (){
 
-    private var reclamoList : MutableList<Categoria> = mutableListOf()
+    private var reclamoList : MutableList<Reclamo> = mutableListOf()
 
     init {
+        /*
         reclamoList.add(Categoria("Alumbrado","Alumbrado"))
         reclamoList.add(Categoria("Arbolado","Alumbrado"))
         reclamoList.add(Categoria("Calles y Veredas","Alumbrado"))
@@ -17,19 +19,19 @@ class ReclamoRepository (){
         reclamoList.add(Categoria("Parques y plazas","Alumbrado"))
         reclamoList.add(Categoria("Pluviales","Alumbrado"))
         reclamoList.add(Categoria("Seguridad","Alumbrado"))
-
+        */
 
 
 
     }
 
-    fun getCategoria() : MutableList<Categoria>{
+    fun getCategoria() : MutableList<Reclamo>{
 
         return reclamoList
     }
 
     fun getDescription(pos:Int) : String{
-        return reclamoList[pos].description
+        return reclamoList[pos].descripcion
     }
 
    // fun getImage(pos:Int) : String{

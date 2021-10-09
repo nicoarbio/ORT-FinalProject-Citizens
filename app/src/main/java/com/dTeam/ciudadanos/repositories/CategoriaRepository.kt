@@ -1,13 +1,15 @@
 package com.dTeam.ciudadanos.repositories
 
+import com.dTeam.ciudadanos.entities.Categoria
 import com.dTeam.ciudadanos.entities.Subcategoria
 
 class CategoriaRepository {
 
 
-    private var reclamoList : MutableList<Subcategoria> = mutableListOf()
+    private var categoriaList : MutableList<Categoria> = mutableListOf()
 
     init {
+        /*
         reclamoList.add(Subcategoria("Reparación de luminaria"))
         reclamoList.add(Subcategoria("Extracción de árbol"))
         reclamoList.add(Subcategoria("Reparación de veredas"))
@@ -21,13 +23,15 @@ class CategoriaRepository {
         reclamoList.add(Subcategoria("Alcantarillas/sumideros"))
         reclamoList.add(Subcategoria("Calle anegada/inundada"))
 
+         */
+
 
 
 
     }
 
-    fun getListaTipoReclamo() : MutableList<Subcategoria>{
+    fun getListaTipoReclamo() : MutableList<Categoria>{
 
-        return reclamoList
+        return categoriaList
     }
 }
