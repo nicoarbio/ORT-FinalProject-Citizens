@@ -3,7 +3,6 @@ package com.dTeam.ciudadanos.entities
 import java.util.Date
 
 class Usuario(
-    var id: String,
     var rol: String,
     var nombre: String,
     var apellido: String,

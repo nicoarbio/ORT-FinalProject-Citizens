@@ -1,32 +1,31 @@
 package com.dTeam.ciudadanos.repositories
-
-import com.dTeam.ciudadanos.entities.Categoria
+import android.util.Log
 import com.dTeam.ciudadanos.entities.Reclamo
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 class ReclamoRepository (){
-
+/*
     private var reclamoList : MutableList<Reclamo> = mutableListOf()
-
+    val db = Firebase.firestore
     init {
-        /*
-        reclamoList.add(Categoria("Alumbrado","Alumbrado"))
-        reclamoList.add(Categoria("Arbolado","Alumbrado"))
-        reclamoList.add(Categoria("Calles y Veredas","Alumbrado"))
-        reclamoList.add(Categoria("Control edilicio, obras y catastro","Alumbrado"))
-        reclamoList.add(Categoria("Educación","Alumbrado"))
-        reclamoList.add(Categoria("Limpieza y Recolección","Alumbrado"))
-        reclamoList.add(Categoria("Ordenamiento del espacio público","Alumbrado"))
-        reclamoList.add(Categoria("Parques y plazas","Alumbrado"))
-        reclamoList.add(Categoria("Pluviales","Alumbrado"))
-        reclamoList.add(Categoria("Seguridad","Alumbrado"))
-        */
-
-
-
+        db.collection("reclamos")
+            .whereEqualTo("usuario", "fperchuk@hotmail.com") //TODO: Acá poner el mail del usuario logueado!
+            .get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot != null) {
+                    for (reclamo in snapshot) {
+                        reclamoList.add(reclamo.toObject())
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("Test", "Error al obtener documentos: ", exception)
+            }
     }
 
-    fun getCategoria() : MutableList<Reclamo>{
-
+    fun getReclamos() : MutableList<Reclamo>{
         return reclamoList
     }
 
@@ -36,5 +35,5 @@ class ReclamoRepository (){
 
    // fun getImage(pos:Int) : String{
        // return reclamoList[pos].urlImage
-  //  }
+  //  }*/
 }

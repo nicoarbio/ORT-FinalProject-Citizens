@@ -26,7 +26,7 @@ class FragmentNuevoReclamo:Fragment() {
         return v
     }
     fun generarReclamo(){
-        var reclamo : Reclamo = Reclamo("2I1GoceDwcsznRHXL3XE","79SJTIyIygDWrgwcFMnv","Av. Siempre Viva 123",txtDescripcion.text.toString(),"prueba@gmail.com")
+        var reclamo : Reclamo = Reclamo("Arbolado","Extracción de árbol","Av. Siempre Viva 123",txtDescripcion.text.toString(),"prueba@gmail.com", "Abierto", "Pepito")
         db.collection("reclamos").add(reclamo)
     }
 }

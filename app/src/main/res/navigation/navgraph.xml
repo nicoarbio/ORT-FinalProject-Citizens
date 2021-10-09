@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/registro1">
+    app:startDestination="@id/listaReclamos">
 
     <fragment
         android:id="@+id/fragmentNuevoReclamo"
@@ -12,7 +12,7 @@
         tools:layout="@layout/nuevo_reclamo" />
     <fragment
         android:id="@+id/estadoReclamo2"
-        android:name="com.example.gestiondereclamos.fragments.EstadoReclamo"
+        android:name="com.dTeam.ciudadanos.fragments.EstadoReclamo"
         android:label="EstadoReclamo" />
     <fragment
         android:id="@+id/registro1"
@@ -39,7 +39,11 @@
         tools:layout="@layout/registro3_fragment" />
     <fragment
         android:id="@+id/exitoReclamo"
-        android:name="com.example.gestiondereclamos.fragments.ExitoReclamo"
+        android:name="com.dTeam.ciudadanos.fragments.ExitoReclamo"
         android:label="ExitoReclamo" />
+    <fragment
+        android:id="@+id/listaReclamos"
+        android:name="com.dTeam.ciudadanos.fragments.ReclamoListFragment"
+        android:label="ListadoFragment" />
 
 </navigation>

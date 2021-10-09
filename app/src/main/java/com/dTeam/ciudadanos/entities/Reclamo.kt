@@ -4,17 +4,18 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.text.Editable
 
-class Reclamo(categoria: String, subCategoria: String, direccion: String, descripcion: String, usuario:String) :
+class Reclamo(categoria: String, subCategoria: String, direccion: String, descripcion: String, usuario:String, estado: String, responsable: String) :
     Parcelable {
-    var id: String? = null
     var categoria: String
     var subCategoria: String
     var direccion: String
     var descripcion: String
     var usuario: String
+    var estado: String
+    var responsable: String
     var observaciones: MutableList<Observacion>
 
-    constructor() : this("","","","","")
+    constructor() : this("","","","","","","")
 
     init {
         this.categoria = categoria
@@ -22,10 +23,14 @@ class Reclamo(categoria: String, subCategoria: String, direccion: String, descri
         this.direccion = direccion
         this.descripcion = descripcion
         this.usuario = usuario
+        this.estado= estado
+        this.responsable= responsable
         this.observaciones = mutableListOf()
     }
 
     constructor(source: Parcel) : this(
+        source.readString()!!,
+        source.readString()!!,
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
@@ -41,11 +46,13 @@ class Reclamo(categoria: String, subCategoria: String, direccion: String, descri
         writeString(direccion)
         writeString(descripcion)
         writeString(usuario)
+        writeString(estado)
+        writeString(responsable)
     }
 
-    /*override fun toString(): String {
-        return "Mascota(nombre='$nombre', tipo='$tipo', raza='$raza', edad=$edad, urlImage='$urlImage')"
-    }*/
+    override fun toString(): String {
+        return "Reclamo(categoria='$categoria', subCategoria='$subCategoria', direccion='$direccion', descripcion='$descripcion', usuario='$usuario', estado='$estado', responsable='$responsable', observaciones=$observaciones)"
+    }
 
     companion object {
         @JvmField
