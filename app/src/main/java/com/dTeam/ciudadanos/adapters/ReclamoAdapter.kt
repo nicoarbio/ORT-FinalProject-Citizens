@@ -1,6 +1,7 @@
 package com.dTeam.ciudadanos.adapters
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.bumptech.glide.Glide
+import com.dTeam.ciudadanos.GlideApp
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
@@ -60,8 +62,9 @@ class ReclamoAdapter (var reclamoList : MutableList <Reclamo>,
         holder.setDireccion(reclamoList[position].direccion)
 
         val storage = FirebaseStorage.getInstance()// Create a reference to a file from a Google Cloud Storage URI
-        val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/categorias/arbod" +  reclamoList[position].categoria + ".png")
+        val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/categorias/" + reclamoList[position].categoria + ".png")
         Log.d("test", gsReference.toString())
+
         var cardImage : ImageView =  holder.getImageView()
         Glide.with(context)
             .load(gsReference)
@@ -70,6 +73,8 @@ class ReclamoAdapter (var reclamoList : MutableList <Reclamo>,
         holder.getCardView().setOnClickListener(){
             onClick(position)
         }
+
+
     }
 
     override fun getItemCount(): Int {
