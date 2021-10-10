@@ -1,12 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.PerfilUsuario">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/lblNombreYApellidoPerfil"
+        android:layout_width="256dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="166dp"
+        android:layout_marginEnd="187dp"
+        android:layout_marginBottom="66dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/lblEmailPerfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPerfil" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imgPerfil"
+        android:layout_width="134dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/lblNombreYApellidoPerfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/lblEmailPerfil"
+        android:layout_width="284dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="-50dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/lblNombreYApellidoPerfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblNombreYApellidoPerfil" />
+
+    <TextView
+        android:id="@+id/lblDni"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/lblDireccionPerfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgDni"
+        app:layout_constraintTop_toBottomOf="@+id/lblEmailPerfil" />
+
+    <TextView
+        android:id="@+id/lblDireccionPerfil"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/lblTelefonoPerfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgDireccion"
+        app:layout_constraintTop_toBottomOf="@+id/lblDni" />
+
+    <TextView
+        android:id="@+id/lblTelefonoPerfil"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="160dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgTelefono"
+        app:layout_constraintTop_toBottomOf="@+id/lblDireccionPerfil" />
+
+    <ImageView
+        android:id="@+id/imgDireccion"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_baseline_home_24"
+        app:layout_constraintBottom_toTopOf="@+id/imgTelefono"
+        app:layout_constraintEnd_toStartOf="@+id/lblDireccionPerfil"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgDni" />
+
+    <ImageView
+        android:id="@+id/imgTelefono"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="180dp"
+        android:src="@android:drawable/stat_sys_phone_call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lblTelefonoPerfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgDireccion"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imgDni"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="396dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_baseline_accessibility_24"
+        app:layout_constraintBottom_toTopOf="@+id/imgDireccion"
+        app:layout_constraintEnd_toStartOf="@+id/lblDni"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
