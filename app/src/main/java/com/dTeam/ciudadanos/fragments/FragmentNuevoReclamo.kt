@@ -1,5 +1,6 @@
 package com.dTeam.ciudadanos.fragments
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,9 @@ class FragmentNuevoReclamo:Fragment() {
         return v
     }
     fun generarReclamo(){
-        var reclamo : Reclamo = Reclamo("Arbolado","Extracción de árbol","Av. Siempre Viva 123",txtDescripcion.text.toString(),"prueba@gmail.com", "Abierto", "Pepito")
+        var reclamo : Reclamo = Reclamo("Arbolado","Extracción de árbol","Av. Siempre Viva 123",txtDescripcion.text.toString(),"fperchuk@hotmail.com", "Cerrado", "Pepito")
         db.collection("reclamos").add(reclamo)
+            .addOnSuccessListener { Log.d("testNuevoReclamo", "TODO OK") }
+            .addOnFailureListener{e -> Log.d("testNuevoReclamo", "ERROR: ", e)}
     }
 }

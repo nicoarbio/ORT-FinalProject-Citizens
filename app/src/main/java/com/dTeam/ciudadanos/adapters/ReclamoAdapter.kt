@@ -1,7 +1,6 @@
 package com.dTeam.ciudadanos.adapters
 
 import android.content.Context
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.bumptech.glide.Glide
-import com.dTeam.ciudadanos.GlideApp
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
 
@@ -45,8 +42,11 @@ class ReclamoAdapter (var reclamoList : MutableList <Reclamo>,
         fun getCardView() : CardView {
             return view.findViewById(R.id.card_reclamo_item)
         }
-        fun getImageView() : ImageView{
+        fun getImageReclamo() : ImageView{
          return  view.findViewById(R.id.imgReclamo)
+        }
+        fun getImageEstado() : ImageView{
+            return  view.findViewById(R.id.imgEstado)
         }
     }
 
@@ -62,13 +62,19 @@ class ReclamoAdapter (var reclamoList : MutableList <Reclamo>,
         holder.setDireccion(reclamoList[position].direccion)
 
         val storage = FirebaseStorage.getInstance()// Create a reference to a file from a Google Cloud Storage URI
-        val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/categorias/" + reclamoList[position].categoria + ".png")
-        Log.d("test", gsReference.toString())
+        val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
+        val imgReclamo = gsReference.child("categorias").child(reclamoList[position].categoria + ".png")
+        val imgEstado = gsReference.child("estados").child(reclamoList[position].estado + ".png")
 
-        var cardImage : ImageView =  holder.getImageView()
+        var cardImageReclamo : ImageView =  holder.getImageReclamo()
         Glide.with(context)
-            .load(gsReference)
-            .into(cardImage)
+            .load(imgReclamo)
+            .into(cardImageReclamo)
+
+        var cardImageEstado : ImageView =  holder.getImageEstado()
+        Glide.with(context)
+            .load(imgEstado)
+            .into(cardImageEstado)
 
         holder.getCardView().setOnClickListener(){
             onClick(position)
