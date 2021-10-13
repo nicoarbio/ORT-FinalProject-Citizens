@@ -9,7 +9,11 @@
         android:id="@+id/fragmentNuevoReclamo"
         android:name="com.dTeam.ciudadanos.fragments.FragmentNuevoReclamo"
         android:label="nuevo_reclamo"
-        tools:layout="@layout/nuevo_reclamo" />
+        tools:layout="@layout/nuevo_reclamo">
+        <action
+            android:id="@+id/action_fragmentNuevoReclamo_to_exitoReclamo"
+            app:destination="@id/exitoReclamo" />
+    </fragment>
     <fragment
         android:id="@+id/estadoReclamo2"
         android:name="com.dTeam.ciudadanos.fragments.EstadoReclamo"
@@ -38,12 +42,13 @@
         android:label="registro3_fragment"
         tools:layout="@layout/registro3_fragment" />
     <fragment
-        android:id="@+id/exitoReclamo"
-        android:name="com.dTeam.ciudadanos.fragments.ExitoReclamo"
-        android:label="ExitoReclamo" />
-    <fragment
         android:id="@+id/listaReclamos"
         android:name="com.dTeam.ciudadanos.fragments.ReclamoListFragment"
         android:label="ListadoFragment" />
+    <fragment
+        android:id="@+id/exitoReclamo"
+        android:name="com.dTeam.ciudadanos.fragments.ExitoReclamo"
+        android:label="exito_reclamo_fragment"
+        tools:layout="@layout/exito_reclamo_fragment" />
 
 </navigation>

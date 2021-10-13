@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.google.firebase.firestore.ktx.firestore
@@ -23,6 +24,8 @@ class FragmentNuevoReclamo:Fragment() {
         btnGenerarReclamo = v.findViewById(R.id.btnGenerarReclamo)
         btnGenerarReclamo.setOnClickListener{
             generarReclamo()
+            val action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
+            v.findNavController().navigate(action)
         }
         return v
     }
