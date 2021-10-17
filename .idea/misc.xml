@@ -21,7 +21,14 @@
         <entry key="..\:/Users/Damian/Documents/GitHub/ORT-ProyectoFinal/app/src/main/res/layout/tipo_reclamo_item.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/Damian/Documents/GitHub/ORT-ProyectoFinal/app/src/main/res/menu/bottom_menu.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17299898682877407" />
+        <entry key="app/src/main/res/layout/detalle_reclamo_fragment.xml" value="0.29483695652173914" />
+        <entry key="app/src/main/res/layout/estado_reclamo_fragment.xml" value="0.29483695652173914" />
+        <entry key="app/src/main/res/layout/item_reclamo_list.xml" value="0.5" />
         <entry key="app/src/main/res/layout/nuevo_reclamo.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/perfil_usuario_fragment.xml" value="0.29483695652173914" />
+        <entry key="app/src/main/res/layout/reclamo_list_fragment.xml" value="0.2210144927536232" />
+        <entry key="app/src/main/res/layout/tipo_reclamo_item.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/tipo_reclamo_list_fragment.xml" value="0.29483695652173914" />
       </map>
     </option>
   </component>

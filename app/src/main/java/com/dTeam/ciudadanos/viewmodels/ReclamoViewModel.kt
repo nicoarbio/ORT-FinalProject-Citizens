@@ -11,14 +11,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
-class ReclamoListViewModel : ViewModel() {
+class ReclamoViewModel : ViewModel() {
 
     val db = Firebase.firestore
     private var reclamoList : MutableList<Reclamo> = mutableListOf()
     val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
 
      fun getReclamos() {
-
          viewModelScope.launch {
              reclamoList.clear()
              try {
@@ -35,8 +34,6 @@ class ReclamoListViewModel : ViewModel() {
              }catch (e: Exception){
                  Log.w("Test", "Error al obtener documentos: ", e)
              }
-
          }
-
     }
 }

@@ -1,9 +1,14 @@
 package com.dTeam.ciudadanos.entities
 
 class Categoria(
-    var nombre : String,
-    var subcategorias : MutableList<Subcategoria>? = null
-)
-{
+    nombre : String
+) {
+    var nombre: String
+    var subcategorias: MutableList<Subcategoria>
+    constructor() : this("")
 
+    init {
+        this.nombre = nombre
+        this.subcategorias = mutableListOf()
+    }
 }

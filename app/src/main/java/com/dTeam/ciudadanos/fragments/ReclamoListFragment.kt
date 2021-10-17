@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 
 import com.dTeam.ciudadanos.adapters.ReclamoAdapter
-import com.dTeam.ciudadanos.entities.Reclamo
 
-import com.dTeam.ciudadanos.viewmodels.ReclamoListViewModel
+import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class ReclamoListFragment : Fragment() {
@@ -23,7 +22,7 @@ class ReclamoListFragment : Fragment() {
         fun newInstance() = ReclamoListFragment()
     }
 
-    private lateinit var viewModel: ReclamoListViewModel
+    private lateinit var viewModel: ReclamoViewModel
 
     private lateinit var v: View
 
@@ -41,7 +40,7 @@ class ReclamoListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ReclamoListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ReclamoViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
@@ -55,11 +54,9 @@ class ReclamoListFragment : Fragment() {
     }
     fun setObserver(){
         viewModel.listadoReclamos.observe(viewLifecycleOwner, Observer {list ->
-            reclamoAdapter = ReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos)
-            }
+            reclamoAdapter = ReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos) }
             listadoReclamos.adapter = reclamoAdapter
         })
-
     }
 
     fun onItemClick(pos: Int){

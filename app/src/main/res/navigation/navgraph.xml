@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/fragmentNuevoReclamo">
+    app:startDestination="@id/listaCategorias">
 
     <fragment
         android:id="@+id/fragmentNuevoReclamo"
@@ -50,5 +50,15 @@
         android:name="com.dTeam.ciudadanos.fragments.ExitoReclamo"
         android:label="exito_reclamo_fragment"
         tools:layout="@layout/exito_reclamo_fragment" />
+    <fragment
+        android:id="@+id/perfilUsuario"
+        android:name="com.dTeam.ciudadanos.fragments.PerfilUsuario"
+        android:label="perfil_usuario_fragment"
+        tools:layout="@layout/perfil_usuario_fragment" />
+    <fragment
+        android:id="@+id/listaCategorias"
+        android:name="com.dTeam.ciudadanos.fragments.TipoReclamoListFragment"
+        android:label="listadoCategoriasFragment"
+        tools:layout="@layout/tipo_reclamo_list_fragment" />
 
 </navigation>
