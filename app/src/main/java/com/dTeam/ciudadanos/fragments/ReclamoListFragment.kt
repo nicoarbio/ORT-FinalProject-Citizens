@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
@@ -60,9 +61,11 @@ class ReclamoListFragment : Fragment() {
     }
 
     fun onItemClick(pos: Int){
-        /*val action2 = ReclamoListFragmentDirections.actionMovieListFragmentToLandFragment(repository.getDescription(pos))
-        v.findNavController().navigate(action2)*/
-        Snackbar.make(v,pos.toString(), Snackbar.LENGTH_SHORT).show()
+        // !! que hace
+        val actionToDetalle = ReclamoListFragmentDirections.actionListaReclamosToDetalleReclamoFragment(
+            viewModel.listadoReclamos.value!![pos])
+        v.findNavController().navigate(actionToDetalle)
     }
 
 }
+

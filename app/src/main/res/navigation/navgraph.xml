@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/inicioCiudadano">
+    app:startDestination="@id/listaReclamos">
 
     <fragment
         android:id="@+id/fragmentNuevoReclamo"
@@ -44,7 +44,11 @@
     <fragment
         android:id="@+id/listaReclamos"
         android:name="com.dTeam.ciudadanos.fragments.ReclamoListFragment"
-        android:label="ListadoFragment" />
+        android:label="ListadoFragment">
+        <action
+            android:id="@+id/action_listaReclamos_to_detalleReclamoFragment"
+            app:destination="@id/detalleReclamoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exitoReclamo"
         android:name="com.dTeam.ciudadanos.fragments.ExitoReclamo"
@@ -60,6 +64,15 @@
         android:name="com.dTeam.ciudadanos.fragments.TipoReclamoListFragment"
         android:label="listadoCategoriasFragment"
         tools:layout="@layout/tipo_reclamo_list_fragment" />
+    <fragment
+        android:id="@+id/detalleReclamoFragment"
+        android:name="com.dTeam.ciudadanos.fragments.DetalleReclamoFragment"
+        android:label="detalle_reclamo_fragment"
+        tools:layout="@layout/detalle_reclamo_fragment" >
+        <argument
+            android:name="reclamo"
+            app:argType="com.dTeam.ciudadanos.entities.Reclamo" />
+    </fragment>
     <fragment
         android:id="@+id/inicioCiudadano"
         android:name="com.dTeam.ciudadanos.fragments.InicioCiudadano"
