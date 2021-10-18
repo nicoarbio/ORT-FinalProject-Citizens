@@ -1,6 +1,11 @@
 package com.dTeam.ciudadanos.entities
 
-class Subcategoria (var nombre: String){
-
+class Subcategoria (nombre: String)
+{
+    var nombre: String
+    constructor() : this("")
+    init {
+        this.nombre = nombre
+    }
 
 }

@@ -8,16 +8,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.bumptech.glide.Glide
 import com.dTeam.ciudadanos.entities.Categoria
+import com.dTeam.ciudadanos.fragments.SubcategoriaReclamoListDirections
+import com.dTeam.ciudadanos.fragments.TipoReclamoListFragmentDirections
 import com.google.firebase.storage.FirebaseStorage
 
 
 class CategoriaReclamoAdapter (var categoriaList : MutableList <Categoria>,
                                var context :Context,
                                var onClick : (Int)->Unit) : RecyclerView.Adapter<CategoriaReclamoAdapter.CategoriaHolder>() {
+    lateinit var view: View
 
     class CategoriaHolder (v: View) : RecyclerView.ViewHolder(v) {
 
@@ -40,7 +44,7 @@ class CategoriaReclamoAdapter (var categoriaList : MutableList <Categoria>,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriaHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.tipo_reclamo_item,parent,false)
+        view =  LayoutInflater.from(parent.context).inflate(R.layout.tipo_reclamo_item,parent,false)
         return (CategoriaHolder(view))
     }
 
@@ -58,6 +62,7 @@ class CategoriaReclamoAdapter (var categoriaList : MutableList <Categoria>,
 
         holder.getCardView().setOnClickListener(){
             onClick(position)
+
         }
 
 

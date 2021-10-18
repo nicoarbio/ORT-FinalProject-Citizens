@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dTeam.ciudadanos.entities.Categoria
 import com.dTeam.ciudadanos.entities.Reclamo
+import com.dTeam.ciudadanos.entities.Subcategoria
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -16,7 +17,10 @@ import java.lang.Exception
 class CategoriaViewModel: ViewModel() {
     val db = Firebase.firestore
     private var categoriaList : MutableList<Categoria> = mutableListOf()
+    private var subcategoriaList : MutableList<Subcategoria> = mutableListOf()
     val listadoCategorias = MutableLiveData<MutableList<Categoria>>()
+    val listadoSubcategoria = MutableLiveData<MutableList<Subcategoria>>()
+    private var categoriaActual: Int = 0
 
     fun getCategorias() {
 
@@ -35,8 +39,17 @@ class CategoriaViewModel: ViewModel() {
             }catch (e: Exception){
                 Log.w("Test", "Error al obtener documentos: ", e)
             }
+        }
+    }
+    fun getSubcategorias() {
+        viewModelScope.launch {
+            subcategoriaList.clear()
+            Log.w(categoriaList.get(categoriaActual).documentId,"Error")
 
         }
-
+    }
+    fun setCategoria(posCategoriaElegida: Int)
+    {
+        this.categoriaActual = posCategoriaElegida
     }
 }

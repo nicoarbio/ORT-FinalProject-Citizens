@@ -1,8 +1,11 @@
 package com.dTeam.ciudadanos.entities
 
+import com.google.firebase.firestore.DocumentId
 import java.util.Date
 
 class Usuario(
+    @DocumentId
+    private val documentId: String? = null,
     var rol: String,
     var nombre: String,
     var apellido: String,

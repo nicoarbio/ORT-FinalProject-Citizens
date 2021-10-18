@@ -6,37 +6,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.adapters.CategoriaReclamoAdapter
 import com.dTeam.ciudadanos.adapters.ReclamoAdapter
+import com.dTeam.ciudadanos.adapters.SubcategoriaReclamoAdapter
 import com.dTeam.ciudadanos.viewmodels.CategoriaViewModel
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
+import com.dTeam.ciudadanos.viewmodels.SubcategoriaReclamoListViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class TipoReclamoListFragment : Fragment() {
+class SubcategoriaReclamoList : Fragment() {
 
     companion object {
-        fun newInstance() = TipoReclamoListFragment()
+        fun newInstance() = SubcategoriaReclamoList()
     }
 
     private lateinit var viewModel: CategoriaViewModel
     private lateinit var reclamoViewModel: ReclamoViewModel
     private lateinit var v : View
-    private lateinit var listadoCategorias: RecyclerView
-    private lateinit var categoriasAdapter: CategoriaReclamoAdapter
+    private lateinit var listadoSubcategorias: RecyclerView
+    private lateinit var subCategoriasAdapter: SubcategoriaReclamoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v= inflater.inflate(R.layout.tipo_reclamo_list_fragment, container, false)
-        listadoCategorias = v.findViewById(R.id.listadoCategorias)
-
+        v = inflater.inflate(R.layout.subcategoria_reclamo_list_fragment, container, false)
+        listadoSubcategorias = v.findViewById(R.id.listadoSubcategorias)
         return v
     }
 
@@ -44,29 +43,27 @@ class TipoReclamoListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CategoriaViewModel::class.java)
         reclamoViewModel = ViewModelProvider(this).get(ReclamoViewModel::class.java)
+        // TODO: Use the ViewModel
     }
 
-    override fun onStart() {
+    override fun onStart()
+    {
         super.onStart()
-
-        listadoCategorias.setHasFixedSize(true)
-        listadoCategorias.layoutManager = GridLayoutManager(context, 3)
-        viewModel.getCategorias()
-        categoriasAdapter = CategoriaReclamoAdapter(mutableListOf(), requireContext()) { pos -> onItemClick(pos)}
+        listadoSubcategorias.setHasFixedSize(true)
+        listadoSubcategorias.layoutManager = LinearLayoutManager(context)
+        viewModel.getSubcategorias()
+        subCategoriasAdapter = SubcategoriaReclamoAdapter(mutableListOf(), requireContext()) { pos -> onItemClick(pos)}
         setObserver()
     }
-
     fun setObserver(){
-        viewModel.listadoCategorias.observe(viewLifecycleOwner, Observer {list ->
-            categoriasAdapter = CategoriaReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos) }
-            listadoCategorias.adapter = categoriasAdapter
+        viewModel.listadoSubcategoria.observe(viewLifecycleOwner, Observer {list ->
+            subCategoriasAdapter = SubcategoriaReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos) }
+            listadoSubcategorias.adapter = subCategoriasAdapter
         })
     }
 
     fun onItemClick(pos: Int){
-        /*val action2 = ReclamoListFragmentDirections.actionMovieListFragmentToLandFragment(repository.getDescription(pos))
-        v.findNavController().navigate(action2)*/
-        viewModel.setCategoria(pos)
-        //Snackbar.make(v,pos, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(v,pos.toString(), Snackbar.LENGTH_SHORT).show()
     }
+
 }
