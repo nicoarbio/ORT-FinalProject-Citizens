@@ -10,12 +10,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
-import com.dTeam.ciudadanos.viewmodels.DetalleReclamoViewModel
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.storage.FirebaseStorage
+import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
 
 class DetalleReclamoFragment : Fragment() {
 
@@ -23,7 +20,7 @@ class DetalleReclamoFragment : Fragment() {
         fun newInstance() = DetalleReclamoFragment()
     }
 
-    private lateinit var viewModel: DetalleReclamoViewModel
+    private lateinit var viewModel: ReclamoViewModel
 
     lateinit var v: View
     private lateinit var reclamo: Reclamo
@@ -65,13 +62,13 @@ class DetalleReclamoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetalleReclamoViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ReclamoViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
     override fun onStart() {
         super.onStart()
-        reclamo = DetalleReclamoFragmentArgs.fromBundle(requireArguments()).reclamo
+        reclamo = viewModel.reclamo
 
         /*val storage = FirebaseStorage.getInstance()// Create a reference to a file from a Google Cloud Storage URI
         val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
