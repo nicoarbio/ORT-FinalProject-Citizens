@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.bumptech.glide.Glide
 import com.dTeam.ciudadanos.entities.Categoria
-import com.dTeam.ciudadanos.fragments.SubcategoriaReclamoListDirections
 import com.dTeam.ciudadanos.fragments.TipoReclamoListFragmentDirections
 import com.google.firebase.storage.FirebaseStorage
 

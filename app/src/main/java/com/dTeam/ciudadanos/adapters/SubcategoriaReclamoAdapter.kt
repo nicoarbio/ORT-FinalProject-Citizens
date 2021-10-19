@@ -10,9 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Subcategoria
-import com.dTeam.ciudadanos.fragments.FragmentNuevoReclamoDirections
 import com.dTeam.ciudadanos.fragments.SubcategoriaReclamoListDirections
-import com.google.firebase.storage.FirebaseStorage
 
 class SubcategoriaReclamoAdapter(
     var subCategoriaList: MutableList<Subcategoria>,
@@ -36,12 +34,12 @@ class SubcategoriaReclamoAdapter(
                 return view.findViewById(R.id.cardTipoReclamo)
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubcategoriaReclamoAdapter.SubcategoriaReclamoHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubcategoriaReclamoHolder {
 
         view =  LayoutInflater.from(parent.context).inflate(R.layout.subcategoria_reclamo_item,parent,false)
-        return (SubcategoriaReclamoAdapter.SubcategoriaReclamoHolder(view))
+        return (SubcategoriaReclamoHolder(view))
     }
-    override fun onBindViewHolder(holder: SubcategoriaReclamoAdapter.SubcategoriaReclamoHolder, position: Int) {
+    override fun onBindViewHolder(holder: SubcategoriaReclamoHolder, position: Int) {
 
         holder.setSubcategoria(subCategoriaList[position].nombre)
 

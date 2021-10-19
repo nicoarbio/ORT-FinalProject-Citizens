@@ -10,12 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
-import com.dTeam.ciudadanos.adapters.CategoriaReclamoAdapter
-import com.dTeam.ciudadanos.adapters.ReclamoAdapter
 import com.dTeam.ciudadanos.adapters.SubcategoriaReclamoAdapter
 import com.dTeam.ciudadanos.viewmodels.CategoriaViewModel
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
-import com.dTeam.ciudadanos.viewmodels.SubcategoriaReclamoListViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class SubcategoriaReclamoList : Fragment() {

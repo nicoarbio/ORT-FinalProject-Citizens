@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dTeam.ciudadanos.entities.Categoria
-import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.entities.Subcategoria
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -20,7 +19,7 @@ class CategoriaViewModel: ViewModel() {
     private var subcategoriaList : MutableList<Subcategoria> = mutableListOf()
     val listadoCategorias = MutableLiveData<MutableList<Categoria>>()
     val listadoSubcategoria = MutableLiveData<MutableList<Subcategoria>>()
-    private var categoriaActual: Int = 0
+    private lateinit var idCategoria:String
 
     fun getCategorias() {
 
@@ -44,12 +43,10 @@ class CategoriaViewModel: ViewModel() {
     fun getSubcategorias() {
         viewModelScope.launch {
             subcategoriaList.clear()
-            Log.w(categoriaList.get(categoriaActual).documentId,"Error")
-
+            //TODO desarrollar el método
         }
     }
-    fun setCategoria(posCategoriaElegida: Int)
-    {
-        this.categoriaActual = posCategoriaElegida
+    fun setDocumentId(idCategoria: String?){
+           this.idCategoria= idCategoria!!
     }
 }

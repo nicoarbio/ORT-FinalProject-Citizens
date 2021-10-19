@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.entities.Reclamo
+import com.dTeam.ciudadanos.entities.Subcategoria
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -16,6 +17,7 @@ class ReclamoViewModel : ViewModel() {
     val db = Firebase.firestore
     private var reclamoList : MutableList<Reclamo> = mutableListOf()
     val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
+    val reclamo = Reclamo()
 
      fun getReclamos() {
          viewModelScope.launch {
@@ -35,5 +37,11 @@ class ReclamoViewModel : ViewModel() {
                  Log.w("Test", "Error al obtener documentos: ", e)
              }
          }
+    }
+    fun setCategoria(categoria : String){
+        reclamo.categoria=categoria
+    }
+    fun setSubcategoria(subcategoria: String){
+        reclamo.subCategoria=subcategoria
     }
 }

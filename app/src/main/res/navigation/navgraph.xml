@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/listaReclamos">
+    app:startDestination="@id/listaCategorias">
 
     <fragment
         android:id="@+id/fragmentNuevoReclamo"
@@ -63,15 +63,10 @@
         android:id="@+id/listaCategorias"
         android:name="com.dTeam.ciudadanos.fragments.TipoReclamoListFragment"
         android:label="listadoCategoriasFragment"
-        tools:layout="@layout/tipo_reclamo_list_fragment" />
-    <fragment
-        android:id="@+id/detalleReclamoFragment"
-        android:name="com.dTeam.ciudadanos.fragments.DetalleReclamoFragment"
-        android:label="detalle_reclamo_fragment"
-        tools:layout="@layout/detalle_reclamo_fragment" >
-        <argument
-            android:name="reclamo"
-            app:argType="com.dTeam.ciudadanos.entities.Reclamo" />
+        tools:layout="@layout/tipo_reclamo_list_fragment" >
+        <action
+            android:id="@+id/action_listaCategorias_to_subcategoriaReclamoList"
+            app:destination="@id/subcategoriaReclamoList" />
     </fragment>
     <fragment
         android:id="@+id/inicioCiudadano"
@@ -84,5 +79,19 @@
         <action
             android:id="@+id/action_inicioCiudadano_to_listaReclamos"
             app:destination="@id/listaReclamos" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleReclamoFragment"
+        android:name="com.dTeam.ciudadanos.fragments.DetalleReclamoFragment"
+        android:label="detalle_reclamo_fragment"
+        tools:layout="@layout/detalle_reclamo_fragment" />
+    <fragment
+        android:id="@+id/subcategoriaReclamoList"
+        android:name="com.dTeam.ciudadanos.fragments.SubcategoriaReclamoList"
+        android:label="subcategoria_reclamo_list_fragment"
+        tools:layout="@layout/subcategoria_reclamo_list_fragment" >
+        <action
+            android:id="@+id/action_subcategoriaReclamoList_to_fragmentNuevoReclamo"
+            app:destination="@id/fragmentNuevoReclamo" />
     </fragment>
 </navigation>
