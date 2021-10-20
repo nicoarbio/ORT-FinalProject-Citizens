@@ -1,6 +1,7 @@
 package com.dTeam.ciudadanos.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,7 @@ class SubcategoriaReclamoAdapter(
             txtSubcategoria.text = nombre
         }
         fun getCardView() : CardView {
-                return view.findViewById(R.id.cardTipoReclamo)
+                return view.findViewById(R.id.cardSubcategoriaReclamoItem)
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubcategoriaReclamoHolder {
@@ -40,7 +41,6 @@ class SubcategoriaReclamoAdapter(
         return (SubcategoriaReclamoHolder(view))
     }
     override fun onBindViewHolder(holder: SubcategoriaReclamoHolder, position: Int) {
-
         holder.setSubcategoria(subCategoriaList[position].nombre)
 
         holder.getCardView().setOnClickListener(){

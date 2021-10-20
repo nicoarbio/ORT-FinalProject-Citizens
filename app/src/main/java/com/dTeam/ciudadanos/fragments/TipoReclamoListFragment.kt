@@ -2,11 +2,13 @@ package com.dTeam.ciudadanos.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
@@ -39,7 +41,7 @@ class TipoReclamoListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        categoriaViewModel = ViewModelProvider(this).get(CategoriaViewModel::class.java)
+        categoriaViewModel = ViewModelProvider(requireActivity()).get(CategoriaViewModel::class.java)
         reclamoViewModel = ViewModelProvider(this).get(ReclamoViewModel::class.java)
     }
 
@@ -58,15 +60,19 @@ class TipoReclamoListFragment : Fragment() {
             categoriasAdapter = CategoriaReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos) }
             listadoCategorias.adapter = categoriasAdapter
         })
+
     }
 
     fun onItemClick(pos: Int){
-        /*val action2 = ReclamoListFragmentDirections.actionMovieListFragmentToLandFragment(repository.getDescription(pos))
-        v.findNavController().navigate(action2)*/
         val categoria = categoriaViewModel.listadoCategorias.value?.get(pos)
         if (categoria != null) {
             reclamoViewModel.setCategoria(categoria.nombre)
-            categoriaViewModel.setDocumentId(categoria.documentId)
+            if (categoria.documentId!=null){
+                categoriaViewModel.setDocumentId(categoria.documentId)
+                //Notificar los cambios en el viewmodel
+            }
+            val action = TipoReclamoListFragmentDirections.actionListaCategoriasToSubcategoriaReclamoList()
+            v.findNavController().navigate(action)
         }else{
             Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
         }

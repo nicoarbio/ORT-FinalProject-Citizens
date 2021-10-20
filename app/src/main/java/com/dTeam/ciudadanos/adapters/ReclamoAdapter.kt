@@ -51,7 +51,6 @@ class ReclamoAdapter (var reclamoList : MutableList <Reclamo>,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReclamoHolder {
-        Log.d("Test", reclamoList.size.toString())
         val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_reclamo_list,parent,false)
         return (ReclamoHolder(view))
     }

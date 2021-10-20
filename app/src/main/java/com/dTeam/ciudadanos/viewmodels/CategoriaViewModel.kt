@@ -1,6 +1,7 @@
 package com.dTeam.ciudadanos.viewmodels
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,7 +20,9 @@ class CategoriaViewModel: ViewModel() {
     private var subcategoriaList : MutableList<Subcategoria> = mutableListOf()
     val listadoCategorias = MutableLiveData<MutableList<Categoria>>()
     val listadoSubcategoria = MutableLiveData<MutableList<Subcategoria>>()
-    private lateinit var idCategoria:String
+    private val _idCategoria = MutableLiveData<String>()
+    val idCategoria : LiveData<String>
+        get() = _idCategoria
 
     fun getCategorias() {
 
@@ -41,12 +44,27 @@ class CategoriaViewModel: ViewModel() {
         }
     }
     fun getSubcategorias() {
+        Log.d("testCategoria", _idCategoria.value.toString())
         viewModelScope.launch {
             subcategoriaList.clear()
-            //TODO desarrollar el método
+            try {
+                val subCategorias = db.collection("categoriasReclamos")
+                    .document(_idCategoria.value.toString())
+                    .collection("subCategorias")
+                    .get()
+                    .await()
+                if (subCategorias != null) {
+                    for (subCategoria in subCategorias) {
+                        subcategoriaList.add(subCategoria.toObject())
+                    }
+                    listadoSubcategoria.value =  subcategoriaList
+                }
+            }catch (e: Exception){
+                Log.w("Test", "Error al obtener documentos: ", e)
+            }
         }
     }
-    fun setDocumentId(idCategoria: String?){
-           this.idCategoria= idCategoria!!
+    fun setDocumentId(idCategoria: String){
+           _idCategoria.value=idCategoria
     }
 }
