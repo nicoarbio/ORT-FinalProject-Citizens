@@ -74,11 +74,11 @@
         android:label="inicio_ciudadano_fragment"
         tools:layout="@layout/inicio_ciudadano_fragment" >
         <action
-            android:id="@+id/action_inicioCiudadano_to_fragmentNuevoReclamo"
-            app:destination="@id/fragmentNuevoReclamo" />
-        <action
             android:id="@+id/action_inicioCiudadano_to_listaReclamos"
             app:destination="@id/listaReclamos" />
+        <action
+            android:id="@+id/action_inicioCiudadano_to_listaCategorias"
+            app:destination="@id/listaCategorias" />
     </fragment>
     <fragment
         android:id="@+id/detalleReclamoFragment"

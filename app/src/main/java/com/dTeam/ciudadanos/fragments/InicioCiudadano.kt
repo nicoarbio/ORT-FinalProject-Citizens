@@ -28,7 +28,7 @@ class InicioCiudadano : Fragment() {
 
         nuevoReclamo = v.findViewById(R.id.btnNuevoReclamo)
         nuevoReclamo.setOnClickListener{
-            val action = InicioCiudadanoDirections.actionInicioCiudadanoToFragmentNuevoReclamo()
+            val action = InicioCiudadanoDirections.actionInicioCiudadanoToListaCategorias()
             v.findNavController().navigate(action)
 
         }
