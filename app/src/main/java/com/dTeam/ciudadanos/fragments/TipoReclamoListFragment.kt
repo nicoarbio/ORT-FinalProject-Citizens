@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -35,14 +38,13 @@ class TipoReclamoListFragment : Fragment() {
     ): View? {
         v= inflater.inflate(R.layout.tipo_reclamo_list_fragment, container, false)
         listadoCategorias = v.findViewById(R.id.listadoCategorias)
-
         return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         categoriaViewModel = ViewModelProvider(requireActivity()).get(CategoriaViewModel::class.java)
-        reclamoViewModel = ViewModelProvider(this).get(ReclamoViewModel::class.java)
+        reclamoViewModel = ViewModelProvider(requireActivity()).get(ReclamoViewModel::class.java)
     }
 
     override fun onStart() {
@@ -67,10 +69,7 @@ class TipoReclamoListFragment : Fragment() {
         val categoria = categoriaViewModel.listadoCategorias.value?.get(pos)
         if (categoria != null) {
             reclamoViewModel.setCategoria(categoria.nombre)
-            if (categoria.documentId!=null){
-                categoriaViewModel.setDocumentId(categoria.documentId)
-                //Notificar los cambios en el viewmodel
-            }
+            categoriaViewModel.setDocumentId(categoria.documentId!!)
             val action = TipoReclamoListFragmentDirections.actionListaCategoriasToSubcategoriaReclamoList()
             v.findNavController().navigate(action)
         }else{

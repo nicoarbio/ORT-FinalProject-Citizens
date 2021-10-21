@@ -21,11 +21,8 @@ class CategoriaViewModel: ViewModel() {
     val listadoCategorias = MutableLiveData<MutableList<Categoria>>()
     val listadoSubcategoria = MutableLiveData<MutableList<Subcategoria>>()
     private val _idCategoria = MutableLiveData<String>()
-    val idCategoria : LiveData<String>
-        get() = _idCategoria
 
     fun getCategorias() {
-
         viewModelScope.launch {
             categoriaList.clear()
             try {
@@ -44,7 +41,6 @@ class CategoriaViewModel: ViewModel() {
         }
     }
     fun getSubcategorias() {
-        Log.d("testCategoria", _idCategoria.value.toString())
         viewModelScope.launch {
             subcategoriaList.clear()
             try {

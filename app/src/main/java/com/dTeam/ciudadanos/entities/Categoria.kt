@@ -18,4 +18,8 @@ class Categoria(
         this.nombre = nombre
         this.subcategorias = mutableListOf()
     }
+
+    override fun toString(): String {
+        return "Categoria(nombre='$nombre', subcategorias=$subcategorias, documentId=$documentId)"
+    }
 }

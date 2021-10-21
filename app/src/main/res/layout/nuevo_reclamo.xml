@@ -8,7 +8,7 @@
     tools:context=".fragments.FragmentNuevoReclamo">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/lbltipoReclamoNuevoReclamo"
         android:layout_width="170dp"
         android:layout_height="35dp"
         android:layout_marginTop="44dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/lblSubtipoReclamoNuevoReclamo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="177dp"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/lbltipoReclamoNuevoReclamo"
         app:layout_constraintVertical_bias="0.016" />
 
     <TextView
@@ -73,7 +73,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/lblSubtipoReclamoNuevoReclamo"
         app:layout_constraintVertical_bias="0.886" />
 
     <TextView
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/txtDireccion"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -103,13 +103,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imgReclamo"
         android:layout_width="67dp"
         android:layout_height="74dp"
         android:background="@color/amarillo"
         android:src="@drawable/ic_baseline_lightbulb_24"
         app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintEnd_toStartOf="@+id/textView8"
+        app:layout_constraintEnd_toStartOf="@+id/lbltipoReclamoNuevoReclamo"
         app:layout_constraintHorizontal_bias="0.66"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

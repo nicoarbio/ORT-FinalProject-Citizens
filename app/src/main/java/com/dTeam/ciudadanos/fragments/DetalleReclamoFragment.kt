@@ -20,7 +20,7 @@ class DetalleReclamoFragment : Fragment() {
         fun newInstance() = DetalleReclamoFragment()
     }
 
-    private lateinit var viewModel: ReclamoViewModel
+    private lateinit var reclamoViewModel: ReclamoViewModel
 
     lateinit var v: View
     private lateinit var reclamo: Reclamo
@@ -62,13 +62,11 @@ class DetalleReclamoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ReclamoViewModel::class.java)
-        // TODO: Use the ViewModel
+        reclamoViewModel = ViewModelProvider(requireActivity()).get(ReclamoViewModel::class.java)
     }
 
     override fun onStart() {
         super.onStart()
-        reclamo = viewModel.reclamo
 
         /*val storage = FirebaseStorage.getInstance()// Create a reference to a file from a Google Cloud Storage URI
         val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
@@ -77,13 +75,11 @@ class DetalleReclamoFragment : Fragment() {
             .load(imgReclamo)
             .into(imgDetalleCategoria)*/
 
-        txtDetalleCategoria.text = reclamo.categoria
-        txtDetalleSubCategoria.text = reclamo.subCategoria
-        txtDetalleDireccion.text = reclamo.direccion
-        txtDetalleComentario.text = reclamo.descripcion
-
-        txtEstadoReclamo.text = reclamo.estado
-
+        txtDetalleCategoria.text = reclamoViewModel.getCategoria()
+        txtDetalleSubCategoria.text = reclamoViewModel.getSubcategoria()
+        txtDetalleDireccion.text = reclamoViewModel.getDireccion()
+        txtDetalleComentario.text = reclamoViewModel.getDescripcion()
+        txtEstadoReclamo.text = reclamoViewModel.getEstado()
     }
 
 

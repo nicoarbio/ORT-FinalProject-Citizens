@@ -2,19 +2,19 @@ package com.dTeam.ciudadanos.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.adapters.SubcategoriaReclamoAdapter
 import com.dTeam.ciudadanos.viewmodels.CategoriaViewModel
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class SubcategoriaReclamoList : Fragment() {
 
@@ -22,7 +22,7 @@ class SubcategoriaReclamoList : Fragment() {
         fun newInstance() = SubcategoriaReclamoList()
     }
 
-    private lateinit var viewModel: CategoriaViewModel
+    private lateinit var categoriaViewModel: CategoriaViewModel
     private lateinit var reclamoViewModel: ReclamoViewModel
     private lateinit var v : View
     private lateinit var listadoSubcategorias: RecyclerView
@@ -39,9 +39,8 @@ class SubcategoriaReclamoList : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(CategoriaViewModel::class.java)
-        reclamoViewModel = ViewModelProvider(this).get(ReclamoViewModel::class.java)
-        // TODO: Use the ViewModel
+        categoriaViewModel = ViewModelProvider(requireActivity()).get(CategoriaViewModel::class.java)
+        reclamoViewModel = ViewModelProvider(requireActivity()).get(ReclamoViewModel::class.java)
     }
 
     override fun onStart()
@@ -49,19 +48,22 @@ class SubcategoriaReclamoList : Fragment() {
         super.onStart()
         listadoSubcategorias.setHasFixedSize(true)
         listadoSubcategorias.layoutManager = LinearLayoutManager(context)
-        viewModel.getSubcategorias()
+        categoriaViewModel.getSubcategorias()
         subCategoriasAdapter = SubcategoriaReclamoAdapter(mutableListOf(), requireContext()) { pos -> onItemClick(pos)}
         setObserver()
     }
     fun setObserver(){
-        viewModel.listadoSubcategoria.observe(viewLifecycleOwner, Observer {list ->
+        categoriaViewModel.listadoSubcategoria.observe(viewLifecycleOwner, Observer { list ->
             subCategoriasAdapter = SubcategoriaReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos) }
             listadoSubcategorias.adapter = subCategoriasAdapter
         })
     }
 
     fun onItemClick(pos: Int){
-        Snackbar.make(v,pos.toString(), Snackbar.LENGTH_SHORT).show()
+        val subCategoria = categoriaViewModel.listadoSubcategoria.value?.get(pos)?.nombre
+        reclamoViewModel.setSubcategoria(subCategoria!!)
+        val action = SubcategoriaReclamoListDirections.actionSubcategoriaReclamoListToFragmentNuevoReclamo()
+        v.findNavController().navigate(action)
     }
 
 }

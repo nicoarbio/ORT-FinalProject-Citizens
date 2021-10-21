@@ -17,9 +17,31 @@ class ReclamoViewModel : ViewModel() {
     val db = Firebase.firestore
     private var reclamoList : MutableList<Reclamo> = mutableListOf()
     val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
-    val reclamo = Reclamo()
+    private var reclamo = MutableLiveData<Reclamo>()
 
-     fun getReclamos() {
+
+    init {
+        reclamo.value= Reclamo()
+    }
+
+    fun generarReclamo(reclamoNuevo : Reclamo):Boolean{
+        var guardadoOk = false
+        viewModelScope.launch {
+            try {
+                reclamo.value = reclamoNuevo
+                db.collection("reclamos")
+                    .add(reclamoNuevo)
+                    .await()
+                    guardadoOk = true
+            }catch(e : Exception) {
+                Log.w("Test", "Error al generar reclamo : ", e)
+            }
+
+        }
+        return guardadoOk
+    }
+
+    fun getReclamos() {
          viewModelScope.launch {
              reclamoList.clear()
              try {
@@ -38,10 +60,25 @@ class ReclamoViewModel : ViewModel() {
              }
          }
     }
+    fun getCategoria(): String? {
+        return reclamo.value?.categoria
+    }
+    fun getSubcategoria(): String? {
+        return reclamo.value?.subCategoria
+    }
+    fun getDireccion(): String? {
+        return reclamo.value?.direccion
+    }
+    fun getDescripcion(): String? {
+        return reclamo.value?.descripcion
+    }
+    fun getEstado(): String? {
+        return reclamo.value?.estado
+    }
     fun setCategoria(categoria : String){
-        reclamo.categoria=categoria
+        reclamo.value!!.categoria=categoria
     }
     fun setSubcategoria(subcategoria: String){
-        reclamo.subCategoria=subcategoria
+        reclamo.value!!.subCategoria=subcategoria
     }
 }

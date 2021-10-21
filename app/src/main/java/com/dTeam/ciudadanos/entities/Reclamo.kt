@@ -2,7 +2,6 @@ package com.dTeam.ciudadanos.entities
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.text.Editable
 import com.google.firebase.firestore.DocumentId
 
 class Reclamo(categoria: String, subCategoria: String, direccion: String, descripcion: String, usuario:String, estado: String, responsable: String) :

@@ -45,9 +45,6 @@ class SubcategoriaReclamoAdapter(
 
         holder.getCardView().setOnClickListener(){
             onClick(position)
-            val action = SubcategoriaReclamoListDirections.actionSubcategoriaReclamoListToFragmentNuevoReclamo()
-            view.findNavController().navigate(action)
-
         }
     }
 
