@@ -1,13 +1,11 @@
 package com.dTeam.ciudadanos.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dTeam.ciudadanos.R
-import com.dTeam.ciudadanos.viewmodels.ExitoReclamoViewModel
 
 class ExitoReclamo : Fragment() {
 
@@ -15,7 +13,6 @@ class ExitoReclamo : Fragment() {
         fun newInstance() = ExitoReclamo()
     }
 
-    private lateinit var viewModel: ExitoReclamoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +23,6 @@ class ExitoReclamo : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ExitoReclamoViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -1,14 +1,11 @@
 package com.dTeam.ciudadanos.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dTeam.ciudadanos.R
-
-import com.dTeam.ciudadanos.viewmodels.EstadoReclamoViewModel
 
 class EstadoReclamo : Fragment() {
 
@@ -17,7 +14,6 @@ class EstadoReclamo : Fragment() {
     }
 
     lateinit var v : View
-    private lateinit var viewModel: EstadoReclamoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +24,6 @@ class EstadoReclamo : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EstadoReclamoViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

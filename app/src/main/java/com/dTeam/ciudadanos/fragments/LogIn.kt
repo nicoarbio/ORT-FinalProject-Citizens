@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dTeam.ciudadanos.R
-import com.dTeam.ciudadanos.viewmodels.LogInViewModel
 
 class LogIn : Fragment() {
 
@@ -15,7 +14,6 @@ class LogIn : Fragment() {
         fun newInstance() = LogIn()
     }
 
-    private lateinit var viewModel: LogInViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +24,6 @@ class LogIn : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LogInViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -1,6 +1,5 @@
 package com.dTeam.ciudadanos.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
-import com.dTeam.ciudadanos.viewmodels.Registro2ViewModel
 
 class Registro2 : Fragment() {
 
@@ -17,7 +15,6 @@ class Registro2 : Fragment() {
         fun newInstance() = Registro2()
     }
 
-    private lateinit var viewModel: Registro2ViewModel
     lateinit var btnReg : Button
     lateinit var v : View
 
@@ -32,7 +29,6 @@ class Registro2 : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(Registro2ViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
