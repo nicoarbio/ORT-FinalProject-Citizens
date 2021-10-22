@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RestrictTo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
@@ -16,6 +17,7 @@ import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.*
 
 class FragmentNuevoReclamo:Fragment() {
     lateinit var v: View
@@ -60,9 +62,6 @@ class FragmentNuevoReclamo:Fragment() {
         lblCategoriaReclamo = v.findViewById(R.id.lbltipoReclamoNuevoReclamo)
         lblSubcategoriaReclamo = v.findViewById(R.id.lblSubtipoReclamoNuevoReclamo)
         imgReclamo = v.findViewById(R.id.imgReclamo) //TODO: Falta cargar img. Para esto habría que pasar la referencia a storage al viewmodel (idem para el código del adapter)
-
-        Log.d("testNuevo", reclamoViewModel.getCategoria().toString())
-
         lblCategoriaReclamo.text = reclamoViewModel.getCategoria()
         lblSubcategoriaReclamo.text = reclamoViewModel.getSubcategoria()
     }
