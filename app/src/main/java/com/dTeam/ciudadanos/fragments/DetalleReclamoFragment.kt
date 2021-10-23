@@ -23,7 +23,6 @@ class DetalleReclamoFragment : Fragment() {
     private lateinit var reclamoViewModel: ReclamoViewModel
 
     lateinit var v: View
-    private lateinit var reclamo: Reclamo
     private lateinit var imgDetalleCategoria: ImageView
     private lateinit var txtDetalleCategoria: TextView
     private lateinit var txtDetalleSubCategoria: TextView
