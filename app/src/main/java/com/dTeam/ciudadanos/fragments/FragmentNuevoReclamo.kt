@@ -60,17 +60,10 @@ class FragmentNuevoReclamo:Fragment() {
 
                 if (reclamoViewModel.generarReclamo(reclamo)) {
                     //Reclamo generado con exito
-
-
-                } else {
-                    action =
-                        FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
+                    action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
                     v.findNavController().navigate(action)
-                    Snackbar.make(
-                        v,
-                        "Ocurrió un error. Vuelva a intentar mas tarde",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                } else {
+                    Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde",Snackbar.LENGTH_SHORT).show()
                 }
 
             }
@@ -83,11 +76,10 @@ class FragmentNuevoReclamo:Fragment() {
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 val builder = AlertDialog.Builder(context)
-                builder.setTitle("Confirmar reclamo")
-                builder.setMessage("¿Desea confirmar el reclamo?")
+                builder.setTitle("Descartar reclamo")
+                builder.setMessage("¿Desea descartar el reclamo?")
                 builder.setPositiveButton("Si") { dialogInterface: DialogInterface, i: Int ->
-                    val action =
-                        FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToInicioCiudadano()
+                    val action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToInicioCiudadano()
                     v.findNavController().navigate(action)
                 }
                 builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
