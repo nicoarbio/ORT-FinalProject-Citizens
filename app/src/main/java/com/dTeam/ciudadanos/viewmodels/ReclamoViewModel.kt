@@ -25,20 +25,15 @@ class ReclamoViewModel : ViewModel() {
     }
 
     fun generarReclamo(reclamoNuevo : Reclamo):Boolean{
-        var guardadoOk = false
-        viewModelScope.launch {
-            try {
-                reclamo.value = reclamoNuevo
-                db.collection("reclamos")
-                    .add(reclamoNuevo)
-                    .await()
-                    guardadoOk = true
-            }catch(e : Exception) {
-                Log.w("Test", "Error al generar reclamo : ", e)
-            }
-
+        return try {
+            reclamo.postValue(reclamoNuevo)
+            db.collection("reclamos")
+                .add(reclamoNuevo)
+            return true
+        } catch (e : Exception){
+            Log.w("Test", "Error al generar reclamo: ", e)
+            return false
         }
-        return guardadoOk
     }
 
     fun getReclamos() {
@@ -46,7 +41,7 @@ class ReclamoViewModel : ViewModel() {
              reclamoList.clear()
              try {
                  val reclamos = db.collection("reclamos")
-                     .whereEqualTo("usuario", "fperchuk@hotmail.com") //TODO: Acá poner el mail del usuario logueado!
+                     .whereEqualTo("usuario", "fperchuk@hotmail.com") //TODO: Acá poner el UID del usuario logueado!
                      .get()
                      .await()
                  if (reclamos != null) {

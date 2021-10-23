@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fragmentNuevoReclamo_to_exitoReclamo"
             app:destination="@id/exitoReclamo" />
+        <action
+            android:id="@+id/action_fragmentNuevoReclamo_to_inicioCiudadano"
+            app:destination="@id/inicioCiudadano" />
     </fragment>
     <fragment
         android:id="@+id/estadoReclamo2"
