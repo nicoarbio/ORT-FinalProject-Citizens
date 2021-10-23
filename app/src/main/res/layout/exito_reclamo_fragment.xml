@@ -9,7 +9,7 @@
     tools:context=".fragments.ExitoReclamo">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/txtSubcategoriaExito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Detalle reclamo "
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.37" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/txtCategoriaExito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Detalle reclamo "
@@ -73,15 +73,15 @@
         android:text="Direccion"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintBottom_toTopOf="@+id/txtDirecExito"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/txtCategoriaExito"
         app:layout_constraintVertical_bias="0.275" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/txtDirecExito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Direccion reclamo"
@@ -109,7 +109,7 @@
         app:layout_constraintVertical_bias="0.656" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/txtComentarioExito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Comentario reclamo"
@@ -137,7 +137,7 @@
         app:layout_constraintVertical_bias="0.857" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgReclamoExito"
         android:layout_width="128dp"
         android:layout_height="124dp"
         android:layout_marginStart="142dp"
@@ -152,11 +152,11 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/imgCategoriaExito"
         android:layout_width="64dp"
         android:layout_height="51dp"
         app:layout_constraintBottom_toTopOf="@+id/textView16"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
+        app:layout_constraintEnd_toStartOf="@+id/txtCategoriaExito"
         app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"

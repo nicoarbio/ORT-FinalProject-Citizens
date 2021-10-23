@@ -1,4 +1,7 @@
 package com.dTeam.ciudadanos.fragments
+import android.app.AlertDialog
+import android.content.ContentValues.TAG
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
@@ -31,27 +35,55 @@ class FragmentNuevoReclamo:Fragment() {
         v =  inflater.inflate(R.layout.nuevo_reclamo, container, false)
         txtDescripcion=v.findViewById(R.id.txtDescripcion)
         txtDireccion=v.findViewById(R.id.txtDireccion)
-
         btnGenerarReclamo = v.findViewById(R.id.btnGenerarReclamo)
         btnGenerarReclamo.setOnClickListener{
             var action : NavDirections
 
-            var reclamo = Reclamo(reclamoViewModel.getCategoria()!!,
-                reclamoViewModel.getSubcategoria()!!,
-                txtDireccion.text.toString(),
-                txtDescripcion.text.toString(),
-                "UID_DEL_USUARIO", //TODO: Acá poner el UID del usuario logueado
-                "Abierto",
-                "")
+           val builder = AlertDialog.Builder(context)
+            builder.setTitle("Confirmar reclamo")
+            builder.setMessage("¿Desea confirmar el reclamo?")
+            builder.setPositiveButton("Si",{ dialogInterface: DialogInterface, i: Int ->
+                var reclamo = Reclamo(reclamoViewModel.getCategoria()!!,
+                    reclamoViewModel.getSubcategoria()!!,
+                    txtDireccion.text.toString(),
+                    txtDescripcion.text.toString(),
+                    "UID_DEL_USUARIO", //TODO: Acá poner el UID del usuario logueado
+                    "Abierto",
+                    "")
 
-            if(reclamoViewModel.generarReclamo(reclamo)){
-                //Reclamo generado con exito
-                action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
-                v.findNavController().navigate(action)
-            }else{
-                Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
+                if(reclamoViewModel.generarReclamo(reclamo)){
+                    //Reclamo generado con exito
+
+
+                }else{
+                    action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
+                    v.findNavController().navigate(action)
+                    Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
+                }
+
+            })
+            builder.setNegativeButton("No",{ dialogInterface: DialogInterface, i: Int ->
+
+            })
+            builder.show()
+
+        }
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle("Confirmar reclamo")
+                builder.setMessage("¿Desea confirmar el reclamo?")
+                builder.setPositiveButton("Si",{ dialogInterface: DialogInterface, i: Int ->
+                    val action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToInicioCiudadano()
+                    v.findNavController().navigate(action)
+                })
+                builder.setNegativeButton("No",{ dialogInterface: DialogInterface, i: Int ->
+
+                })
+                builder.show()
             }
         }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
         return v
     }
 
@@ -65,6 +97,8 @@ class FragmentNuevoReclamo:Fragment() {
 
         lblCategoriaReclamo.text = reclamoViewModel.getCategoria()
         lblSubcategoriaReclamo.text = reclamoViewModel.getSubcategoria()
+
+
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
