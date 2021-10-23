@@ -11,7 +11,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+
 import androidx.activity.OnBackPressedCallback
+
+import androidx.annotation.RestrictTo
+
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
@@ -20,6 +24,7 @@ import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.*
 
 class FragmentNuevoReclamo:Fragment() {
     lateinit var v: View
@@ -42,29 +47,36 @@ class FragmentNuevoReclamo:Fragment() {
            val builder = AlertDialog.Builder(context)
             builder.setTitle("Confirmar reclamo")
             builder.setMessage("¿Desea confirmar el reclamo?")
-            builder.setPositiveButton("Si",{ dialogInterface: DialogInterface, i: Int ->
-                var reclamo = Reclamo(reclamoViewModel.getCategoria()!!,
+            builder.setPositiveButton("Si") { dialogInterface: DialogInterface, i: Int ->
+                var reclamo = Reclamo(
+                    reclamoViewModel.getCategoria()!!,
                     reclamoViewModel.getSubcategoria()!!,
                     txtDireccion.text.toString(),
                     txtDescripcion.text.toString(),
                     "UID_DEL_USUARIO", //TODO: Acá poner el UID del usuario logueado
                     "Abierto",
-                    "")
+                    ""
+                )
 
-                if(reclamoViewModel.generarReclamo(reclamo)){
+                if (reclamoViewModel.generarReclamo(reclamo)) {
                     //Reclamo generado con exito
 
 
-                }else{
-                    action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
+                } else {
+                    action =
+                        FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
                     v.findNavController().navigate(action)
-                    Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        v,
+                        "Ocurrió un error. Vuelva a intentar mas tarde",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
 
-            })
-            builder.setNegativeButton("No",{ dialogInterface: DialogInterface, i: Int ->
+            }
+            builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
 
-            })
+            }
             builder.show()
 
         }
@@ -73,13 +85,14 @@ class FragmentNuevoReclamo:Fragment() {
                 val builder = AlertDialog.Builder(context)
                 builder.setTitle("Confirmar reclamo")
                 builder.setMessage("¿Desea confirmar el reclamo?")
-                builder.setPositiveButton("Si",{ dialogInterface: DialogInterface, i: Int ->
-                    val action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToInicioCiudadano()
+                builder.setPositiveButton("Si") { dialogInterface: DialogInterface, i: Int ->
+                    val action =
+                        FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToInicioCiudadano()
                     v.findNavController().navigate(action)
-                })
-                builder.setNegativeButton("No",{ dialogInterface: DialogInterface, i: Int ->
+                }
+                builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
 
-                })
+                }
                 builder.show()
             }
         }
@@ -92,9 +105,6 @@ class FragmentNuevoReclamo:Fragment() {
         lblCategoriaReclamo = v.findViewById(R.id.lbltipoReclamoNuevoReclamo)
         lblSubcategoriaReclamo = v.findViewById(R.id.lblSubtipoReclamoNuevoReclamo)
         imgReclamo = v.findViewById(R.id.imgReclamo) //TODO: Falta cargar img. Para esto habría que pasar la referencia a storage al viewmodel (idem para el código del adapter)
-
-        Log.d("testNuevo", reclamoViewModel.getCategoria().toString())
-
         lblCategoriaReclamo.text = reclamoViewModel.getCategoria()
         lblSubcategoriaReclamo.text = reclamoViewModel.getSubcategoria()
 
