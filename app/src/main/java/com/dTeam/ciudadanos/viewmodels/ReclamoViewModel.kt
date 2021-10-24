@@ -24,7 +24,7 @@ class ReclamoViewModel : ViewModel() {
     val db = Firebase.firestore
     private var reclamoList : MutableList<Reclamo> = mutableListOf()
     val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
-    private var reclamo = MutableLiveData<Reclamo>()
+    var reclamo = MutableLiveData<Reclamo>()
 
     val storage = FirebaseStorage.getInstance()
     val storageRef = storage.reference
