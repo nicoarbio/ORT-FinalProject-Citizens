@@ -16,6 +16,7 @@ class Reclamo(categoria: String, subCategoria: String, direccion: String, descri
     var estado: String
     var responsable: String
     var observaciones: MutableList<Observacion>
+    var imagenes: MutableList<String>
 
     constructor() : this("","","","","","","")
 
@@ -28,6 +29,7 @@ class Reclamo(categoria: String, subCategoria: String, direccion: String, descri
         this.estado= estado
         this.responsable= responsable
         this.observaciones = mutableListOf()
+        this.imagenes = mutableListOf()
     }
 
     constructor(source: Parcel) : this(

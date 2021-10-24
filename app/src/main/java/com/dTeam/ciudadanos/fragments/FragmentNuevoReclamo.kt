@@ -1,7 +1,7 @@
 package com.dTeam.ciudadanos.fragments
 import android.app.AlertDialog
-import android.content.ContentValues.TAG
 import android.content.DialogInterface
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-
 import androidx.activity.OnBackPressedCallback
-
-import androidx.annotation.RestrictTo
-
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
@@ -23,55 +19,63 @@ import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
+
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
+import gun0912.tedimagepicker.builder.TedImagePicker
+import java.net.URI
+
 
 class FragmentNuevoReclamo:Fragment() {
     lateinit var v: View
     lateinit var btnGenerarReclamo : Button
+    lateinit var btnCargarImgs : Button
     lateinit var txtDescripcion : EditText
     lateinit var txtDireccion : EditText
     private lateinit var reclamoViewModel: ReclamoViewModel
     private lateinit var lblCategoriaReclamo : TextView
     private lateinit var lblSubcategoriaReclamo : TextView
     private lateinit var imgReclamo : ImageView
+    private var listaImgs : List<Uri> = listOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v =  inflater.inflate(R.layout.nuevo_reclamo, container, false)
         txtDescripcion=v.findViewById(R.id.txtDescripcion)
         txtDireccion=v.findViewById(R.id.txtDireccion)
         btnGenerarReclamo = v.findViewById(R.id.btnGenerarReclamo)
+        btnCargarImgs = v.findViewById(R.id.btnSubirImgsReclamo)
         btnGenerarReclamo.setOnClickListener{
             var action : NavDirections
-
-           val builder = AlertDialog.Builder(context)
-            builder.setTitle("Confirmar reclamo")
-            builder.setMessage("¿Desea confirmar el reclamo?")
-            builder.setPositiveButton("Si") { dialogInterface: DialogInterface, i: Int ->
-                var reclamo = Reclamo(
-                    reclamoViewModel.getCategoria()!!,
-                    reclamoViewModel.getSubcategoria()!!,
-                    txtDireccion.text.toString(),
-                    txtDescripcion.text.toString(),
-                    "UID_DEL_USUARIO", //TODO: Acá poner el UID del usuario logueado
-                    "Abierto",
-                    ""
-                )
-
-                if (reclamoViewModel.generarReclamo(reclamo)) {
-                    //Reclamo generado con exito
+            if (validarCampos(txtDescripcion, txtDireccion)){
+               val builder = AlertDialog.Builder(context)
+                builder.setTitle("Confirmar reclamo")
+                builder.setMessage("¿Desea confirmar el reclamo?")
+                builder.setPositiveButton("Si") { dialogInterface: DialogInterface, i: Int ->
+                    var reclamo = Reclamo(
+                        reclamoViewModel.getCategoria()!!,
+                        reclamoViewModel.getSubcategoria()!!,
+                        txtDireccion.text.toString(),
+                        txtDescripcion.text.toString(),
+                        "UID_DEL_USUARIO", //TODO: Acá poner el UID del usuario logueado
+                        "Abierto",
+                        ""
+                    )
                     action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
-                    v.findNavController().navigate(action)
-                } else {
-                    Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde",Snackbar.LENGTH_SHORT).show()
+                    reclamoViewModel.generarReclamo(reclamo, listaImgs, action, v)
+
                 }
+                builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+
+                }
+                builder.show()
 
             }
-            builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+        }
 
-            }
-            builder.show()
+        btnCargarImgs.setOnClickListener{
 
+            TedImagePicker.with(requireContext())
+                .startMultiImage { uriList -> listaImgs = uriList }
         }
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
@@ -90,6 +94,17 @@ class FragmentNuevoReclamo:Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
         return v
+    }
+
+    fun validarCampos(vararg campos:EditText):Boolean{
+        var camposValidos : Boolean = true
+        for (campo in campos) {
+            if(campo.text.isEmpty()){
+                camposValidos = false
+                campo.setError("Por favor, complete este campo")
+            }
+        }
+        return camposValidos
     }
 
     override fun onStart() {
