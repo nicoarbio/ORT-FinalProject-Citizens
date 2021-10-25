@@ -13,9 +13,7 @@ buildscript {
         def nav_version = "2.1.0"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
     }
-
 }
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

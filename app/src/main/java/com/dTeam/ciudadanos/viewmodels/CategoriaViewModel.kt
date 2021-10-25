@@ -10,12 +10,15 @@ import com.dTeam.ciudadanos.entities.Subcategoria
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
 class CategoriaViewModel: ViewModel() {
     val db = Firebase.firestore
+    val storage = FirebaseStorage.getInstance()
     private var categoriaList : MutableList<Categoria> = mutableListOf()
     private var subcategoriaList : MutableList<Subcategoria> = mutableListOf()
     val listadoCategorias = MutableLiveData<MutableList<Categoria>>()
@@ -59,6 +62,11 @@ class CategoriaViewModel: ViewModel() {
                 Log.w("Test", "Error al obtener documentos: ", e)
             }
         }
+    }
+    fun getImgCategoria(categoria: String):StorageReference{
+        val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
+        val imgCategoria = gsReference.child("categorias").child(categoria + ".png")
+        return imgCategoria
     }
     fun setDocumentId(idCategoria: String){
            _idCategoria.value=idCategoria
