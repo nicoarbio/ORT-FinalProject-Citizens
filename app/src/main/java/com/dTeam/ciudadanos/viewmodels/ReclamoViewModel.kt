@@ -3,8 +3,10 @@ package com.dTeam.ciudadanos.viewmodels
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
+import com.dTeam.ciudadanos.entities.Observacion
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.entities.Subcategoria
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -55,6 +57,18 @@ class ReclamoViewModel : ViewModel() {
              }
          }
     }
+    fun agregarObser(obserNuevo: Observacion): Boolean{
+        try {
+            // obtener el id del reclamo actual en la base de dato
+            val ref = db.collection("reclamos").document("bjVeFmqKdElLYakJCZ8d")
+            ref.update("observaciones", FieldValue.arrayUnion(obserNuevo))
+            return true
+        } catch (e : Exception){
+            Log.w("Test", "Error al  agregar observacion: ", e)
+            return false
+        }
+    }
+
     fun getCategoria(): String? {
         return reclamo.value?.categoria
     }
@@ -69,6 +83,9 @@ class ReclamoViewModel : ViewModel() {
     }
     fun getEstado(): String? {
         return reclamo.value?.estado
+    }
+    fun getObservaciones(): MutableList<Observacion>? {
+        return reclamo.value?.observaciones
     }
     fun setCategoria(categoria : String){
         reclamo.value!!.categoria=categoria

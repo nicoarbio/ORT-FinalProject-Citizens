@@ -6,6 +6,4 @@ class Observacion(
     var autor: String,
     var contenido: String,
     var fecha: String
-){
-
-}
+)

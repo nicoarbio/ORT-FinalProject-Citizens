@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dTeam.ciudadanos.R
+import com.dTeam.ciudadanos.adapters.ImgReclamoAdapter
 import com.dTeam.ciudadanos.adapters.ListaObservacionesAdaper
 import com.dTeam.ciudadanos.entities.Observacion
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
@@ -43,6 +44,9 @@ class DetalleReclamoFragment : Fragment() {
 
     private lateinit var txtEstadoReclamo: TextView
 
+    private lateinit var recImgReclamo: RecyclerView
+    private lateinit var ImgAdaper: ImgReclamoAdapter
+
     private lateinit var recDetalleObservaciones: RecyclerView
     private lateinit var ObservacionAdapter: ListaObservacionesAdaper
 
@@ -64,14 +68,13 @@ class DetalleReclamoFragment : Fragment() {
 
         txtEstadoReclamo = v.findViewById(R.id.txtEstadoReclamo)
 
+        recImgReclamo = v.findViewById(R.id.recImgReclamo)
         recDetalleObservaciones = v.findViewById(R.id.recDetalleObservaciones)
 
         btnDetalleAgregarObser = v.findViewById(R.id.btnDetalleAgregarObser)
         btnDetalleAgregarObser.setOnClickListener{
             showdialog()
         }
-
-
 
         return v
     }
@@ -86,14 +89,33 @@ class DetalleReclamoFragment : Fragment() {
 
         val storage = FirebaseStorage.getInstance()// Create a reference to a file from a Google Cloud Storage URI
         val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
+
         val imgReclamo = gsReference.child("categorias").child(reclamoViewModel.getCategoria() + ".png")
         Glide.with(this)
             .load(imgReclamo)
             .into(imgDetalleCategoria)
 
+
+        /*val listaImg = reclamoViewModel.getImagenes()
+
+        for (urlImg in listaImg){
+
+        }*/
+
+        recImgReclamo.setHasFixedSize(true)
+        recImgReclamo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+
+        var listaUrl = mutableListOf<String>()
+        listaUrl.add("IMG_20211024_012756.jpg")
+        listaUrl.add("132734")
+        listaUrl.add("IMG_20211024_012756.jpg")
+        listaUrl.add("IMG_20211024_012756.jpg")
+        recImgReclamo.adapter = ImgReclamoAdapter(listaUrl, requireContext())
+
         recDetalleObservaciones.setHasFixedSize(true)
         recDetalleObservaciones.layoutManager = LinearLayoutManager(context)
-        //recDetalleObservaciones.adapter = ListaObservacionesAdaper(reclamoViewModel.getObservaciones()!!)
+        recDetalleObservaciones.adapter = ListaObservacionesAdaper(reclamoViewModel.getObservaciones()!!)
+
         txtDetalleCategoria.text = reclamoViewModel.getCategoria()
         txtDetalleSubCategoria.text = reclamoViewModel.getSubcategoria()
         txtDetalleDireccion.text = reclamoViewModel.getDireccion()

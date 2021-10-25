@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
+import com.dTeam.ciudadanos.entities.Observacion
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -55,7 +56,8 @@ class FragmentNuevoReclamo:Fragment() {
                     txtDescripcion.text.toString(),
                     "UID_DEL_USUARIO", //TODO: Acá poner el UID del usuario logueado
                     "Abierto",
-                    ""
+                    "",
+                    mutableListOf<Observacion>()
                 )
 
                 if (reclamoViewModel.generarReclamo(reclamo)) {
