@@ -3,6 +3,7 @@ package com.dTeam.ciudadanos.viewmodels
 import android.net.Uri
 import android.util.Log
 import android.view.View
+import androidx.core.net.toUri
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
@@ -20,14 +21,17 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
+import kotlin.math.log
 
 class ReclamoViewModel : ViewModel() {
 
     val db = Firebase.firestore
     private var reclamoList : MutableList<Reclamo> = mutableListOf()
     val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
+    var listadoImgs : MutableList<String> = mutableListOf()
     var reclamo = MutableLiveData<Reclamo>()
 
     val storage = FirebaseStorage.getInstance()
@@ -37,35 +41,62 @@ class ReclamoViewModel : ViewModel() {
         reclamo.value= Reclamo()
     }
 
-    fun generarReclamo(reclamoNuevo : Reclamo, imagenes: List<Uri>, action:NavDirections, v:View){
-        var imgsGuardadasOk = true
-        var uploadTask : UploadTask
-        for (img in imagenes){
-            val imgReclamo = storageRef.child("reclamos/${img.lastPathSegment}")
-            uploadTask = imgReclamo.putFile(img)
-            uploadTask.addOnFailureListener {
-                imgsGuardadasOk=false
+    fun generarReclamo(reclamoNuevo : Reclamo, imagenes:List<Uri>):Boolean {
+        var reclamoGenerado = true
+        try {
+            viewModelScope.launch {
+                var uploadTask: UploadTask
+                for (img in imagenes) {
+
+                    val imgReclamo = storageRef.child("reclamos/${img.lastPathSegment}")
+                    uploadTask = imgReclamo.putFile(img)
+                    uploadTask.await()
+                    if (uploadTask.isSuccessful()) {
+                        var url = storageRef.child("reclamos/${img.lastPathSegment}").downloadUrl.await()
+                        reclamoNuevo.imagenes.add(url.toString())
+                    }
+
+                    Log.d("test", "Dentro task succesful: " + reclamoNuevo.toString())
+                }
+                Log.d("test", "Fuera de scope: " + reclamoNuevo.toString())
+                reclamo.value=reclamoNuevo
+                db.collection("reclamos")
+                    .add(reclamoNuevo)
+            }
+
+        } catch (e: Exception) {
+                Log.d("Test", "Error al generar reclamo: " + e)
+                reclamoGenerado = false
+            }
+        return reclamoGenerado
+
+
+        /*reclamo.postValue(reclamoNuevo)
+        db.collection("reclamos")
+            .add(reclamoNuevo)
+            .addOnFailureListener() {
+                Log.d("Test", "Error al generar reclamo")
                 Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
-                //TODO: si falla la carga de alguna img volver para atrás la carga del resto y salir del for para que no siga cargando
             }
-            .addOnSuccessListener { taskSnapshot ->
-                reclamo.value!!.imagenes.add(taskSnapshot.metadata!!.path)
-                Log.d("Test", reclamo.value.toString())
+            .addOnSuccessListener {
+                Log.d("Test", "Reclamo OKK")
+                var uploadTask : UploadTask
+                for (img in imagenes){
+                    val imgReclamo = storageRef.child("reclamos/${img.lastPathSegment}")
+                    uploadTask = imgReclamo.putFile(img)
+                    uploadTask.addOnFailureListener {
+                        Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
+                        //TODO: si falla la carga de alguna img volver para atrás la carga del resto y salir del for para que no siga cargando
+                    }
+                        .addOnSuccessListener { taskSnapshot ->
+                            //listadoImgs.add(taskSnapshot.metadata!!.path)
+                            db.collection("reclamos").document(it.id).update("imagenes", FieldValue.arrayUnion(taskSnapshot.metadata!!.path))
+                            //Log.d("Test", taskSnapshot.metadata!!.path)
+                            v.findNavController().navigate(action)
+                        }
+
             }
-        }
-        if(imgsGuardadasOk) { //TODO: Esto se está ejuctando ANTES de verificar los listeners. Por lo que si algo de las imgs falla, acá entra igual y no debería.Cambiar esto para que si las imgs falla no entre acá.
-            reclamo.postValue(reclamoNuevo)
-            db.collection("reclamos")
-                .add(reclamoNuevo)
-                .addOnFailureListener() {
-                    Log.d("Test", "Error al generar reclamo")
-                    Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
-                }
-                .addOnSuccessListener {
-                    Log.d("Test", "Reclamo OKK")
-                    v.findNavController().navigate(action)
-                }
-        }
+        }*/
     }
 
     fun getReclamos() {
@@ -97,6 +128,15 @@ class ReclamoViewModel : ViewModel() {
             Log.w("Test", "Error al  agregar observacion: ", e)
             return false
         }
+    }
+
+    fun obtenerUrlImg(path:String):String{
+        storageRef.child(path).downloadUrl.addOnSuccessListener {
+            //Obtenemos URL de la img
+        }.addOnFailureListener {
+            //Error
+        }
+        return ""
     }
 
     fun getCategoria(): String? {

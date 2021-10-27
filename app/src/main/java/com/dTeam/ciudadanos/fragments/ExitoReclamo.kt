@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dTeam.ciudadanos.R
+import com.dTeam.ciudadanos.adapters.ReclamoAdapter
 
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
 
@@ -54,5 +57,15 @@ class ExitoReclamo : Fragment() {
         subCategoria.text = viewModelReclamo.getSubcategoria()
         direccion.text = viewModelReclamo.getDireccion()
         comentario.text = viewModelReclamo.getDescripcion()
+        setObserver()
+    }
+
+    fun setObserver(){
+        viewModelReclamo.reclamo.observe(viewLifecycleOwner, Observer { list ->
+            categoria.text = viewModelReclamo.getCategoria()
+            subCategoria.text = viewModelReclamo.getSubcategoria()
+            direccion.text = viewModelReclamo.getDireccion()
+            comentario.text = viewModelReclamo.getDescripcion()
+        })
     }
 }

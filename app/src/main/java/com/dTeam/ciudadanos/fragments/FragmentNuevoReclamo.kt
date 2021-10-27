@@ -1,10 +1,8 @@
 package com.dTeam.ciudadanos.fragments
 import android.app.AlertDialog
-import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,20 +13,18 @@ import android.widget.TextView
 
 import androidx.activity.OnBackPressedCallback
 
-import androidx.annotation.RestrictTo
-
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
-
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.*
+
 import gun0912.tedimagepicker.builder.TedImagePicker
-import java.net.URI
+import kotlinx.coroutines.launch
 
 
 class FragmentNuevoReclamo:Fragment() {
@@ -66,8 +62,13 @@ class FragmentNuevoReclamo:Fragment() {
                         ""
                     )
                     action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
-                    reclamoViewModel.generarReclamo(reclamo, listaImgs, action, v)
 
+
+                    if(reclamoViewModel.generarReclamo(reclamo, listaImgs)){
+                        v.findNavController().navigate(action)
+                    }else{
+                        Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
+                    }
                 }
                 builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
 
@@ -82,6 +83,7 @@ class FragmentNuevoReclamo:Fragment() {
             TedImagePicker.with(requireContext())
                 .startMultiImage { uriList -> listaImgs = uriList }
         }
+
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 val builder = AlertDialog.Builder(context)
