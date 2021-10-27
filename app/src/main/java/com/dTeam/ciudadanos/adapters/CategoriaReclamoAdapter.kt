@@ -68,7 +68,6 @@ class CategoriaReclamoAdapter (var categoriaList : MutableList <Categoria>,
     }
 
     override fun getItemCount(): Int {
-        Log.d("test", categoriaList.size.toString())
         return categoriaList.size
     }
 }

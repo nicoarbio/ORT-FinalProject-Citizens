@@ -4,8 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.firebase.firestore.DocumentId
 
-class Reclamo(categoria: String, subCategoria: String, direccion: String, descripcion: String, usuario:String, estado: String, responsable: String) :
-    Parcelable {
+class Reclamo(categoria: String, subCategoria: String, direccion: String, descripcion: String, usuario:String, estado: String, responsable: String){
     @DocumentId
     private val documentId: String? = null
     var categoria: String
@@ -16,6 +15,7 @@ class Reclamo(categoria: String, subCategoria: String, direccion: String, descri
     var estado: String
     var responsable: String
     var observaciones: MutableList<Observacion>
+    var imagenes: ArrayList<String>
 
     constructor() : this("","","","","","","")
 
@@ -28,39 +28,11 @@ class Reclamo(categoria: String, subCategoria: String, direccion: String, descri
         this.estado= estado
         this.responsable= responsable
         this.observaciones = mutableListOf()
-    }
-
-    constructor(source: Parcel) : this(
-        source.readString()!!,
-        source.readString()!!,
-        source.readString()!!,
-        source.readString()!!,
-        source.readString()!!,
-        source.readString()!!,
-        source.readString()!!
-    )
-
-    override fun describeContents() = 0
-
-    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeString(categoria)
-        writeString(subCategoria)
-        writeString(direccion)
-        writeString(descripcion)
-        writeString(usuario)
-        writeString(estado)
-        writeString(responsable)
+        this.imagenes = arrayListOf()
     }
 
     override fun toString(): String {
-        return "Reclamo(categoria='$categoria', subCategoria='$subCategoria', direccion='$direccion', descripcion='$descripcion', usuario='$usuario', estado='$estado', responsable='$responsable', observaciones=$observaciones)"
+        return "Reclamo(categoria='$categoria', subCategoria='$subCategoria', direccion='$direccion', descripcion='$descripcion', usuario='$usuario', estado='$estado', responsable='$responsable', observaciones=$observaciones, imagenes=$imagenes)"
     }
 
-    companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<Reclamo> = object : Parcelable.Creator<Reclamo> {
-            override fun createFromParcel(source: Parcel): Reclamo = Reclamo(source)
-            override fun newArray(size: Int): Array<Reclamo?> = arrayOfNulls(size)
-        }
-    }
 }
