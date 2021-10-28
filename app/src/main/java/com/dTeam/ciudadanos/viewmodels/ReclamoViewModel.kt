@@ -73,7 +73,7 @@ class ReclamoViewModel : ViewModel() {
              reclamoList.clear()
              try {
                  val reclamos = db.collection("reclamos")
-                     .whereEqualTo("usuario", "fperchuk@hotmail.com") //TODO: Acá poner el UID del usuario logueado!
+                     .whereEqualTo("usuario", "UID_DEL_USUARIO") //TODO: Acá poner el UID del usuario logueado!
                      .get()
                      .await()
                  if (reclamos != null) {
@@ -90,7 +90,7 @@ class ReclamoViewModel : ViewModel() {
     fun agregarObser(obserNuevo: Observacion): Boolean{
         try {
             // obtener el id del reclamo actual en la base de dato
-            val ref = db.collection("reclamos").document("bjVeFmqKdElLYakJCZ8d")
+            val ref = db.collection("reclamos").document(reclamo.value!!.documentId!!)
             ref.update("observaciones", FieldValue.arrayUnion(obserNuevo))
             return true
         } catch (e : Exception){

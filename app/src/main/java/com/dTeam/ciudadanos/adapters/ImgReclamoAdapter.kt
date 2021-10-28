@@ -38,13 +38,9 @@ class ImgReclamoAdapter (var listaUrl: MutableList<String>, var context : Contex
     }
 
     override fun onBindViewHolder(holder: ImgReclamoHolder, position: Int) {
-        val storage = FirebaseStorage.getInstance()
-        val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
-        val imgReclamo = gsReference.child("reclamos").child(listaUrl[position])
-
         val cardImageReclamo : ImageView =  holder.getImageReclamo()
         Glide.with(context)
-            .load(imgReclamo)
+            .load(listaUrl[position])
             .into(cardImageReclamo)
     }
 
