@@ -98,7 +98,7 @@ class DetalleReclamoFragment : Fragment() {
 
 
         recImgReclamo.setHasFixedSize(true)
-        recImgReclamo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+        recImgReclamo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         recDetalleObservaciones.setHasFixedSize(true)
         recDetalleObservaciones.layoutManager = LinearLayoutManager(context)
