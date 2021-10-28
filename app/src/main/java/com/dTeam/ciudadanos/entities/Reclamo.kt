@@ -6,7 +6,7 @@ import com.google.firebase.firestore.DocumentId
 
 class Reclamo(categoria: String, subCategoria: String, direccion: String, descripcion: String, usuario:String, estado: String, responsable: String){
     @DocumentId
-    private val documentId: String? = null
+    var documentId: String? = null
     var categoria: String
     var subCategoria: String
     var direccion: String
