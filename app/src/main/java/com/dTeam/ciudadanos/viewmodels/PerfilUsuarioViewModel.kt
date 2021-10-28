@@ -9,6 +9,7 @@ import com.dTeam.ciudadanos.entities.Usuario
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import java.time.Instant.now
 import java.time.LocalDate

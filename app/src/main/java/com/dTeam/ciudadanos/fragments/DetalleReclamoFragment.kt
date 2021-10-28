@@ -133,12 +133,12 @@ class DetalleReclamoFragment : Fragment() {
             val currentDateTime = LocalDateTime.now()
             val fecha = currentDateTime.format(DateTimeFormatter.ISO_DATE)
             var obsNuevo = Observacion("usuario", texto, fecha)
-            /*if (texto.length > 0 && reclamoViewModel.agregarObser(obsNuevo)) {
+            if (texto.length > 0 && reclamoViewModel.agregarObser(obsNuevo)) {
                 //obs generado con exito
                 Snackbar.make(v,"se agregó la observación", Snackbar.LENGTH_SHORT).show()
             } else {
                 Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
-            }*/
+            }
         })
         builder.setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
