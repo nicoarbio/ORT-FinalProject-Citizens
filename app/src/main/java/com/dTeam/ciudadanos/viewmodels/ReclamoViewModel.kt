@@ -31,7 +31,6 @@ class ReclamoViewModel : ViewModel() {
     val db = Firebase.firestore
     private var reclamoList : MutableList<Reclamo> = mutableListOf()
     val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
-    var listadoImgs : MutableList<String> = mutableListOf()
     var reclamo = MutableLiveData<Reclamo>()
 
     val storage = FirebaseStorage.getInstance()
@@ -47,7 +46,6 @@ class ReclamoViewModel : ViewModel() {
             viewModelScope.launch {
                 var uploadTask: UploadTask
                 for (img in imagenes) {
-
                     val imgReclamo = storageRef.child("reclamos/${img.lastPathSegment}")
                     uploadTask = imgReclamo.putFile(img)
                     uploadTask.await()
@@ -69,34 +67,6 @@ class ReclamoViewModel : ViewModel() {
                 reclamoGenerado = false
             }
         return reclamoGenerado
-
-
-        /*reclamo.postValue(reclamoNuevo)
-        db.collection("reclamos")
-            .add(reclamoNuevo)
-            .addOnFailureListener() {
-                Log.d("Test", "Error al generar reclamo")
-                Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
-            }
-            .addOnSuccessListener {
-                Log.d("Test", "Reclamo OKK")
-                var uploadTask : UploadTask
-                for (img in imagenes){
-                    val imgReclamo = storageRef.child("reclamos/${img.lastPathSegment}")
-                    uploadTask = imgReclamo.putFile(img)
-                    uploadTask.addOnFailureListener {
-                        Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
-                        //TODO: si falla la carga de alguna img volver para atrás la carga del resto y salir del for para que no siga cargando
-                    }
-                        .addOnSuccessListener { taskSnapshot ->
-                            //listadoImgs.add(taskSnapshot.metadata!!.path)
-                            db.collection("reclamos").document(it.id).update("imagenes", FieldValue.arrayUnion(taskSnapshot.metadata!!.path))
-                            //Log.d("Test", taskSnapshot.metadata!!.path)
-                            v.findNavController().navigate(action)
-                        }
-
-            }
-        }*/
     }
 
     fun getReclamos() {
@@ -129,15 +99,6 @@ class ReclamoViewModel : ViewModel() {
             Log.w("Test", "Error al  agregar observacion: ", e)
             return false
         }
-    }
-
-    fun obtenerUrlImg(path:String):String{
-        storageRef.child(path).downloadUrl.addOnSuccessListener {
-            //Obtenemos URL de la img
-        }.addOnFailureListener {
-            //Error
-        }
-        return ""
     }
 
     fun getCategoria(): String? {

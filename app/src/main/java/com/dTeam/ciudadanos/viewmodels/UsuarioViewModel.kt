@@ -16,7 +16,7 @@ import java.time.LocalDate
 import java.time.LocalDate.now
 import java.util.*
 
-class PerfilUsuarioViewModel : ViewModel() {
+class UsuarioViewModel : ViewModel() {
 
 
 

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dTeam.ciudadanos.R
-import com.dTeam.ciudadanos.viewmodels.PerfilUsuarioViewModel
+import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 
 class PerfilUsuario : Fragment() {
 
@@ -15,7 +15,7 @@ class PerfilUsuario : Fragment() {
         fun newInstance() = PerfilUsuario()
     }
 
-    private lateinit var viewModel: PerfilUsuarioViewModel
+    private lateinit var viewModel: UsuarioViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +26,7 @@ class PerfilUsuario : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PerfilUsuarioViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
