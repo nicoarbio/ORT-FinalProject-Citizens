@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navgraph"
-    app:startDestination="@id/listaCategorias">
+    app:startDestination="@id/logIn">
 
     <fragment
         android:id="@+id/fragmentNuevoReclamo"
@@ -96,5 +96,14 @@
         <action
             android:id="@+id/action_subcategoriaReclamoList_to_fragmentNuevoReclamo"
             app:destination="@id/fragmentNuevoReclamo" />
+    </fragment>
+    <fragment
+        android:id="@+id/logIn"
+        android:name="com.dTeam.ciudadanos.fragments.LogIn"
+        android:label="log_in_fragment"
+        tools:layout="@layout/log_in_fragment" >
+        <action
+            android:id="@+id/action_logIn_to_registro1"
+            app:destination="@id/registro1" />
     </fragment>
 </navigation>

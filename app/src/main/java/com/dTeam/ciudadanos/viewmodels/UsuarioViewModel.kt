@@ -1,50 +1,38 @@
 package com.dTeam.ciudadanos.viewmodels
-
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.entities.Usuario
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.AuthResult
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
-import java.time.Instant.now
-import java.time.LocalDate
-import java.time.LocalDate.now
-import java.util.*
+import com.google.firebase.auth.FirebaseAuth
 
 class UsuarioViewModel : ViewModel() {
 
+    var usuario = MutableLiveData<Usuario>()
 
+    private var  auth: FirebaseAuth? = null
 
-    val db = Firebase.firestore
-    //private var reclamoList : MutableList<Reclamo> = mutableListOf()
-    //val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
+    init {
+        auth = FirebaseAuth.getInstance()
+        usuario.value = Usuario()
+    }
 
-
-
-
-    fun agregarUsuario(usuarioNuevo : Usuario):Boolean{
-        var guardadoOk = false
+    fun registrarUsuario(usuario: Usuario): Boolean {
+        //TODO: Guardar el resto de los datos en FiWare
+        var guardadoOk = true
         viewModelScope.launch {
             try {
-                db.collection("usuarios")
-                    .add(usuarioNuevo)
+                auth!!.createUserWithEmailAndPassword(usuario.email, usuario.contrasenia)
                     .await()
-                guardadoOk = true
-            }catch(e : Exception) {
-                Log.w("Test", "Error al generar Usuario : ", e)
+            }catch (e : Exception){
+                guardadoOk = false
+                Log.d("Test", "Error al generar usuario: ", e)
             }
-
         }
         return guardadoOk
     }
-
-
-
-
-
 }

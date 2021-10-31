@@ -9,7 +9,7 @@
     tools:context=".fragments.Registro1">
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/lblDireccionRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.655" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/lblConfirmarPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -37,7 +37,6 @@
         app:layout_constraintVertical_bias="0.523" />
 
     <TextView
-        android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -51,24 +50,24 @@
         app:layout_constraintVertical_bias="0.38" />
 
     <EditText
-        android:id="@+id/editConfContraseña"
+        android:id="@+id/txtConfirmarPassword"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/white"
         android:drawableStart="@drawable/ic_baseline_lock_24"
         android:ems="10"
         android:hint="Ingrese de nuevo su contraseña"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/lblTituloRegistro"
         app:layout_constraintVertical_bias="0.487" />
 
     <EditText
-        android:id="@+id/editMail"
+        android:id="@+id/txtMailRegistro"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/white"
@@ -82,28 +81,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/lblTituloRegistro"
         app:layout_constraintVertical_bias="0.107" />
 
     <EditText
-        android:id="@+id/editContraseña"
+        android:id="@+id/txtPasswordRegistro"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/white"
         android:drawableStart="@drawable/ic_baseline_lock_24"
         android:ems="10"
         android:hint="Ingrese su contraseña"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/lblTituloRegistro"
         app:layout_constraintVertical_bias="0.296" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/lblTituloRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -118,7 +117,7 @@
         app:layout_constraintVertical_bias="0.149" />
 
     <EditText
-        android:id="@+id/editDireccion"
+        android:id="@+id/txtDireccionRegistro"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/white"
@@ -131,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/lblTituloRegistro"
         app:layout_constraintVertical_bias="0.663" />
 
     <Button
@@ -146,11 +145,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDireccion"
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccionRegistro"
         app:layout_constraintVertical_bias="0.507" />
 
     <TextView
-        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"

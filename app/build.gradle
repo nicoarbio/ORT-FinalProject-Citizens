@@ -78,6 +78,10 @@ dependencies {
     //ImagePicker
     implementation 'io.github.ParkSangGwon:tedimagepicker:1.2.6'
 
+    //Firebase Authentication
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+
+
 
 
 

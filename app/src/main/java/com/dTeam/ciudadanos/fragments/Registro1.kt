@@ -2,13 +2,18 @@ package com.dTeam.ciudadanos.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
+import com.dTeam.ciudadanos.entities.Usuario
+import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class Registro1 : Fragment() {
 
@@ -17,6 +22,11 @@ class Registro1 : Fragment() {
     }
 
     lateinit var btnReg : Button
+    lateinit var txtMail : EditText
+    lateinit var txtPassword : EditText
+    lateinit var txtConfirmarPass : EditText
+    lateinit var txtDireccion : EditText
+    private lateinit var usuarioViewModel: UsuarioViewModel
     lateinit var v : View
 
     override fun onCreateView(
@@ -25,21 +35,39 @@ class Registro1 : Fragment() {
     ): View? {
         v= inflater.inflate(R.layout.registro1_fragment, container, false)
         btnReg = v.findViewById(R.id.btnReg1)
+        txtMail =  v.findViewById(R.id.txtMailRegistro)
+        txtPassword = v.findViewById(R.id.txtPasswordRegistro)
+        txtConfirmarPass = v.findViewById(R.id.txtConfirmarPassword)
+        txtDireccion =  v.findViewById(R.id.txtDireccionRegistro)
+
+        btnReg.setOnClickListener{
+            if(validarCampos(txtMail, txtPassword, txtConfirmarPass, txtDireccion)){
+                if(txtPassword.text.toString() == txtConfirmarPass.text.toString()){
+                    val usuario = Usuario(txtMail.text.toString(), txtPassword.text.toString(),txtDireccion.text.toString())
+                    if(usuarioViewModel.registrarUsuario(usuario)){
+                        val action = Registro1Directions.actionRegistro1ToRegistro2()
+                        v.findNavController().navigate(action)
+                    }
+                }else{
+                    Snackbar.make(v, "Las contraseñas no coinciden", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
         return v
     }
 
+    fun validarCampos(vararg campos:EditText):Boolean{
+        var camposValidos : Boolean = true
+        for (campo in campos) {
+            if(campo.text.isEmpty()){
+                camposValidos = false
+                campo.setError("Por favor, complete este campo")
+            }
+        }
+        return camposValidos
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        btnReg.setOnClickListener {
-
-            val action = Registro1Directions.actionRegistro1ToRegistro2()
-            v.findNavController().navigate(action)
-        }
+        usuarioViewModel = ViewModelProvider(requireActivity()).get(UsuarioViewModel::class.java)
     }
 }
