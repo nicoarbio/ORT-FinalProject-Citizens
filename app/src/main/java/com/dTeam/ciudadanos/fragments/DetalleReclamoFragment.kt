@@ -104,6 +104,12 @@ class DetalleReclamoFragment : Fragment() {
         recDetalleObservaciones.layoutManager = LinearLayoutManager(context)
 
         setObserver()
+
+        var estado = reclamoViewModel.reclamo.value!!.estado
+        if( estado == "Cancelado" || estado == "Cerrado"){
+            btnDetalleAgregarObser.visibility = View.GONE
+        }
+
     }
 
     fun setObserver(){
