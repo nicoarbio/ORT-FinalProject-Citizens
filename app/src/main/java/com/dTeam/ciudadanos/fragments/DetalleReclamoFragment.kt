@@ -105,11 +105,6 @@ class DetalleReclamoFragment : Fragment() {
 
         setObserver()
 
-        var estado = reclamoViewModel.reclamo.value!!.estado
-        if( estado == "Cancelado" || estado == "Cerrado"){
-            btnDetalleAgregarObser.visibility = View.GONE
-        }
-
     }
 
     fun setObserver(){
@@ -121,6 +116,10 @@ class DetalleReclamoFragment : Fragment() {
             txtEstadoReclamo.text = it.estado
             recDetalleObservaciones.adapter = ListaObservacionesAdaper(it.observaciones)
             recImgReclamo.adapter = ImgReclamoAdapter(it.imagenes, requireContext())
+
+            if( it.estado == "Cancelado" || it.estado == "Cerrado"){
+                btnDetalleAgregarObser.visibility = View.GONE
+            }
         })
     }
 
