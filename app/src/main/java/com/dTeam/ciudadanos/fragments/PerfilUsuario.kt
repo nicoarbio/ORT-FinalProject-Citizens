@@ -14,20 +14,42 @@ class PerfilUsuario : Fragment() {
     companion object {
         fun newInstance() = PerfilUsuario()
     }
+    lateinit var v: View
+    private lateinit var usuarioViewModel: UsuarioViewModel
 
-    private lateinit var viewModel: UsuarioViewModel
+    private lateinit var txtNombreApellido : TextView
+    private lateinit var txtEmail : TextView
+    private lateinit var txtTelefono : TextView
+    private lateinit var txtDireccion : TextView
+    private lateinit var txtDni : TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.perfil_usuario_fragment, container, false)
+        v = inflater.inflate(R.layout.perfil_usuario_fragment, container, false)
+        txtEmail = v.findViewById(R.id.lblEmailPerfil)
+        txtNombreApellido = v.findViewById(R.id.lblNombreYApellidoPerfil)
+        txtDni = v.findViewById(R.id.lblDni)
+        txtDireccion = v.findViewById(R.id.lblDireccionPerfil)
+        txtTelefono = v.findViewById(R.id.lblTelefonoPerfil)
+        return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UsuarioViewModel::class.java)
+        usuarioViewModel = ViewModelProvider(requireActivity()).get(usuaruioViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+
+    override fun onStart() {
+        super.onStart()
+        txtNombreApellido.text = usuarioViewModel.getNombre() +" "+usuaruioViewModel.getApellido()
+        txtDireccion.text = usuarioViewModel.getDireccion()
+        txtTelefono.text = usuarioViewModel.getTelefono()
+        txtDni.text = usuarioViewModel.getDni()
+        txtEmail.text = usuarioViewModel.getEmail()
     }
 
 }
