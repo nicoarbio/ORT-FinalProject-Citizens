@@ -78,8 +78,7 @@ class FragmentNuevoReclamo:Fragment() {
                         txtDireccion.text.toString(),
                         txtDescripcion.text.toString(),
                         usuarioViewModel.obtenerUsuarioLogueado()!!.uid,
-                        "Abierto",
-                        ""
+                        "Abierto"
                     )
 
                     reclamoViewModel.generarReclamo(reclamo, listaImgs)
