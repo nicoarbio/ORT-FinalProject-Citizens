@@ -44,4 +44,24 @@ class UsuarioViewModel : ViewModel() {
             }
         }
     }
+
+    fun getEmail(): String? {
+        return usuario.value.email
+    }
+    fun getNombre(): String? {
+        return usuario.value?.nombre
+    }
+    fun getApellido(): String? {
+        return usuario.value?.apellido
+    }
+    fun getDireccion(): String? {
+        return usuario.value?.direccion
+    }
+    fun getTelefono(): String? {
+        return usuario.value?.telefono
+    }
+    fun getDni(): String? {
+        return usuario.value?.dni
+    }
+
 }

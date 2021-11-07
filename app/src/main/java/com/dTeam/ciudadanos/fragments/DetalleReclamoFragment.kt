@@ -104,6 +104,7 @@ class DetalleReclamoFragment : Fragment() {
         recDetalleObservaciones.layoutManager = LinearLayoutManager(context)
 
         setObserver()
+
     }
 
     fun setObserver(){
@@ -115,6 +116,10 @@ class DetalleReclamoFragment : Fragment() {
             txtEstadoReclamo.text = it.estado
             recDetalleObservaciones.adapter = ListaObservacionesAdaper(it.observaciones)
             recImgReclamo.adapter = ImgReclamoAdapter(it.imagenes, requireContext())
+
+            if( it.estado == "Cancelado" || it.estado == "Cerrado"){
+                btnDetalleAgregarObser.visibility = View.GONE
+            }
         })
     }
 
