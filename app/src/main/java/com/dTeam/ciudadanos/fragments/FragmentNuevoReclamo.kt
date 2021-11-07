@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat.getSystemService
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
@@ -66,7 +67,6 @@ class FragmentNuevoReclamo:Fragment() {
         btnGenerarReclamo = v.findViewById(R.id.btnGenerarReclamo)
         btnCargarImgs = v.findViewById(R.id.btnSubirImgsReclamo)
         btnGenerarReclamo.setOnClickListener{
-            var action : NavDirections
             if (validarCampos(txtDescripcion, txtDireccion)){
                val builder = AlertDialog.Builder(context)
                 builder.setTitle("Confirmar reclamo")
@@ -81,14 +81,19 @@ class FragmentNuevoReclamo:Fragment() {
                         "Abierto",
                         ""
                     )
-                    action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
+
+                    reclamoViewModel.generarReclamo(reclamo, listaImgs)
 
 
-                    if(reclamoViewModel.generarReclamo(reclamo, listaImgs)){
-                        v.findNavController().navigate(action)
-                    }else{
-                        Snackbar.make(v,getString(R.string.errorGeneral), Snackbar.LENGTH_SHORT).show()
-                    }
+                    reclamoViewModel.reclamoGeneradoOk.observe(viewLifecycleOwner, Observer { list ->
+                        if (reclamoViewModel.reclamoGeneradoOk.value == true){
+                            val action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
+                            v.findNavController().navigate(action)
+                        }
+                        else{
+                            Snackbar.make(v,getString(R.string.errorGeneral), Snackbar.LENGTH_SHORT).show()
+                        }
+                    })
                 }
                 builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
 

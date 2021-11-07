@@ -32,6 +32,7 @@ class ReclamoViewModel : ViewModel() {
     private var reclamoList : MutableList<Reclamo> = mutableListOf()
     val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
     var reclamo = MutableLiveData<Reclamo>()
+    var reclamoGeneradoOk = MutableLiveData<Boolean>()
 
     val storage = FirebaseStorage.getInstance()
     val storageRef = storage.reference
@@ -40,33 +41,30 @@ class ReclamoViewModel : ViewModel() {
         reclamo.value= Reclamo()
     }
 
-    fun generarReclamo(reclamoNuevo : Reclamo, imagenes:List<Uri>):Boolean {
-        var reclamoGenerado = true
-        try {
-            viewModelScope.launch {
-                var uploadTask: UploadTask
-                for (img in imagenes) {
-                    val imgReclamo = storageRef.child("reclamos/${img.lastPathSegment}")
-                    uploadTask = imgReclamo.putFile(img)
-                    uploadTask.await()
-                    if (uploadTask.isSuccessful()) {
-                        var url = storageRef.child("reclamos/${img.lastPathSegment}").downloadUrl.await()
-                        reclamoNuevo.imagenes.add(url.toString())
+    fun generarReclamo(reclamoNuevo : Reclamo, imagenes:List<Uri>) {
+        viewModelScope.launch {
+            try {
+                    var uploadTask: UploadTask
+                    for (img in imagenes) {
+                        val imgReclamo = storageRef.child("reclamos/${img.lastPathSegment}")
+                        uploadTask = imgReclamo.putFile(img)
+                        uploadTask.await()
+                        if (uploadTask.isSuccessful()) {
+                            var url = storageRef.child("reclamos/${img.lastPathSegment}").downloadUrl.await()
+                            reclamoNuevo.imagenes.add(url.toString())
+                        }
                     }
+                    reclamo.value=reclamoNuevo
+                    db.collection("reclamos")
+                        .add(reclamoNuevo)
+                        .await()
+                    reclamoGeneradoOk.value = true
 
-                    Log.d("test", "Dentro task succesful: " + reclamoNuevo.toString())
-                }
-                Log.d("test", "Fuera de scope: " + reclamoNuevo.toString())
-                reclamo.value=reclamoNuevo
-                db.collection("reclamos")
-                    .add(reclamoNuevo)
-            }
-
-        } catch (e: Exception) {
+            } catch (e: Exception) {
                 Log.d("Test", "Error al generar reclamo: " + e)
-                reclamoGenerado = false
+                reclamoGeneradoOk.value = false
             }
-        return reclamoGenerado
+        }
     }
 
     fun getReclamos(usuario:String) {
@@ -74,7 +72,7 @@ class ReclamoViewModel : ViewModel() {
              reclamoList.clear()
              try {
                  val reclamos = db.collection("reclamos")
-                     .whereEqualTo("usuario", usuario) //TODO: Acá poner el UID del usuario logueado!
+                     .whereEqualTo("usuario", usuario)
                      .get()
                      .await()
                  if (reclamos != null) {
@@ -84,7 +82,7 @@ class ReclamoViewModel : ViewModel() {
                      listadoReclamos.value =  reclamoList
                  }
              }catch (e: Exception){
-                 Log.w("Test", "Error al obtener documentos: ", e)
+                 Log.w("Test", "Error al obtener reclamos: ", e)
              }
          }
     }
