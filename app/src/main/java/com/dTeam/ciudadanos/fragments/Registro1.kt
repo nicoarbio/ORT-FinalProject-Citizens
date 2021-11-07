@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
+import com.dTeam.ciudadanos.adapters.ReclamoAdapter
 import com.dTeam.ciudadanos.entities.Usuario
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -44,10 +46,16 @@ class Registro1 : Fragment() {
             if(validarCampos(txtMail, txtPassword, txtConfirmarPass, txtDireccion)){
                 if(txtPassword.text.toString() == txtConfirmarPass.text.toString()){
                     val usuario = Usuario(txtMail.text.toString(), txtPassword.text.toString(),txtDireccion.text.toString())
-                    if(usuarioViewModel.registrarUsuario(usuario)){
-                        val action = Registro1Directions.actionRegistro1ToRegistro2()
-                        v.findNavController().navigate(action)
-                    }
+                    usuarioViewModel.registrarUsuario(usuario)
+                    usuarioViewModel.usuarioRegistadoOk.observe(viewLifecycleOwner, Observer { list ->
+                        if (usuarioViewModel.usuarioRegistadoOk.value == true){
+                            val action = Registro1Directions.actionRegistro1ToRegistro2()
+                            v.findNavController().navigate(action)
+                        }
+                        else{
+                            Snackbar.make(v, usuarioViewModel.error, Snackbar.LENGTH_SHORT).show()
+                        }
+                    })
                 }else{
                     Snackbar.make(v, "Las contraseñas no coinciden", Snackbar.LENGTH_SHORT).show()
                 }
@@ -57,15 +65,17 @@ class Registro1 : Fragment() {
     }
 
     fun validarCampos(vararg campos:EditText):Boolean{
-        var camposValidos : Boolean = true
+        var camposValidos = true
         for (campo in campos) {
             if(campo.text.isEmpty()){
                 camposValidos = false
-                campo.setError("Por favor, complete este campo")
+                campo.setError(getString(R.string.campoVacio))
             }
         }
         return camposValidos
     }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         usuarioViewModel = ViewModelProvider(requireActivity()).get(UsuarioViewModel::class.java)

@@ -85,7 +85,7 @@ class FragmentNuevoReclamo:Fragment() {
                     if(reclamoViewModel.generarReclamo(reclamo, listaImgs)){
                         v.findNavController().navigate(action)
                     }else{
-                        Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(v,getString(R.string.errorGeneral), Snackbar.LENGTH_SHORT).show()
                     }
                 }
                 builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
@@ -126,7 +126,7 @@ class FragmentNuevoReclamo:Fragment() {
         for (campo in campos) {
             if(campo.text.isEmpty()){
                 camposValidos = false
-                campo.setError("Por favor, complete este campo")
+                campo.setError(getString(R.string.campoVacio))
             }
         }
         return camposValidos
