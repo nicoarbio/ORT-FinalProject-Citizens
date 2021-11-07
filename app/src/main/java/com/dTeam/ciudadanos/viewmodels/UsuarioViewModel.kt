@@ -3,9 +3,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.entities.Usuario
 import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
