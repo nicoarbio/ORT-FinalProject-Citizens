@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 
@@ -39,13 +40,13 @@ class PerfilUsuario : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        usuarioViewModel = ViewModelProvider(requireActivity()).get(usuaruioViewModel::class.java)
+        usuarioViewModel = ViewModelProvider(requireActivity()).get(usuarioViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
     override fun onStart() {
         super.onStart()
-        txtNombreApellido.text = usuarioViewModel.getNombre() +" "+usuaruioViewModel.getApellido()
+        txtNombreApellido.text = usuarioViewModel.getNombre() +" "+usuarioViewModel.getApellido()
         txtDireccion.text = usuarioViewModel.getDireccion()
         txtTelefono.text = usuarioViewModel.getTelefono()
         txtDni.text = usuarioViewModel.getDni()

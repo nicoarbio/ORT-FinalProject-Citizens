@@ -14,6 +14,7 @@ class UsuarioViewModel : ViewModel() {
 
     var usuario = MutableLiveData<Usuario>()
     var usuarioRegistadoOk = MutableLiveData<Boolean>()
+    var usuarioLogueadoOk = MutableLiveData<Boolean>()
     var error = String()
 
     private var  auth: FirebaseAuth? = null
@@ -45,8 +46,29 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
+    fun obtenerUsuarioLogueado(): FirebaseUser? {
+        return auth?.currentUser
+    }
+
+    fun iniciarSesion(mail:String, password:String){
+        viewModelScope.launch {
+            try {
+                auth!!.signInWithEmailAndPassword(mail, password)
+                    .await()
+                usuarioLogueadoOk.value = true
+            }catch(e : Exception){
+                error = "Usuario y/o contraseña incorrectos"
+                usuarioLogueadoOk.value = false
+            }
+        }
+    }
+
+    fun cerrarSesion(){
+        auth?.signOut()
+    }
+
     fun getEmail(): String? {
-        return usuario.value.email
+        return usuario.value?.email
     }
     fun getNombre(): String? {
         return usuario.value?.nombre

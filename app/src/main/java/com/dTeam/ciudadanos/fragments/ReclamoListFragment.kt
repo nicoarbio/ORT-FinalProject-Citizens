@@ -15,6 +15,7 @@ import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.adapters.ReclamoAdapter
 
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
+import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 
 class ReclamoListFragment : Fragment() {
 
@@ -23,6 +24,7 @@ class ReclamoListFragment : Fragment() {
     }
 
     private lateinit var reclamoViewModel: ReclamoViewModel
+    private lateinit var usuarioViewModel: UsuarioViewModel
 
     private lateinit var v: View
 
@@ -41,13 +43,18 @@ class ReclamoListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         reclamoViewModel = ViewModelProvider(requireActivity()).get(ReclamoViewModel::class.java)
+        usuarioViewModel = ViewModelProvider(requireActivity()).get(UsuarioViewModel::class.java)
+        if(usuarioViewModel.obtenerUsuarioLogueado()==null){
+            var action = ReclamoListFragmentDirections.actionListaReclamosToLogIn()
+            v.findNavController().navigate(action)
+        }
     }
 
     override fun onStart() {
         super.onStart()
         listadoReclamos.setHasFixedSize(true)
         listadoReclamos.layoutManager = LinearLayoutManager(context)
-        reclamoViewModel.getReclamos()
+        reclamoViewModel.getReclamos(usuarioViewModel.obtenerUsuarioLogueado()!!.uid)
         reclamoAdapter = ReclamoAdapter(mutableListOf(), requireContext()) { pos -> onItemClick(pos)}
         setObserver()
     }

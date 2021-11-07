@@ -69,12 +69,12 @@ class ReclamoViewModel : ViewModel() {
         return reclamoGenerado
     }
 
-    fun getReclamos() {
+    fun getReclamos(usuario:String) {
          viewModelScope.launch {
              reclamoList.clear()
              try {
                  val reclamos = db.collection("reclamos")
-                     .whereEqualTo("usuario", "UID_DEL_USUARIO") //TODO: Acá poner el UID del usuario logueado!
+                     .whereEqualTo("usuario", usuario) //TODO: Acá poner el UID del usuario logueado!
                      .get()
                      .await()
                  if (reclamos != null) {

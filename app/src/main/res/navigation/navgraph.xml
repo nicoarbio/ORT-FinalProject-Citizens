@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_fragmentNuevoReclamo_to_inicioCiudadano"
             app:destination="@id/inicioCiudadano" />
+        <action
+            android:id="@+id/action_fragmentNuevoReclamo_to_logIn"
+            app:destination="@id/logIn" />
     </fragment>
     <fragment
         android:id="@+id/estadoReclamo2"
@@ -51,6 +54,9 @@
         <action
             android:id="@+id/action_listaReclamos_to_detalleReclamoFragment"
             app:destination="@id/detalleReclamoFragment" />
+        <action
+            android:id="@+id/action_listaReclamos_to_logIn"
+            app:destination="@id/logIn" />
     </fragment>
     <fragment
         android:id="@+id/exitoReclamo"
@@ -105,5 +111,8 @@
         <action
             android:id="@+id/action_logIn_to_registro1"
             app:destination="@id/registro1" />
+        <action
+            android:id="@+id/action_logIn_to_inicioCiudadano"
+            app:destination="@id/inicioCiudadano" />
     </fragment>
 </navigation>
