@@ -31,6 +31,7 @@ import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
+import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 import com.google.android.gms.location.*
 import com.google.android.material.snackbar.Snackbar
 
@@ -46,6 +47,7 @@ class FragmentNuevoReclamo:Fragment() {
     lateinit var txtDescripcion : EditText
     lateinit var txtDireccion : EditText
     private lateinit var reclamoViewModel: ReclamoViewModel
+    private lateinit var usuarioViewModel: UsuarioViewModel
     private lateinit var lblCategoriaReclamo : TextView
     private lateinit var lblSubcategoriaReclamo : TextView
     private lateinit var imgReclamo : ImageView
@@ -75,7 +77,7 @@ class FragmentNuevoReclamo:Fragment() {
                         reclamoViewModel.getSubcategoria()!!,
                         txtDireccion.text.toString(),
                         txtDescripcion.text.toString(),
-                        "UID_DEL_USUARIO", //TODO: Acá poner el UID del usuario logueado
+                        usuarioViewModel.obtenerUsuarioLogueado()!!.uid,
                         "Abierto",
                         ""
                     )
@@ -122,7 +124,7 @@ class FragmentNuevoReclamo:Fragment() {
     }
 
     fun validarCampos(vararg campos:EditText):Boolean{
-        var camposValidos : Boolean = true
+        var camposValidos = true
         for (campo in campos) {
             if(campo.text.isEmpty()){
                 camposValidos = false
@@ -145,6 +147,11 @@ class FragmentNuevoReclamo:Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         reclamoViewModel = ViewModelProvider(requireActivity()).get(ReclamoViewModel::class.java)
+        usuarioViewModel = ViewModelProvider(requireActivity()).get(UsuarioViewModel::class.java)
+        if(usuarioViewModel.obtenerUsuarioLogueado()==null){
+            var action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToLogIn()
+            v.findNavController().navigate(action)
+        }
     }
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
