@@ -5,9 +5,23 @@ import com.google.firebase.firestore.DocumentId
 import java.util.Date
 import kotlin.math.log
 
-class Usuario(email: String, contrasenia: String, direccion: String, rol:  String, nombre: String, apellido: String, dni:  String, fechaDeNacimiento: String, telefono: String, codigoPostal: String) {
+class Usuario(
+    email: String,
+    contrasenia: String,
+    direccion: String,
+    rol:  String,
+    nombre: String,
+    apellido: String,
+    dni:  String,
+    fechaDeNacimiento: String,
+    telefono: String,
+    codigoPostal: String
+
+    )
+
+{
     @DocumentId
-    private val documentId: String? = null
+    var documentId: String? = null
     var email : String
     var contrasenia: String
     var rol: String
@@ -23,7 +37,6 @@ class Usuario(email: String, contrasenia: String, direccion: String, rol:  Strin
 
     constructor(email: String, contrasenia: String, direccion: String) : this(email, contrasenia, direccion, "","","","", "", "","")
     constructor() : this("","","","","","","", "", "", "")
-
 
     init {
         this.email = email

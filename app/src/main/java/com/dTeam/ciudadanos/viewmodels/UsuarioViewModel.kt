@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dTeam.ciudadanos.entities.Usuario
+import com.dTeam.ciudadanos.network.OrionApi
 import com.google.firebase.auth.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ class UsuarioViewModel : ViewModel() {
     init {
         auth = FirebaseAuth.getInstance()
         usuario.value = Usuario()
+        //getUsuarios()
     }
 
     fun registrarUsuario(usuario: Usuario) { //TODO: Guardar el resto de los datos en FiWare
@@ -65,6 +67,17 @@ class UsuarioViewModel : ViewModel() {
 
     fun cerrarSesion(){
         auth?.signOut()
+    }
+
+    private fun getUsuarios() {
+        viewModelScope.launch {
+            try {
+                val listResult = OrionApi.retrofitService.getUsuarios()
+
+            } catch (e: Exception) {
+
+            }
+        }
     }
 
     fun getEmail(): String? {
