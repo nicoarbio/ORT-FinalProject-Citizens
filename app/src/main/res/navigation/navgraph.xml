@@ -62,7 +62,11 @@
         android:id="@+id/exitoReclamo"
         android:name="com.dTeam.ciudadanos.fragments.ExitoReclamo"
         android:label="exito_reclamo_fragment"
-        tools:layout="@layout/exito_reclamo_fragment" />
+        tools:layout="@layout/exito_reclamo_fragment" >
+        <action
+            android:id="@+id/action_exitoReclamo_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
     <fragment
         android:id="@+id/perfilUsuario"
         android:name="com.dTeam.ciudadanos.fragments.PerfilUsuario"
