@@ -23,6 +23,12 @@ class UsuarioViewModel : ViewModel() {
     init {
         auth = FirebaseAuth.getInstance()
         usuario.value = Usuario()
+        usuario.value?.dni = "prueba"
+        usuario.value?.email = "prueba@gmail.com"
+        usuario.value?.direccion = "calle falsa 123"
+        usuario.value?.telefono = "12345678"
+        usuario.value?.apellido = "apellido"
+        usuario.value?.nombre = "nombre"
         //getUsuarios()
     }
 
