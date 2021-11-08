@@ -33,6 +33,7 @@ class ReclamoViewModel : ViewModel() {
     val listadoReclamos = MutableLiveData<MutableList<Reclamo>>()
     var reclamo = MutableLiveData<Reclamo>()
     var reclamoGeneradoOk = MutableLiveData<Boolean>()
+    var imgEstadoReclamo = MutableLiveData<Uri>()
 
     val storage = FirebaseStorage.getInstance()
     val storageRef = storage.reference
@@ -97,6 +98,15 @@ class ReclamoViewModel : ViewModel() {
             Log.w("Test", "Error al  agregar observacion: ", e)
             return false
         }
+    }
+
+    fun getImgEstado(){
+        viewModelScope.launch {
+            val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
+            val img = gsReference.child("estados").child(reclamo.value!!.estado + ".png").downloadUrl.await()
+            imgEstadoReclamo.value = img
+        }
+
     }
 
     fun getCategoria(): String? {

@@ -47,6 +47,7 @@ class DetalleReclamoFragment : Fragment() {
     private lateinit var txtEstadoReclamo: TextView
 
     private lateinit var recImgReclamo: RecyclerView
+
     private lateinit var ImgAdaper: ImgReclamoAdapter
 
     private lateinit var recDetalleObservaciones: RecyclerView
@@ -120,6 +121,16 @@ class DetalleReclamoFragment : Fragment() {
             txtEstadoReclamo.text = it.estado
             recDetalleObservaciones.adapter = ListaObservacionesAdaper(it.observaciones)
             recImgReclamo.adapter = ImgReclamoAdapter(it.imagenes, requireContext())
+
+            reclamoViewModel.getImgEstado()
+            reclamoViewModel.imgEstadoReclamo.observe(viewLifecycleOwner, Observer {
+                var imgEstado : ImageView =  v.findViewById(R.id.imgEstadoDetalleReclamo)
+                Glide.with(this)
+                    .load(it)
+                    .into(imgEstado)
+            })
+
+
 
             if( it.estado == "Cancelado" || it.estado == "Cerrado"){
                 btnDetalleAgregarObser.visibility = View.GONE
