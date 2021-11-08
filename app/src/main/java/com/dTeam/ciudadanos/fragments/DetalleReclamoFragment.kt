@@ -54,6 +54,8 @@ class DetalleReclamoFragment : Fragment() {
 
     private lateinit var btnDetalleAgregarObser: Button
 
+    private lateinit var lblImg: TextView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,6 +79,8 @@ class DetalleReclamoFragment : Fragment() {
         btnDetalleAgregarObser.setOnClickListener{
             showdialog()
         }
+
+        lblImg = v.findViewById(R.id.lblDetalleImgAdjuntas)
 
         return v
     }
@@ -120,6 +124,11 @@ class DetalleReclamoFragment : Fragment() {
             if( it.estado == "Cancelado" || it.estado == "Cerrado"){
                 btnDetalleAgregarObser.visibility = View.GONE
             }
+
+            if(it.imagenes.size ==0){
+                lblImg.visibility = View.GONE
+                recImgReclamo.visibility = View.GONE
+            }
         })
     }
 
@@ -137,7 +146,7 @@ class DetalleReclamoFragment : Fragment() {
             var texto = input.text.toString()
             val currentDateTime = LocalDateTime.now()
             val fecha = currentDateTime.format(DateTimeFormatter.ISO_DATE)
-            var obsNuevo = Observacion("usuario", texto, fecha)
+            var obsNuevo = Observacion("Ciudadano", texto, fecha)
             if (texto.length > 0 && reclamoViewModel.agregarObser(obsNuevo)) {
                 //obs generado con exito
                 Snackbar.make(v,"se agregó la observación", Snackbar.LENGTH_SHORT).show()
