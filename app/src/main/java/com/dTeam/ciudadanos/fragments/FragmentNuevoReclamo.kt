@@ -21,23 +21,21 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.getSystemService
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Reclamo
+import com.dTeam.ciudadanos.viewmodels.CategoriaViewModel
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 import com.google.android.gms.location.*
 import com.google.android.material.snackbar.Snackbar
 
 import gun0912.tedimagepicker.builder.TedImagePicker
-import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -49,6 +47,7 @@ class FragmentNuevoReclamo:Fragment() {
     lateinit var txtDireccion : EditText
     private lateinit var reclamoViewModel: ReclamoViewModel
     private lateinit var usuarioViewModel: UsuarioViewModel
+    private lateinit var categoriaViewModel: CategoriaViewModel
     private lateinit var lblCategoriaReclamo : TextView
     private lateinit var lblSubcategoriaReclamo : TextView
     private lateinit var imgReclamo : ImageView
@@ -142,7 +141,19 @@ class FragmentNuevoReclamo:Fragment() {
         super.onStart()
         lblCategoriaReclamo = v.findViewById(R.id.lbltipoReclamoNuevoReclamo)
         lblSubcategoriaReclamo = v.findViewById(R.id.lblSubtipoReclamoNuevoReclamo)
-        imgReclamo = v.findViewById(R.id.imgReclamo) //TODO: Falta cargar img. Para esto habría que pasar la referencia a storage al viewmodel (idem para el código del adapter)
+        imgReclamo = v.findViewById(R.id.imgReclamo)
+        categoriaViewModel.getImgCategoria(reclamoViewModel.getCategoria()!!)
+
+        categoriaViewModel.imgCategoria.observe(viewLifecycleOwner, Observer { list ->
+            val imgReclamo = categoriaViewModel.imgCategoria.value
+            var imgCategoriaReclamo : ImageView =  v.findViewById(R.id.imgReclamo)
+            Glide.with(this)
+                .load(imgReclamo)
+                .into(imgCategoriaReclamo)
+        })
+
+
+
         lblCategoriaReclamo.text = reclamoViewModel.getCategoria()
         lblSubcategoriaReclamo.text = reclamoViewModel.getSubcategoria()
         getLastLocation()
@@ -152,6 +163,7 @@ class FragmentNuevoReclamo:Fragment() {
         super.onActivityCreated(savedInstanceState)
         reclamoViewModel = ViewModelProvider(requireActivity()).get(ReclamoViewModel::class.java)
         usuarioViewModel = ViewModelProvider(requireActivity()).get(UsuarioViewModel::class.java)
+        categoriaViewModel = ViewModelProvider(requireActivity()).get(CategoriaViewModel::class.java)
         if(usuarioViewModel.obtenerUsuarioLogueado()==null){
             var action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToLogIn()
             v.findNavController().navigate(action)
