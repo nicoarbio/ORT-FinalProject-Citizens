@@ -36,10 +36,9 @@
         android:id="@+id/imgDetalleCategoria"
         android:layout_width="67dp"
         android:layout_height="74dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@android:drawable/btn_star_big_on" />
@@ -128,8 +127,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recDetalleObservaciones"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnDetalleAgregarObser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.441"
