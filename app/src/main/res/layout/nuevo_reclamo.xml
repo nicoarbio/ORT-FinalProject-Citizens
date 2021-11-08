@@ -107,7 +107,6 @@
         android:layout_width="67dp"
         android:layout_height="74dp"
         android:background="@color/amarillo"
-        android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toStartOf="@+id/lbltipoReclamoNuevoReclamo"
         app:layout_constraintHorizontal_bias="0.66"

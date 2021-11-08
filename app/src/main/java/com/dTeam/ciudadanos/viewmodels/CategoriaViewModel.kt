@@ -1,5 +1,6 @@
 package com.dTeam.ciudadanos.viewmodels
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,6 +16,7 @@ import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
+import java.net.URI
 
 class CategoriaViewModel: ViewModel() {
     val db = Firebase.firestore
@@ -23,6 +25,7 @@ class CategoriaViewModel: ViewModel() {
     private var subcategoriaList : MutableList<Subcategoria> = mutableListOf()
     val listadoCategorias = MutableLiveData<MutableList<Categoria>>()
     val listadoSubcategoria = MutableLiveData<MutableList<Subcategoria>>()
+    var imgCategoria = MutableLiveData<Uri>()
     private val _idCategoria = MutableLiveData<String>()
 
     fun getCategorias() {
@@ -63,10 +66,13 @@ class CategoriaViewModel: ViewModel() {
             }
         }
     }
-    fun getImgCategoria(categoria: String):StorageReference{
-        val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
-        val imgCategoria = gsReference.child("categorias").child(categoria + ".png")
-        return imgCategoria
+    fun getImgCategoria(categoria: String){
+        viewModelScope.launch {
+            val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
+            val img = gsReference.child("categorias").child(categoria + ".png").downloadUrl.await()
+            imgCategoria.value = img
+        }
+
     }
     fun setDocumentId(idCategoria: String){
            _idCategoria.value=idCategoria
