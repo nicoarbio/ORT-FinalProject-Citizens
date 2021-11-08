@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.adapters.ReclamoAdapter
@@ -28,6 +30,7 @@ class ExitoReclamo : Fragment() {
     lateinit var subCategoria : TextView
     lateinit var direccion : TextView
     lateinit var comentario : TextView
+    lateinit var btnVolver : Button
     lateinit var v : View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +41,12 @@ class ExitoReclamo : Fragment() {
         subCategoria = v.findViewById(R.id.txtSubcategoriaExito)
         direccion = v.findViewById(R.id.txtDirecExito)
         comentario = v.findViewById(R.id.txtComentarioExito)
+        btnVolver = v.findViewById(R.id.btnVolver)
+
+        btnVolver.setOnClickListener{
+            val actionToInicio = ExitoReclamoDirections.actionExitoReclamoToLogIn()
+            v.findNavController().navigate(actionToInicio)
+        }
 
         return v
     }
