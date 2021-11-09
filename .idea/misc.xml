@@ -8,12 +8,14 @@
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/rounded_corner.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/detalle_reclamo_fragment.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/estado_reclamo_fragment.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/exito_reclamo_fragment.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/inicio_ciudadano_fragment.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/item_img_reclamo.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/item_reclamo_list.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/log_in_fragment.xml" value="0.1546875" />
-        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/nuevo_reclamo.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/nuevo_reclamo.xml" value="0.25" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/perfil_usuario_fragment.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/reclamo_list_fragment.xml" value="0.5" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/registro1_fragment.xml" value="0.27291666666666664" />

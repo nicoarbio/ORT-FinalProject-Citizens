@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.adapters.ReclamoAdapter
 
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
+import com.google.firebase.storage.FirebaseStorage
 
 
 class ExitoReclamo : Fragment() {
@@ -31,6 +34,7 @@ class ExitoReclamo : Fragment() {
     lateinit var direccion : TextView
     lateinit var comentario : TextView
     lateinit var btnVolver : Button
+    lateinit var imgDetalle: ImageView
     lateinit var v : View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +46,7 @@ class ExitoReclamo : Fragment() {
         direccion = v.findViewById(R.id.txtDirecExito)
         comentario = v.findViewById(R.id.txtComentarioExito)
         btnVolver = v.findViewById(R.id.btnVolver)
-
+        imgDetalle = v.findViewById(R.id.imgDetalle)
         btnVolver.setOnClickListener{
             val actionToInicio = ExitoReclamoDirections.actionExitoReclamoToLogIn()
             v.findNavController().navigate(actionToInicio)
@@ -66,6 +70,12 @@ class ExitoReclamo : Fragment() {
         subCategoria.text = viewModelReclamo.getSubcategoria()
         direccion.text = viewModelReclamo.getDireccion()
         comentario.text = viewModelReclamo.getDescripcion()
+        val storage = FirebaseStorage.getInstance()// Create a reference to a file from a Google Cloud Storage URI
+        val gsReference = storage.getReferenceFromUrl("gs://ort-proyectofinal.appspot.com/")
+        val imgReclamo = gsReference.child("categorias").child(viewModelReclamo.getCategoria() + ".png")
+        Glide.with(this)
+            .load(imgReclamo)
+            .into(imgDetalle)
         setObserver()
     }
 
@@ -75,6 +85,13 @@ class ExitoReclamo : Fragment() {
             subCategoria.text = viewModelReclamo.getSubcategoria()
             direccion.text = viewModelReclamo.getDireccion()
             comentario.text = viewModelReclamo.getDescripcion()
+            viewModelReclamo.getImgEstado()
+            viewModelReclamo.imgEstadoReclamo.observe(viewLifecycleOwner, Observer {
+                var imgEstado : ImageView =  v.findViewById(R.id.imgDetalle)
+                Glide.with(this)
+                    .load(it)
+                    .into(imgDetalle)
+            })
         })
     }
 }
