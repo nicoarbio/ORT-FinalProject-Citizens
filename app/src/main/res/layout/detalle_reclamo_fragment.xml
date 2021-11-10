@@ -24,8 +24,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recImgReclamo"
-        android:layout_width="345dp"
-        android:layout_height="89dp"
+        android:layout_width="0dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@+id/lblDetalleEstadoReclamo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -34,11 +36,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recDetalleObservaciones"
-        android:layout_width="380dp"
-        android:layout_height="164dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnDetalleAgregarObser"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +65,7 @@
         android:id="@+id/lblDetalleComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="35dp"
         android:text="Comentario"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
@@ -76,7 +78,7 @@
         android:id="@+id/lblDetalleDirrecion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Dirección"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
@@ -89,6 +91,7 @@
         android:id="@+id/lblDetalleObservaciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Observaciones"
         android:textColor="#FBFBFB"
         android:textStyle="bold"
@@ -115,12 +118,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="52dp"
+        android:layout_marginTop="8dp"
         android:text="PENDIENTE"
         android:textColor="@color/white"
         android:textSize="26dp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/lblDetalleObservaciones"
+        app:layout_constraintEnd_toStartOf="@+id/imgEstadoDetalleReclamo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblDetalleEstadoReclamo" />
 
@@ -132,16 +136,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/lblDetalleImgAdjuntas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txtDetalleDireccion"
+        app:layout_constraintHorizontal_bias="0.317"
+        app:layout_constraintStart_toEndOf="@+id/lblDetalleComentario"
         app:layout_constraintTop_toTopOf="@+id/lblDetalleComentario"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/lblDetalleImgAdjuntas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:text="Imágenes Adjuntas"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
@@ -178,8 +182,8 @@
 
     <ImageView
         android:id="@+id/imgDetalleCategoria"
-        android:layout_width="81dp"
-        android:layout_height="73dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="36dp"
         android:background="@color/amarillo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -192,12 +196,14 @@
         android:id="@+id/txtDetalleDireccion"
         android:layout_width="222dp"
         android:layout_height="58dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
         android:text="Av. Enrique Ocampo 100-124,  San Fernando del Valle de Catamarca, Catamarca"
+        app:layout_constraintBottom_toTopOf="@+id/txtDetalleComentario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toEndOf="@+id/lblDetalleDirrecion"
-        app:layout_constraintTop_toTopOf="@+id/lblDetalleDirrecion" />
+        app:layout_constraintTop_toTopOf="@+id/lblDetalleDirrecion"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
