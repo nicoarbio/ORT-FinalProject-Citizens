@@ -41,11 +41,14 @@ class PerfilUsuario : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         usuarioViewModel = ViewModelProvider(requireActivity()).get(usuarioViewModel::class.java)
-        // TODO: Use the ViewModel
+
     }
 
     override fun onStart() {
         super.onStart()
+        usuarioViewModel.actualizarUsuarioLogueado()
+
+        // TODO: hacer observer del objeto usuario
         txtNombreApellido.text = usuarioViewModel.getNombre() +" "+usuarioViewModel.getApellido()
         txtDireccion.text = usuarioViewModel.getDireccion()
         txtTelefono.text = usuarioViewModel.getTelefono()
