@@ -1,60 +1,25 @@
 package com.dTeam.ciudadanos.entities
 
-import android.util.Log
-import com.google.firebase.firestore.DocumentId
-import java.util.Date
-import kotlin.math.log
+import com.squareup.moshi.Json
 
 class Usuario(
-    email: String,
-    contrasenia: String,
-    direccion: String,
-    rol:  String,
-    nombre: String,
-    apellido: String,
-    dni:  String,
-    fechaDeNacimiento: String,
-    telefono: String,
-    codigoPostal: String
-
+    @Json(name = "id")
+    var documentId : String,
+    var type:String,
+    var dni:  String,
+    var apellido: String,
+    var codigoPostal: String,
+    var direccion: String,
+    var fechaDeNacimiento: String,
+    var nombre: String,
+    var rol: String, //Ciudadano/Ministerio/Responsable
+    var telefono: String,
+    var email: String
     )
-
 {
-    @DocumentId
-    var documentId: String? = null
-    var email : String
-    var contrasenia: String
-    var rol: String
-    var nombre: String
-    var apellido: String
-    var dni: String
-    var fechaDeNacimiento: String
-
-    var telefono: String
-    var direccion: String
-    var codigoPostal : String
-    var reclamos : MutableList<Reclamo>
-
-    constructor(email: String, contrasenia: String, direccion: String) : this(email, contrasenia, direccion, "","","","", "", "","")
-    constructor() : this("","","","","","","", "", "", "")
-
-    init {
-        this.email = email
-        this.contrasenia = contrasenia
-        this.rol = rol
-        this.nombre = nombre
-        this.apellido = apellido
-        this.dni = dni
-        this.fechaDeNacimiento = fechaDeNacimiento
-        this.telefono = telefono
-        this.direccion = direccion
-        this.codigoPostal = codigoPostal
-        this.reclamos = mutableListOf()
-}
+    constructor() : this("","","","","","", "", "", "","","")
 
     override fun toString(): String {
-        return "Usuario(documentId=$documentId, email='$email', contrasenia='$contrasenia', rol='$rol', nombre='$nombre', apellido='$apellido', dni='$dni', fechaDeNacimiento=$fechaDeNacimiento, telefono='$telefono', direccion='$direccion', codigoPostal='$codigoPostal', reclamos=$reclamos)"
+        return "Usuario(documentId='$documentId', type='$type', dni='$dni', apellido='$apellido', codigoPostal='$codigoPostal', direccion='$direccion', fechaDeNacimiento='$fechaDeNacimiento', nombre='$nombre', rol='$rol', telefono='$telefono', email='$email')"
     }
-
-
 }
