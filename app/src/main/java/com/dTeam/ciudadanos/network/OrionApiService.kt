@@ -10,7 +10,8 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-private const val BASE_URL = "http://localhost:1026/v2/"
+private const val IP = "192.168.0.11"
+private const val BASE_URL = "http://${IP}:1026/v2/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -23,13 +24,15 @@ private val retrofit = Retrofit.Builder()
 
 interface OrionApiService {
 
-    @GET("entities?type=User&options=keyValues")
+    // Documentación de la API ORION
+    // https://telefonicaid.github.io/fiware-orion/api/v2/stable/
+    @GET("entities?options=keyValues&type=Usuario")
     suspend fun getUsuarios(): List<Usuario>
 
-    @GET("entities")
+    @GET("entities?options=keyValues&type=Usuario")
     suspend fun getUsuarioByUID(@Query("UID") UID: String): Usuario
 
-    @POST("entities")
+    @POST("entities?options=keyValues")
     suspend fun registrarUsuario(@Body usuario: Usuario)
 
 }
