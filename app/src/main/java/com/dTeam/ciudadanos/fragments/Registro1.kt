@@ -45,8 +45,12 @@ class Registro1 : Fragment() {
         btnReg.setOnClickListener{
             if(validarCampos(txtMail, txtPassword, txtConfirmarPass, txtDireccion)){
                 if(txtPassword.text.toString() == txtConfirmarPass.text.toString()){
-                    val usuario = Usuario(txtMail.text.toString(), txtPassword.text.toString(),txtDireccion.text.toString())
-                    usuarioViewModel.registrarUsuario(usuario)
+
+                    usuarioViewModel.registrarUsuario(txtMail.text.toString(), txtPassword.text.toString(), txtDireccion.text.toString())
+                    //val usuario = Usuario(txtMail.text.toString(), txtPassword.text.toString(),txtDireccion.text.toString())
+                    //usuarioViewModel.registrarUsuario(usuario)
+                    // TODO: Utilizar el metodo registrarUsuario en Registro 2. Enviar por el action los datos de mail, password y dirección
+
                     usuarioViewModel.usuarioRegistadoOk.observe(viewLifecycleOwner, Observer { list ->
                         if (usuarioViewModel.usuarioRegistadoOk.value == true){
                             val action = Registro1Directions.actionRegistro1ToRegistro2()
