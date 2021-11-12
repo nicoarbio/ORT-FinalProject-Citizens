@@ -6,8 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.dTeam.ciudadanos.R
+import com.dTeam.ciudadanos.adapters.ImgReclamoAdapter
+import com.dTeam.ciudadanos.adapters.ListaObservacionesAdaper
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 
 class PerfilUsuario : Fragment() {
@@ -47,13 +52,17 @@ class PerfilUsuario : Fragment() {
     override fun onStart() {
         super.onStart()
         usuarioViewModel.actualizarUsuarioLogueado()
+        setObserver()
+    }
+    fun setObserver(){
+        usuarioViewModel.usuario.observe(viewLifecycleOwner, Observer {
 
-        // TODO: hacer observer del objeto usuario
-        txtNombreApellido.text = usuarioViewModel.getNombre() +" "+usuarioViewModel.getApellido()
-        txtDireccion.text = usuarioViewModel.getDireccion()
-        txtTelefono.text = usuarioViewModel.getTelefono()
-        txtDni.text = usuarioViewModel.getDni()
-        txtEmail.text = usuarioViewModel.getEmail()
+            txtNombreApellido.text = it.nombre +" "+it.apellido
+            txtDireccion.text = it.direccion
+            txtTelefono.text = it.telefono
+            txtDni.text = it.dni
+            txtEmail.text = it.email
+        })
     }
 
 }
