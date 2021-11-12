@@ -7,18 +7,20 @@ import com.dTeam.ciudadanos.entities.Usuario
 import com.dTeam.ciudadanos.network.OrionApi
 import com.google.firebase.auth.*
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
-import retrofit2.HttpException
 import java.lang.Exception
-import java.net.SocketTimeoutException
+//import java.net.SocketTimeoutException
+//import retrofit2.HttpException
 
 class UsuarioViewModel : ViewModel() {
 
     var usuario = MutableLiveData<Usuario>()
     var usuarioRegistadoOk = MutableLiveData<Boolean>()
     var usuarioLogueadoOk = MutableLiveData<Boolean>()
+    var usuariosResponsables = MutableLiveData<MutableList<Usuario>>()
+    var usuarios = MutableLiveData<MutableList<Usuario>>()
     var error = String()
 
     private var  auth: FirebaseAuth? = null
@@ -28,18 +30,14 @@ class UsuarioViewModel : ViewModel() {
         usuario.value = Usuario()
     }
 
-    //fun registrarUsuario(user: Usuario) {
-    fun registrarUsuario(email : String, pwd : String, adr : String) {
+    //fun registrarUsuario(email : String, pwd : String, adr : String) {
+    fun registrarUsuario(user: Usuario, pwd : String) {
         viewModelScope.launch {
             try {
-                auth!!.createUserWithEmailAndPassword(email, pwd).await()
+                auth!!.createUserWithEmailAndPassword(user.email, pwd).await()
 
-                usuario.value = Usuario()
-                usuario.value?.documentId = auth!!.uid!!
-                usuario.value?.type = "Usuario"
-                usuario.value?.rol = "Ciudadano"
-                usuario.value?.email = email
-                usuario.value?.direccion = adr
+                user.documentId = auth!!.uid!!
+                usuario.value = user
 
                 Log.d("ORION_API", usuario.value.toString())
                 registrarUsuarioOrion()
@@ -55,21 +53,10 @@ class UsuarioViewModel : ViewModel() {
             }catch (e : FirebaseAuthUserCollisionException) {
                 error = "El mail ingresado ya se encuentra registrado"
                 usuarioRegistadoOk.value = false
-            }
-            //kotlin (a diferencia de java) no soporta multiple-catching..
-            catch (e: SocketTimeoutException) {
-                //Este error es mostrado en caso de pasar los 10 segundos sin respuesta del servidor
-                error = "Ocurrió un error en la comunicación. Vuelva a intentar más tarde"
-                usuarioRegistadoOk.value = false
-                Log.d("ORION_API", e.toString())
-            } catch(e: HttpException) {
-                //Este error es mostrado en caso de estar armando mal la petición
-                error = "Ocurrió un error en la comunicación. Vuelva a intentar más tarde"
-                usuarioRegistadoOk.value = false
-                Log.d("ORION_API", e.toString())
             }catch (e : Exception){
                 error = "Ocurrió un error al registrar el usuario. Vuelva a intentar más tarde"
                 usuarioRegistadoOk.value = false
+                Log.d("ORION_API", e.toString())
             }
         }
     }
@@ -100,11 +87,11 @@ class UsuarioViewModel : ViewModel() {
 
     // Metodos que utilizan la API de ORION
 
-    private suspend fun registrarUsuarioOrion() {
+    suspend fun registrarUsuarioOrion() {
         OrionApi.retrofitService.registrarUsuario(usuario.value!!)
     }
 
-    private fun getUsuarioByUID(UID : String) {
+    fun getUsuarioByUID(UID : String) {
         viewModelScope.launch {
             try {
                 usuario.value = OrionApi.retrofitService.getUsuarioByUID(UID)
@@ -114,20 +101,11 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
-    //TODO: metodo que permita consultar el rol del usuario a partir de un UID
-    private fun getRolByUID(UID : String) {
-        try {
-            //usuario.value.rol = getUsuarioByUID(UID).rol
-        } catch (e: Exception) {
-            Log.d("ORION_API", e.toString())
-        }
-    }
-
-    //TODO: metodo que permita obtener una lista con todos los usuarios
-    private fun getUsuarios() { //: MutableList<Usuario> {
+    // getUsuariosResponsables -> lista de usuarios cuyo rol sea responsable
+    fun getUsuariosResponsables() {
         viewModelScope.launch {
             try {
-                //usuarios = OrionApi.retrofitService.getUsuarios().await().toMutableList()
+                usuariosResponsables.value = OrionApi.retrofitService.getUsuariosResponsables().toMutableList()
             } catch (e: Exception) {
                 Log.d("ORION_API", e.toString())
             }
@@ -135,10 +113,40 @@ class UsuarioViewModel : ViewModel() {
     }
 
 
+    //TODO: metodo que permita consultar el rol del usuario a partir de un UID
+    /*private fun getRolByUID(UID : String) {
+        try {
+            //usuario.value = getUsuarioByUID(UID)
+        } catch (e: Exception) {
+            Log.d("ORION_API", e.toString())
+        }
+    }*/
+
+    //TODO: metodo que permita obtener una lista con todos los usuarios
+    fun getUsuarios() {
+        viewModelScope.launch {
+            try {
+                usuarios.value = OrionApi.retrofitService.getUsuarios().toMutableList()
+            } catch (e: Exception) {
+                Log.d("ORION_API", e.toString())
+            }
+        }
+    }
+
     //Getters sobre MutableLiveData Usuario
 
+    fun esResponsable():Boolean {
+        return usuario.value?.rol.equals("Responsable")
+    }
+    fun esCiudaddano():Boolean {
+        return usuario.value?.rol.equals("Ciudaddano")
+    }
+    fun esMunicipio():Boolean {
+        return usuario.value?.rol.equals("Municipio")
+    }
+
     fun getEmail(): String? {
-        return usuario.value?.email
+        return obtenerUsuarioLogueado()!!.email
     }
     fun getNombre(): String? {
         return usuario.value?.nombre
