@@ -2,8 +2,11 @@ package com.dTeam.ciudadanos
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +22,32 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
 
+        setupNav()
     }
+
+    private fun setupNav() {
+        val navController = findNavController(R.id.fragment)
+        findViewById<BottomNavigationView>(R.id.bottomNav).setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _,  destination, _ ->
+            when(destination.id) {
+                //Acá definimos las pantallas que queremos que muestre la BottomNav y en cuales no
+                R.id.logIn -> hideBottomNav()
+                R.id.registro1 -> hideBottomNav()
+                R.id.registro2 -> hideBottomNav()
+                else -> showBottomNav()
+            }
+        }
+    }
+
+    private fun showBottomNav() {
+        bottomNavView.visibility = View.VISIBLE
+
+    }
+
+    private fun hideBottomNav() {
+        bottomNavView.visibility = View.GONE
+
+    }
+
 
 }
