@@ -158,11 +158,19 @@ class DetalleReclamoFragment : Fragment() {
             val currentDateTime = LocalDateTime.now()
             val fecha = currentDateTime.format(DateTimeFormatter.ISO_DATE)
             var obsNuevo = Observacion("Ciudadano", texto, fecha)
-            if (texto.length > 0 && reclamoViewModel.agregarObser(obsNuevo)) {
-                //obs generado con exito
-                Snackbar.make(v,"se agregó la observación", Snackbar.LENGTH_SHORT).show()
-            } else {
-                Snackbar.make(v,"Ocurrió un error. Vuelva a intentar mas tarde", Snackbar.LENGTH_SHORT).show()
+
+            if (input.length() > 0) {
+                reclamoViewModel.agregarObser(obsNuevo)
+                reclamoViewModel.estadoGuardadoOk.observe(viewLifecycleOwner, Observer{list ->
+                    if(reclamoViewModel.estadoGuardadoOk.value==true){
+                        recDetalleObservaciones.adapter = ListaObservacionesAdaper(reclamoViewModel.getObservaciones()!!)
+                        Snackbar.make(v,"se agregó la observación", Snackbar.LENGTH_SHORT).show()
+                    }else{
+                        Snackbar.make(v,R.string.errorGeneral, Snackbar.LENGTH_SHORT).show()
+                    }
+                })
+            }else{
+                Snackbar.make(v,"No se puede agregar una observación vacía", Snackbar.LENGTH_SHORT).show()
             }
         })
         builder.setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
