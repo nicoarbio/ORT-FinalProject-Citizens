@@ -26,11 +26,12 @@ interface OrionApiService {
 
     // Documentación de la API ORION
     // https://telefonicaid.github.io/fiware-orion/api/v2/stable/
-    @GET("entities?options=keyValues&type=Usuario")
-    suspend fun getUsuarios(): List<Usuario>
+
+    @GET("entities?options=keyValues&type=Usuario&q=rol:Responsable")
+    suspend fun getUsuariosResponsables(): List<Usuario>
 
     @GET("entities?options=keyValues&type=Usuario")
-    suspend fun getUsuarioByUID(@Query("UID") UID: String): Usuario
+    suspend fun getUsuarioByUID(@Query("id") UID: String): Usuario
 
     @POST("entities?options=keyValues")
     suspend fun registrarUsuario(@Body usuario: Usuario)
