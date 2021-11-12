@@ -109,6 +109,19 @@
         app:layout_constraintStart_toEndOf="@+id/imgDireccion"
         app:layout_constraintTop_toBottomOf="@+id/lblDni" />
 
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@color/secundario"
+        android:text="Cerrar Sesion"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTelefonoPerfil" />
+
     <TextView
         android:id="@+id/lblDni"
         android:layout_width="200dp"

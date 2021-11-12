@@ -80,7 +80,11 @@
         android:id="@+id/perfilUsuario"
         android:name="com.dTeam.ciudadanos.fragments.PerfilUsuario"
         android:label="perfil_usuario_fragment"
-        tools:layout="@layout/perfil_usuario_fragment" />
+        tools:layout="@layout/perfil_usuario_fragment" >
+        <action
+            android:id="@+id/action_perfilUsuario_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
     <fragment
         android:id="@+id/listaCategorias"
         android:name="com.dTeam.ciudadanos.fragments.TipoReclamoListFragment"
