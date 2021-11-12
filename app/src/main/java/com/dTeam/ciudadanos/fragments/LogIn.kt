@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 
 class LogIn : Fragment() {
@@ -21,6 +23,7 @@ class LogIn : Fragment() {
     lateinit var btnLogin : Button
     lateinit var txtUsuario : EditText
     lateinit var txtPassword : EditText
+    lateinit var navBar : BottomNavigationView
     private lateinit var usuarioViewModel: UsuarioViewModel
     companion object {
         fun newInstance() = LogIn()
@@ -38,6 +41,8 @@ class LogIn : Fragment() {
         txtPassword = v.findViewById(R.id.txtPasswordLogin)
         btnRegistro = v.findViewById(R.id.btnRegistrarUsuario)
         btnLogin = v.findViewById(R.id.btnIniciarSesion)
+        navBar = requireActivity().findViewById(R.id.bottomNav)
+        navBar.isVisible = false
 
         btnRegistro.setOnClickListener{
             val action =  LogInDirections.actionLogInToRegistro1()
