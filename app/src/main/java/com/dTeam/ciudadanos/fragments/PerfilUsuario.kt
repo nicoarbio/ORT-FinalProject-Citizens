@@ -45,7 +45,7 @@ class PerfilUsuario : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        usuarioViewModel = ViewModelProvider(requireActivity()).get(usuarioViewModel::class.java)
+        usuarioViewModel = ViewModelProvider(requireActivity()).get(UsuarioViewModel::class.java)
 
     }
 
