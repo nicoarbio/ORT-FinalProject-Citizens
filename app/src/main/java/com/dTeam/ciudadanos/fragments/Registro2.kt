@@ -55,24 +55,31 @@ class Registro2 : Fragment() {
     override fun onStart() {
         super.onStart()
         btnReg.setOnClickListener {
-            var user = Usuario()
-            user.type = "Usuario"
-            user.rol = "Ciudadano"
-            user.nombre = txtNombre.text.toString()
-            user.apellido = txtApellido.text.toString()
-            user.fechaDeNacimiento = txtFechaNac.text.toString()
-            user.dni = txtDni.text.toString()
-            user.telefono = txtTelefono.text.toString()
-            user.email = Registro2Args.fromBundle(requireArguments()).email
-            user.direccion = Registro2Args.fromBundle(requireArguments()).address
+            var user = Usuario(
+                "Usuario",
+                "Ciudadano",
+                txtNombre.text.toString(),
+                txtApellido.text.toString(),
+                txtFechaNac.text.toString(),
+                txtDni.text.toString(),
+                txtTelefono.text.toString(),
+                Registro2Args.fromBundle(requireArguments()).email,
+                Registro2Args.fromBundle(requireArguments()).address
+            )
+
             usuarioViewModel.registrarUsuario(user, Registro2Args.fromBundle(requireArguments()).password)
+
             usuarioViewModel.usuarioRegistadoOk.observe(viewLifecycleOwner, Observer {
+                //Cuando el registro falla al primer intento, cuando un segundo intento legal se ejecuta, se observa
+                // nuevamente que el Ok está en falso, lo que no permite la correcta circulación en la aplicación.
                 if (usuarioViewModel.usuarioRegistadoOk.value == true){
                     val action = Registro2Directions.actionRegistro2ToRegistro3()
                     v.findNavController().navigate(action)
                 } else {
                     Snackbar.make(v, usuarioViewModel.error, Snackbar.LENGTH_SHORT).show()
-                    parentFragmentManager.popBackStack() //Bugg!
+                    //parentFragmentManager.popBackStack()
+                    //val action = Registro2Directions.actionRegistro2ToRegistro1()
+                    v.findNavController().navigate(R.id.action_registro2_to_registro1)
                 }
             })
         }

@@ -5,10 +5,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.Retrofit
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 private const val IP = "192.168.0.11"
 private const val BASE_URL = "http://${IP}:1026/v2/"
@@ -33,8 +30,8 @@ interface OrionApiService {
     @GET("entities?options=keyValues&type=Usuario&q=rol:Responsable")
     suspend fun getUsuariosResponsables(): List<Usuario>
 
-    @GET("entities?options=keyValues&type=Usuario")
-    suspend fun getUsuarioByUID(@Query("id") UID: String): Usuario
+    @GET("entities/{id}?options=keyValues")
+    suspend fun getUsuarioByUID(@Path("id") UID: String): Usuario
 
     @POST("entities?options=keyValues")
     suspend fun registrarUsuario(@Body usuario: Usuario)

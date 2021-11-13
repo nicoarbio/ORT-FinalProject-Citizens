@@ -11,8 +11,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
-//import java.net.SocketTimeoutException
-//import retrofit2.HttpException
 
 class UsuarioViewModel : ViewModel() {
 
@@ -96,7 +94,7 @@ class UsuarioViewModel : ViewModel() {
             try {
                 usuario.value = OrionApi.retrofitService.getUsuarioByUID(UID)
             } catch (e: Exception) {
-                Log.d("ORION_API", e.toString())
+                Log.d("ORION_API_errorGetUsrUID", e.toString())
             }
         }
     }

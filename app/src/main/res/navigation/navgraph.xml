@@ -50,6 +50,11 @@
         <argument
             android:name="address"
             app:argType="string" />
+        <action
+            android:id="@+id/action_registro2_to_registro1"
+            app:destination="@id/registro1"
+            app:popUpTo="@+id/registro1"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/registro3"
