@@ -11,7 +11,9 @@ import retrofit2.http.*
 //IP Fede
 //private const val IP = "192.168.0.162"
 //IP Nico
-private const val IP = "192.168.0.11"
+//private const val IP = "192.168.0.11"
+//IP Ari
+private const val IP = "192.168.0.106"
 
 private const val BASE_URL = "http://${IP}:1026/v2/"
 

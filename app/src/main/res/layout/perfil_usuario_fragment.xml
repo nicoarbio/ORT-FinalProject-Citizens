@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/outline_account_circle_white"/>
 
     <TextView
         android:id="@+id/lblEmailPerfil"
@@ -75,11 +75,11 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:src="@drawable/ic_baseline_accessibility_24"
+        android:src="@drawable/card_account_details_outline"
         app:layout_constraintEnd_toStartOf="@+id/lblDni"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblEmailPerfil"
-        app:srcCompat="@drawable/card_account_details_outline" />
+         />
 
     <ImageView
         android:id="@+id/imgTelefono"
@@ -87,11 +87,11 @@
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:src="@android:drawable/stat_sys_phone_call"
+        android:src="@drawable/ic_baseline_phone_android_24"
         app:layout_constraintEnd_toStartOf="@+id/lblTelefonoPerfil"
         app:layout_constraintStart_toStartOf="@+id/imgDireccion"
         app:layout_constraintTop_toBottomOf="@+id/imgDireccion"
-        app:srcCompat="@drawable/ic_baseline_phone_android_24" />
+         />
 
     <TextView
         android:id="@+id/lblDireccionPerfil"
@@ -143,11 +143,11 @@
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:src="@drawable/ic_baseline_home_24"
+        android:src="@drawable/ic_baseline_house_24"
         app:layout_constraintBottom_toTopOf="@+id/imgTelefono"
         app:layout_constraintEnd_toStartOf="@+id/lblDireccionPerfil"
         app:layout_constraintStart_toStartOf="@+id/imgDni"
         app:layout_constraintTop_toBottomOf="@+id/imgDni"
-        app:srcCompat="@drawable/ic_baseline_house_24" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

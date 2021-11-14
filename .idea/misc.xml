@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable-v24/ic_baseline_accessibility_24.xml" value="0.1" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable-v24/ic_baseline_home_24.xml" value="0.2890625" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable-v24/ic_baseline_menu_24.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable-v24/outline_house_20.xml" value="0.1" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable-v24/outline_house_24.xml" value="0.1" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable-v24/outline_phone_android_24.xml" value="0.1" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/ic_baseline_emoji_people_24.xml" value="0.1" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/ic_baseline_house_24.xml" value="0.1" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/ic_baseline_lightbulb_24.xml" value="0.1" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.2890625" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/ic_baseline_phoneblack_android_24.xml" value="0.1" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/rounded_corner.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/drawable/telefonoBlanco_24.xml" value="0.1" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/detalle_reclamo_fragment.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/estado_reclamo_fragment.xml" value="0.27291666666666664" />
@@ -19,7 +30,7 @@
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/perfil_usuario_fragment.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/reclamo_list_fragment.xml" value="0.5" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/registro1_fragment.xml" value="0.27291666666666664" />
-        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/registro2_fragment.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/registro2_fragment.xml" value="0.22" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/registro3_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/subcategoria_reclamo_item.xml" value="0.1" />
         <entry key="..\:/Users/Ariel/AndroidStudioProjects/ORT-ProyectoFinal-Ciudadanos/app/src/main/res/layout/subcategoria_reclamo_list_fragment.xml" value="0.22" />
@@ -47,8 +58,6 @@
         <entry key="app/src/main/res/layout/detalle_reclamo_fragment.xml" value="0.29483695652173914" />
         <entry key="app/src/main/res/layout/estado_reclamo_fragment.xml" value="0.29483695652173914" />
         <entry key="app/src/main/res/layout/exito_reclamo_fragment.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/inicio_ciudadano_fragment.xml" value="0.2504528985507246" />
-        <entry key="app/src/main/res/layout/item_img_reclamo.xml" value="0.2504528985507246" />
         <entry key="app/src/main/res/layout/item_reclamo_list.xml" value="0.5" />
         <entry key="app/src/main/res/layout/log_in_fragment.xml" value="0.17983789260385005" />
         <entry key="app/src/main/res/layout/nuevo_reclamo.xml" value="0.33" />
