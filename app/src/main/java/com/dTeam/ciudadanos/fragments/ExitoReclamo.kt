@@ -70,8 +70,6 @@ class ExitoReclamo : Fragment() {
 
         viewModelReclamo = ViewModelProvider(requireActivity()).get(ReclamoViewModel::class.java)
 
-        // TODO: Use the ViewModel
-
     }
 
     override fun onStart() {
