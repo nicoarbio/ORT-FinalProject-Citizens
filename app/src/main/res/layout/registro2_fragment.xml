@@ -8,17 +8,29 @@
     tools:context=".fragments.Registro2"
    >
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="93dp"
+        android:layout_height="91dp"
+        android:layout_marginBottom="13dp"
+        android:src="@drawable/logociudades"
+        app:layout_constraintBottom_toTopOf="@+id/textView22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editTelefono"
         android:layout_width="409dp"
         android:layout_height="64dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="80dp"
         android:background="@color/white"
         android:drawableStart="@drawable/outline_phone_android_24"
         android:ems="10"
-        android:paddingLeft="10dp"
         android:hint=" Ingrese su telefono"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,13 +60,13 @@
         android:id="@+id/editFechaNac"
         android:layout_width="409dp"
         android:layout_height="64dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="60dp"
         android:background="@color/white"
-        android:paddingLeft="10dp"
         android:drawableStart="@drawable/ic_baseline_calendar_today_24"
         android:ems="10"
         android:hint=" Ingrese su fecha de nacimiento"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,22 +103,22 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.112" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <EditText
         android:id="@+id/editNombre"
         android:layout_width="409dp"
         android:layout_height="64dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:background="@color/white"
         android:drawableStart="@drawable/ic_baseline_emoji_people_24"
         android:ems="10"
         android:hint=" Ingrese su nombre"
-        android:paddingLeft="10dp"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -138,10 +150,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.189" />
+        app:layout_constraintVertical_bias="0.23" />
 
     <TextView
         android:id="@+id/textView28"
