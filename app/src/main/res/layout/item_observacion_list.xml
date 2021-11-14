@@ -66,9 +66,10 @@
 
         <TextView
             android:id="@+id/txtObsComentario"
-            android:layout_width="277dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -62,8 +62,6 @@
         android:id="@+id/btnGenerarReclamo"
         android:layout_width="327dp"
         android:layout_height="51dp"
-        android:layout_marginStart="158dp"
-        android:layout_marginEnd="159dp"
         android:background="#FCADAD"
         android:text="Generar Reclamo"
 
