@@ -17,7 +17,7 @@ class UsuarioViewModel : ViewModel() {
 
     var usuario = MutableLiveData<Usuario>()
     var usuarioRegistadoOk = SingleLiveEvent<Boolean>()
-    var usuarioLogueadoOk = MutableLiveData<Boolean>()
+    var usuarioLogueadoOk = SingleLiveEvent<Boolean>()
     var usuariosResponsables = MutableLiveData<MutableList<Usuario>>()
     var usuarios = MutableLiveData<MutableList<Usuario>>()
     var error = String()
