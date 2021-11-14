@@ -128,7 +128,8 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/white"
-        android:drawableStart="@drawable/ic_baseline_house_24"
+        android:drawableStart="@drawable/outline_house_24"
+
         android:paddingLeft="10dp"
         android:ems="10"
         android:hint=" Ingrese su direccion"
