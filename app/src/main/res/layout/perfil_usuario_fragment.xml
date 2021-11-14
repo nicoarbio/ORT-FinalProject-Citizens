@@ -60,9 +60,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="50dp"
+        android:layout_marginBottom="167dp"
         android:text="Telefono"
         android:textColor="#F8F8F8"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCerrarSesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toEndOf="@+id/imgTelefono"
@@ -75,11 +77,12 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="17dp"
         android:src="@drawable/card_account_details_outline"
+        app:layout_constraintBottom_toTopOf="@+id/imgDireccion"
         app:layout_constraintEnd_toStartOf="@+id/lblDni"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblEmailPerfil"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/lblEmailPerfil" />
 
     <ImageView
         android:id="@+id/imgTelefono"
@@ -87,11 +90,12 @@
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="254dp"
         android:src="@drawable/ic_baseline_phone_android_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/lblTelefonoPerfil"
         app:layout_constraintStart_toStartOf="@+id/imgDireccion"
-        app:layout_constraintTop_toBottomOf="@+id/imgDireccion"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/imgDireccion" />
 
     <TextView
         android:id="@+id/lblDireccionPerfil"
