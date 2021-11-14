@@ -1,6 +1,7 @@
 package com.dTeam.ciudadanos.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -76,9 +77,8 @@ class Registro2 : Fragment() {
                     val action = Registro2Directions.actionRegistro2ToRegistro3()
                     v.findNavController().navigate(action)
                 } else {
+                    Log.d("testRegistro", usuarioViewModel.error)
                     Snackbar.make(v, usuarioViewModel.error, Snackbar.LENGTH_SHORT).show()
-                    //parentFragmentManager.popBackStack()
-                    //val action = Registro2Directions.actionRegistro2ToRegistro1()
                     v.findNavController().navigate(R.id.action_registro2_to_registro1)
                 }
             })

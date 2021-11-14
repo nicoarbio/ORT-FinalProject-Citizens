@@ -3,6 +3,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dTeam.ciudadanos.SingleLiveEvent
 import com.dTeam.ciudadanos.entities.Usuario
 import com.dTeam.ciudadanos.network.OrionApi
 import com.google.firebase.auth.*
@@ -15,7 +16,7 @@ import java.lang.Exception
 class UsuarioViewModel : ViewModel() {
 
     var usuario = MutableLiveData<Usuario>()
-    var usuarioRegistadoOk = MutableLiveData<Boolean>()
+    var usuarioRegistadoOk = SingleLiveEvent<Boolean>()
     var usuarioLogueadoOk = MutableLiveData<Boolean>()
     var usuariosResponsables = MutableLiveData<MutableList<Usuario>>()
     var usuarios = MutableLiveData<MutableList<Usuario>>()
