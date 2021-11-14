@@ -60,7 +60,11 @@
         android:id="@+id/registro3"
         android:name="com.dTeam.ciudadanos.fragments.Registro3"
         android:label="registro3_fragment"
-        tools:layout="@layout/registro3_fragment" />
+        tools:layout="@layout/registro3_fragment" >
+        <action
+            android:id="@+id/action_registro3_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
     <fragment
         android:id="@+id/listaReclamos"
         android:name="com.dTeam.ciudadanos.fragments.ReclamoListFragment"

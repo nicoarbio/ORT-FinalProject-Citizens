@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.logIn -> hideBottomNav()
                 R.id.registro1 -> hideBottomNav()
                 R.id.registro2 -> hideBottomNav()
+                R.id.registro3 -> hideBottomNav()
                 else -> showBottomNav()
             }
         }
