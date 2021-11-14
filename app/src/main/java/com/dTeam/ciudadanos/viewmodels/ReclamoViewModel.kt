@@ -24,6 +24,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.math.log
 
 class ReclamoViewModel : ViewModel() {
@@ -57,6 +59,7 @@ class ReclamoViewModel : ViewModel() {
                             reclamoNuevo.imagenes.add(url.toString())
                         }
                     }
+                    reclamoNuevo.observaciones.add(Observacion("Ciudadano", "Reclamo Inicializado", getFecha()))
                     reclamo.value=reclamoNuevo
                     db.collection("reclamos")
                         .add(reclamoNuevo)
@@ -112,6 +115,11 @@ class ReclamoViewModel : ViewModel() {
             imgEstadoReclamo.value = img
         }
 
+    }
+
+    fun getFecha(): String {
+        val currentDateTime = LocalDateTime.now()
+        return currentDateTime.format(DateTimeFormatter.ISO_DATE)
     }
 
     fun getCategoria(): String? {
