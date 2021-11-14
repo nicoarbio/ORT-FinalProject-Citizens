@@ -41,6 +41,7 @@ class ReclamoAdapter (var reclamoList : MutableList <Reclamo>,
         }
         fun setEstado(estado:String){
             var lblEstado: TextView = view.findViewById(R.id.lblItemEstado)
+            lblEstado.text = estado
         }
         fun getCardView() : CardView {
             return view.findViewById(R.id.card_reclamo_item)
