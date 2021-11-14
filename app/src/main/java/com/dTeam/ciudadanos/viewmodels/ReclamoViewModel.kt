@@ -59,7 +59,7 @@ class ReclamoViewModel : ViewModel() {
                             reclamoNuevo.imagenes.add(url.toString())
                         }
                     }
-                    reclamoNuevo.observaciones.add(Observacion("Ciudadano", "Reclamo Inicializado", getFecha()))
+                    reclamoNuevo.observaciones.add(Observacion("Ciudadano", "Reclamo Iniciado", getFecha()))
                     reclamo.value=reclamoNuevo
                     db.collection("reclamos")
                         .add(reclamoNuevo)
@@ -117,7 +117,7 @@ class ReclamoViewModel : ViewModel() {
 
     }
 
-    fun getFecha(): String {
+    private fun getFecha(): String {
         val currentDateTime = LocalDateTime.now()
         return currentDateTime.format(DateTimeFormatter.ISO_DATE)
     }
