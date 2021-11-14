@@ -3,11 +3,16 @@ package com.dTeam.ciudadanos.network
 import com.dTeam.ciudadanos.entities.Usuario
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import retrofit2.Response
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.Retrofit
 import retrofit2.http.*
 
-private const val IP = "192.168.0.162"
+//IP Fede
+//private const val IP = "192.168.0.162"
+//IP Nico
+private const val IP = "192.168.0.11"
+
 private const val BASE_URL = "http://${IP}:1026/v2/"
 
 // Documentación ejemplo Moshi en Retrofit
@@ -37,8 +42,17 @@ interface OrionApiService {
     @GET("entities/{id}?options=keyValues")
     suspend fun getUsuarioByUID(@Path("id") UID: String): Usuario
 
+    @GET("entities?options=keyValues&type=Usuario")
+    suspend fun getUsuarioByEmail(@Query("q") email: String): List<Usuario>
+
     @POST("entities?options=keyValues")
     suspend fun registrarUsuario(@Body usuario: Usuario)
+
+    @DELETE("entities/{id}")
+    suspend fun eliminarUsuario(@Path("id") UID: String) : Response<Unit>
+
+    @PATCH("entities/{id}/attrs")
+    suspend fun actualizarUsuario(@Path("id") UID: String, @Body usuario: Usuario)
 
 
 }
