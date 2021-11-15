@@ -57,6 +57,8 @@ class FragmentNuevoReclamo:Fragment() {
     lateinit var  geocoder : Geocoder
     lateinit var addresses : List<Address>
 
+    private var pedirDosVeceslaUbicacion = true
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v =  inflater.inflate(R.layout.nuevo_reclamo, container, false)
         geocoder = Geocoder(requireContext(), Locale.getDefault())
@@ -156,7 +158,13 @@ class FragmentNuevoReclamo:Fragment() {
 
         lblCategoriaReclamo.text = reclamoViewModel.getCategoria()
         lblSubcategoriaReclamo.text = reclamoViewModel.getSubcategoria()
-        getLastLocation()
+        if (pedirDosVeceslaUbicacion) {
+            getLastLocation()
+            pedirDosVeceslaUbicacion = false
+        } else if (isLocationEnabled()) {
+            getLastLocation()
+        }
+
 
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -169,6 +177,7 @@ class FragmentNuevoReclamo:Fragment() {
             v.findNavController().navigate(action)
         }
     }
+
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
         if (checkPermissions()) {
@@ -192,7 +201,7 @@ class FragmentNuevoReclamo:Fragment() {
 
 
             } else {
-                Toast.makeText(requireContext(), "Turn on location", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Por favor, encienda la ubicación", Toast.LENGTH_LONG).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 startActivity(intent)
             }
