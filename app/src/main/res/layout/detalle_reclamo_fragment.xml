@@ -11,10 +11,10 @@
         android:id="@+id/btnDetalleAgregarObser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
         android:layout_marginBottom="24dp"
-        android:background="#FCADAD"
+        android:background="@drawable/button_rosa"
 
         android:text="Agregar Observación"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,6 +73,7 @@
         android:text="Comentario"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/lblDetalleImgAdjuntas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/lblDetalleDirrecion"
@@ -82,20 +83,21 @@
         android:id="@+id/lblDetalleDirrecion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="Dirección"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/lblDetalleComentario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgDetalleCategoria" />
+        app:layout_constraintTop_toBottomOf="@+id/imgDetalleCategoria"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/lblDetalleObservaciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:text="Observaciones"
         android:textColor="#FBFBFB"
         android:textStyle="bold"
@@ -116,8 +118,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtEstadoReclamo"
         app:layout_constraintTop_toBottomOf="@+id/lblDetalleEstadoReclamo"
-        app:layout_constraintVertical_bias="0.53"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <TextView
         android:id="@+id/txtEstadoReclamo"
@@ -166,29 +167,38 @@
 
     <TextView
         android:id="@+id/txtDetalleSubCategoria"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="2dp"
         android:text="Reparación Iluminaria"
+        android:textAlignment="center"
         android:textColor="#FBFBFB"
+        app:layout_constraintBottom_toTopOf="@+id/lblDetalleDirrecion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imgDetalleCategoria"
-        app:layout_constraintTop_toBottomOf="@+id/txtDetalleCategoria" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDetalleCategoria"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txtDetalleCategoria"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:text="Reclamo Alumbrado"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/txtDetalleSubCategoria"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imgDetalleCategoria"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imgDetalleCategoria"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imgDetalleCategoria"

@@ -93,13 +93,6 @@ class ExitoReclamo : Fragment() {
             subCategoria.text = viewModelReclamo.getSubcategoria()
             direccion.text = viewModelReclamo.getDireccion()
             comentario.text = viewModelReclamo.getDescripcion()
-            viewModelReclamo.getImgEstado()
-            viewModelReclamo.imgEstadoReclamo.observe(viewLifecycleOwner, Observer {
-                var imgEstado : ImageView =  v.findViewById(R.id.imgDetalle)
-                Glide.with(this)
-                    .load(it)
-                    .into(imgDetalle)
-            })
         })
     }
 }

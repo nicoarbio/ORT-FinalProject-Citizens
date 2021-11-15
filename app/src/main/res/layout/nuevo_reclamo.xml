@@ -9,111 +9,120 @@
 
     <TextView
         android:id="@+id/lbltipoReclamoNuevoReclamo"
-        android:layout_width="259dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="Reclamo alumbrado"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/lblSubtipoReclamoNuevoReclamo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgReclamo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imgReclamo" />
 
     <TextView
         android:id="@+id/lblSubtipoReclamoNuevoReclamo"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Reparacion Iluminaria"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintBottom_toBottomOf="@+id/imgReclamo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.346"
         app:layout_constraintStart_toEndOf="@id/imgReclamo"
-        app:layout_constraintTop_toBottomOf="@+id/lbltipoReclamoNuevoReclamo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/lbltipoReclamoNuevoReclamo" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="16dp"
         android:text="Descripción"
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDireccion" />
 
     <EditText
         android:id="@+id/txtDescripcion"
-        android:layout_width="339dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:background="@color/white"
         android:hint="Descripción del reclamo"
         android:padding="14dp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
         android:id="@+id/btnGenerarReclamo"
-        android:layout_width="327dp"
-        android:layout_height="51dp"
-        android:background="#FCADAD"
-        android:text="Generar Reclamo"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
 
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/button_rosa"
+        android:text="Generar Reclamo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblSubtipoReclamoNuevoReclamo"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSubirImgsReclamo" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="50dp"
         android:text="Direccion"
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgReclamo" />
 
     <EditText
         android:id="@+id/txtDireccion"
-        android:layout_width="339dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Direccion del Reclamo"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <ImageView
         android:id="@+id/imgReclamo"
-        android:layout_width="67dp"
-        android:layout_height="74dp"
-        android:layout_marginLeft="16dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:background="@color/amarillo"
         app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toStartOf="@+id/lbltipoReclamoNuevoReclamo"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintVertical_bias="0.423" />
 
     <Button
         android:id="@+id/btnSubirImgsReclamo"
-        android:layout_width="250dp"
-        android:layout_height="51dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:background="@color/secundario"
         android:text="SUBIR FOTOS"
         android:textColor="@color/white"
