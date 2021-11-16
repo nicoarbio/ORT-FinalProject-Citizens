@@ -214,7 +214,7 @@ class FragmentNuevoReclamo:Fragment() {
     private fun requestNewLocationData() {
         var mLocationRequest = LocationRequest()
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        mLocationRequest.interval = 0
+        mLocationRequest.interval = 60000
         mLocationRequest.fastestInterval = 0
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
