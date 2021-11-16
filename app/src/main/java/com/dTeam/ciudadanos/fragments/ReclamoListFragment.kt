@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.ProgressBar
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -30,6 +31,8 @@ class ReclamoListFragment : Fragment() {
 
     private lateinit var v: View
 
+    private lateinit var lblNoItems: TextView
+
     private lateinit var listadoReclamos: RecyclerView
     private lateinit var reclamoAdapter: ReclamoAdapter
 
@@ -42,6 +45,7 @@ class ReclamoListFragment : Fragment() {
         v = inflater.inflate(R.layout.reclamo_list_fragment, container, false)
         listadoReclamos = v.findViewById(R.id.listadoReclamos)
         progresBar = v.findViewById(R.id.progressBarListaReclamo)
+        lblNoItems = v.findViewById(R.id.lblNoItems)
         return v
     }
 
@@ -59,6 +63,7 @@ class ReclamoListFragment : Fragment() {
         super.onStart()
         listadoReclamos.setHasFixedSize(true)
         listadoReclamos.layoutManager = LinearLayoutManager(context)
+        lblNoItems.visibility = View.GONE
         reclamoViewModel.getReclamos(usuarioViewModel.obtenerUsuarioLogueado()!!.uid)
         reclamoAdapter = ReclamoAdapter(mutableListOf(), requireContext()) { pos -> onItemClick(pos)}
         setObserver()
@@ -74,9 +79,16 @@ class ReclamoListFragment : Fragment() {
             reclamoAdapter = ReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos) }
             listadoReclamos.adapter = reclamoAdapter
             progresBar.visibility = View.INVISIBLE
+            if(list.size == 0){
+                lblNoItems.visibility = View.VISIBLE
+            }else{
+                lblNoItems.visibility = View.GONE
+                reclamoAdapter = ReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos) }
+                listadoReclamos.adapter = reclamoAdapter
+            }
+
         })
     }
-
 
     fun onItemClick(pos: Int){
         val reclamo = reclamoViewModel.listadoReclamos.value?.get(pos)

@@ -58,7 +58,7 @@
         android:id="@+id/lblTelefonoPerfil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="167dp"
         android:text="Telefono"
@@ -88,7 +88,7 @@
         android:id="@+id/imgTelefono"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="254dp"
         android:src="@drawable/ic_baseline_phone_android_24"
@@ -110,7 +110,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imgDireccion"
         app:layout_constraintTop_toTopOf="@+id/imgDireccion"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.288" />
 
     <Button
         android:id="@+id/btnCerrarSesion"

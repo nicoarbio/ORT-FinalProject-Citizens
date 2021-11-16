@@ -1,5 +1,6 @@
 package com.dTeam.ciudadanos.fragments
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -16,6 +18,8 @@ import com.dTeam.ciudadanos.entities.Usuario
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.callbackFlow
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Registro2 : Fragment() {
 
@@ -42,9 +46,25 @@ class Registro2 : Fragment() {
 
         txtNombre =  v.findViewById(R.id.editNombre)
         txtApellido =  v.findViewById(R.id.editApellido)
-        txtFechaNac =  v.findViewById(R.id.editFechaNac)
+        txtFechaNac =  v.findViewById(R.id.txtFechaNac)
         txtDni =  v.findViewById(R.id.editDni)
         txtTelefono =  v.findViewById(R.id.editTelefono)
+
+
+        val fechaNacimiento : EditText = v.findViewById(R.id.txtFechaNac)
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+        val dpd = DatePickerDialog(this.requireContext(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            fechaNacimiento.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
+        }, year, month, day)
+
+        fechaNacimiento.setOnClickListener {
+            dpd.show()
+        }
         return v
     }
 
