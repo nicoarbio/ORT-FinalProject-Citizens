@@ -84,15 +84,5 @@ class ExitoReclamo : Fragment() {
         Glide.with(this)
             .load(imgReclamo)
             .into(imgDetalle)
-        setObserver()
-    }
-
-    fun setObserver(){
-        viewModelReclamo.reclamo.observe(viewLifecycleOwner, Observer { list ->
-            categoria.text = viewModelReclamo.getCategoria()
-            subCategoria.text = viewModelReclamo.getSubcategoria()
-            direccion.text = viewModelReclamo.getDireccion()
-            comentario.text = viewModelReclamo.getDescripcion()
-        })
     }
 }
