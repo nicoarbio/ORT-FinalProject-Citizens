@@ -72,6 +72,7 @@ class ReclamoListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         progresBar.visibility = View.VISIBLE
+        lblNoItems.visibility = View.INVISIBLE
     }
 
     fun setObserver(){
