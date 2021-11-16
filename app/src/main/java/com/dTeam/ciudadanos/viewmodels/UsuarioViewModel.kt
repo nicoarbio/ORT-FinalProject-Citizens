@@ -70,7 +70,7 @@ class UsuarioViewModel : ViewModel() {
     fun iniciarSesion(mail:String, password:String){
         viewModelScope.launch {
             try {
-                var posibleCiudadano = getUsuarioByEmail(mail)
+                var posibleCiudadano = getUsuarioByQuery(mail)
                 if (posibleCiudadano != null && posibleCiudadano.rol == "Ciudadano") {
                     auth!!.signInWithEmailAndPassword(mail, password)
                         .await()
@@ -86,9 +86,9 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
-    suspend fun getUsuarioByEmail(email:String) : Usuario? {
+    suspend fun getUsuarioByQuery(email:String) : Usuario? {
         try {
-            val listaAux = OrionApi.retrofitService.getUsuarioByEmail("email:"+email)
+            val listaAux = OrionApi.retrofitService.getUsuarioByQuery("isEnabled:"+OrionApi.USER_ENABLED+";email:"+email)
             return listaAux.find {
                     usr -> usr.email == email
             }

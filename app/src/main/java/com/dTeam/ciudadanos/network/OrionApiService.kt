@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.http.*
 
 //IP Fede
-private const val IP = "192.168.0.162"
+//private const val IP = "192.168.0.162"
 //IP Nico
 //private const val IP = "192.168.0.11"
 //IP Ari
@@ -17,7 +17,8 @@ private const val IP = "192.168.0.162"
 //IP Alan
 //private const val IP = "192.168.0.104"
 
-//private const val IP = "190.247.194.64" //IP Publica Nico
+//IP Publica Nico
+private const val IP = "190.247.194.64"
 
 private const val BASE_URL = "http://${IP}:1026/v2/"
 
@@ -39,27 +40,23 @@ interface OrionApiService {
     // Documentación de la API ORION
     // https://telefonicaid.github.io/fiware-orion/api/v2/stable/
 
-    @GET("entities/{id}?options=keyValues")
+    @GET("/version")
+    suspend fun verificarConexion(): Response<Unit>
+
+    @GET("entities/{id}?options=keyValues&q=isEnabled:"+OrionApi.USER_ENABLED)
     suspend fun getUsuarioByUID(@Path("id") UID: String): Usuario
 
     @GET("entities?options=keyValues&type=Usuario")
-    suspend fun getUsuarioByEmail(@Query("q") email: String): List<Usuario>
+    suspend fun getUsuarioByQuery(@Query("q") query: String): List<Usuario>
 
     @POST("entities?options=keyValues")
     suspend fun registrarUsuario(@Body usuario: Usuario)
 
-    @DELETE("entities/{id}")
-    suspend fun eliminarUsuario(@Path("id") UID: String) : Response<Unit>
-
-    @PATCH("entities/{id}/attrs")
-    suspend fun actualizarUsuario(@Path("id") UID: String, @Body usuario: Usuario)
-
-    @GET("/version")
-    suspend fun verificarConexion(): Response<Unit>
-
 }
 
 object OrionApi {
+    const val USER_ENABLED = "enabled"
+    const val USER_DISABLED = "disabled"
     val retrofitService : OrionApiService by lazy {
         retrofit.create(OrionApiService::class.java)
     }

@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.dTeam.ciudadanos.R
 import com.dTeam.ciudadanos.entities.Usuario
+import com.dTeam.ciudadanos.network.OrionApi
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.callbackFlow
@@ -86,7 +87,8 @@ class Registro2 : Fragment() {
                 txtDni.text.toString(),
                 txtTelefono.text.toString(),
                 Registro2Args.fromBundle(requireArguments()).email,
-                Registro2Args.fromBundle(requireArguments()).address
+                Registro2Args.fromBundle(requireArguments()).address,
+                OrionApi.USER_ENABLED
             )
 
             usuarioViewModel.registrarUsuario(user, Registro2Args.fromBundle(requireArguments()).password)
