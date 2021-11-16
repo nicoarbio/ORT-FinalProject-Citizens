@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.dTeam.ciudadanos.adapters.ReclamoAdapter
 
 import com.dTeam.ciudadanos.viewmodels.ReclamoViewModel
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class ReclamoListFragment : Fragment() {
 
@@ -31,12 +33,15 @@ class ReclamoListFragment : Fragment() {
     private lateinit var listadoReclamos: RecyclerView
     private lateinit var reclamoAdapter: ReclamoAdapter
 
+    private lateinit var progresBar: ProgressBar
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.reclamo_list_fragment, container, false)
         listadoReclamos = v.findViewById(R.id.listadoReclamos)
+        progresBar = v.findViewById(R.id.progressBarListaReclamo)
         return v
     }
 
@@ -58,12 +63,20 @@ class ReclamoListFragment : Fragment() {
         reclamoAdapter = ReclamoAdapter(mutableListOf(), requireContext()) { pos -> onItemClick(pos)}
         setObserver()
     }
+
+    override fun onResume() {
+        super.onResume()
+        progresBar.visibility = View.VISIBLE
+    }
+
     fun setObserver(){
         reclamoViewModel.listadoReclamos.observe(viewLifecycleOwner, Observer { list ->
             reclamoAdapter = ReclamoAdapter(list, requireContext()) { pos -> onItemClick(pos) }
             listadoReclamos.adapter = reclamoAdapter
+            progresBar.visibility = View.INVISIBLE
         })
     }
+
 
     fun onItemClick(pos: Int){
         val reclamo = reclamoViewModel.listadoReclamos.value?.get(pos)
