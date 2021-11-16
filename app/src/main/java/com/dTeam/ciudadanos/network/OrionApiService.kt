@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.http.*
 
 //IP Fede
-//private const val IP = "192.168.0.162"
+private const val IP = "192.168.0.162"
 //IP Nico
 //private const val IP = "192.168.0.11"
 //IP Ari
@@ -17,7 +17,7 @@ import retrofit2.http.*
 //IP Alan
 //private const val IP = "192.168.0.104"
 
-private const val IP = "190.247.194.64" //IP Publica Nico
+//private const val IP = "190.247.194.64" //IP Publica Nico
 
 private const val BASE_URL = "http://${IP}:1026/v2/"
 
@@ -39,12 +39,6 @@ interface OrionApiService {
     // Documentación de la API ORION
     // https://telefonicaid.github.io/fiware-orion/api/v2/stable/
 
-    @GET("entities?options=keyValues&type=Usuario")
-    suspend fun getUsuarios(): List<Usuario>
-
-    @GET("entities?options=keyValues&type=Usuario&q=rol:Responsable")
-    suspend fun getUsuariosResponsables(): List<Usuario>
-
     @GET("entities/{id}?options=keyValues")
     suspend fun getUsuarioByUID(@Path("id") UID: String): Usuario
 
@@ -60,6 +54,8 @@ interface OrionApiService {
     @PATCH("entities/{id}/attrs")
     suspend fun actualizarUsuario(@Path("id") UID: String, @Body usuario: Usuario)
 
+    @GET("/version")
+    suspend fun verificarConexion(): Response<Unit>
 
 }
 

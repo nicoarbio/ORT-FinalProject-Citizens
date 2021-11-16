@@ -19,8 +19,6 @@ class UsuarioViewModel : ViewModel() {
     var usuario = MutableLiveData<Usuario>()
     var usuarioRegistadoOk = SingleLiveEvent<Boolean>()
     var usuarioLogueadoOk = SingleLiveEvent<Boolean>()
-    var usuariosResponsables = MutableLiveData<MutableList<Usuario>>()
-    var usuarios = MutableLiveData<MutableList<Usuario>>()
     var error = String()
 
     private var  auth: FirebaseAuth? = null
@@ -32,16 +30,10 @@ class UsuarioViewModel : ViewModel() {
 
     fun registrarUsuario(user: Usuario, pwd : String) {
         viewModelScope.launch {
-            var flagOrion = false
-            var uidAuxiliar = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))
             try {
-                //autogeneramos un valor de uid que no se repetirá para probar la conexion a orion
-                // ya que se puede borrar un usuario de orion pero no de Firebase
-                user.documentId = uidAuxiliar
-                OrionApi.retrofitService.registrarUsuario(user)
+                OrionApi.retrofitService.verificarConexion()
                 auth!!.createUserWithEmailAndPassword(user.email, pwd).await()
                 user.documentId = auth!!.uid!!
-                OrionApi.retrofitService.eliminarUsuario(uidAuxiliar)
                 OrionApi.retrofitService.registrarUsuario(user)
                 usuario.value = user
                 Log.d("ORION_API", "Usuario registrado correctamente: " + usuario.value.toString())
@@ -49,28 +41,16 @@ class UsuarioViewModel : ViewModel() {
             }catch (e : FirebaseAuthWeakPasswordException){
                 error = "La contraseña debe tener al menos 6 caracteres"
                 usuarioRegistadoOk.value = false
-                flagOrion = true
             }catch (e : FirebaseAuthInvalidCredentialsException){
                 error = "El mail ingresado debe tener un formato válido"
                 usuarioRegistadoOk.value = false
-                flagOrion = true
             }catch (e : FirebaseAuthUserCollisionException) {
                 error = "El mail ingresado ya se encuentra registrado"
                 usuarioRegistadoOk.value = false
-                flagOrion = true
             }catch (e : Exception){
                 error = "Ocurrió un error al registrar el usuario. Vuelva a intentar más tarde"
                 usuarioRegistadoOk.value = false
-                flagOrion = true
                 Log.d("ORION_API", e.toString())
-            }finally {
-                if (flagOrion) {
-                    try {
-                        OrionApi.retrofitService.eliminarUsuario(uidAuxiliar)
-                    } catch (e: Exception) {
-                        Log.d("ORION_API", e.toString())
-                    }
-                }
             }
         }
     }
@@ -91,7 +71,6 @@ class UsuarioViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 var posibleCiudadano = getUsuarioByEmail(mail)
-
                 if (posibleCiudadano != null && posibleCiudadano.rol == "Ciudadano") {
                     auth!!.signInWithEmailAndPassword(mail, password)
                         .await()
@@ -119,10 +98,7 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
-
     // Metodos que utilizan la API de ORION
-
-
     fun getUsuarioByUID(UID : String) {
         viewModelScope.launch {
             try {
@@ -132,57 +108,4 @@ class UsuarioViewModel : ViewModel() {
             }
         }
     }
-
-    // getUsuariosResponsables -> lista de usuarios cuyo rol sea responsable
-    fun getUsuariosResponsables() {
-        viewModelScope.launch {
-            try {
-                usuariosResponsables.value = OrionApi.retrofitService.getUsuariosResponsables().toMutableList()
-            } catch (e: Exception) {
-                Log.d("ORION_API", e.toString())
-            }
-        }
-    }
-
-    fun getUsuarios() {
-        viewModelScope.launch {
-            try {
-                usuarios.value = OrionApi.retrofitService.getUsuarios().toMutableList()
-            } catch (e: Exception) {
-                Log.d("ORION_API", e.toString())
-            }
-        }
-    }
-
-    //Getters sobre MutableLiveData Usuario
-
-    fun esResponsable():Boolean {
-        return usuario.value?.rol.equals("Responsable")
-    }
-    fun esCiudaddano():Boolean {
-        return usuario.value?.rol.equals("Ciudaddano")
-    }
-    fun esMunicipio():Boolean {
-        return usuario.value?.rol.equals("Municipio")
-    }
-
-    fun getEmail(): String? {
-        return obtenerUsuarioLogueado()!!.email
-    }
-    fun getNombre(): String? {
-        return usuario.value?.nombre
-    }
-    fun getApellido(): String? {
-        return usuario.value?.apellido
-    }
-    fun getDireccion(): String? {
-        return usuario.value?.direccion
-    }
-    fun getTelefono(): String? {
-        return usuario.value?.telefono
-    }
-    fun getDni(): String? {
-        return usuario.value?.dni
-    }
-
 }

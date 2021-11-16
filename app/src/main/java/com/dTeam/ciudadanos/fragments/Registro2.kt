@@ -59,7 +59,8 @@ class Registro2 : Fragment() {
 
 
         val dpd = DatePickerDialog(this.requireContext(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-            fechaNacimiento.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
+            var mes = monthOfYear + 1
+            fechaNacimiento.setText("" + dayOfMonth + "/" + mes + "/" + year)
         }, year, month, day)
 
         fechaNacimiento.setOnClickListener {
