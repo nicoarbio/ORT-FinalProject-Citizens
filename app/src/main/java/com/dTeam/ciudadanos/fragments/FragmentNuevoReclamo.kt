@@ -148,7 +148,7 @@ class FragmentNuevoReclamo:Fragment() {
                 builder.show()
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
         return v
     }
 

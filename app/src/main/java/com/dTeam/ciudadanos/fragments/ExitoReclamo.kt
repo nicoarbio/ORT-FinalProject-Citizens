@@ -61,7 +61,7 @@ class ExitoReclamo : Fragment() {
                 v.findNavController().navigate(action)
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
         return v
     }
 
