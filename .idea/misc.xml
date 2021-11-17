@@ -54,6 +54,8 @@
         <entry key="app/src/main/res/layout/nuevo_reclamo.xml" value="0.33" />
         <entry key="app/src/main/res/layout/perfil_usuario_fragment.xml" value="0.29483695652173914" />
         <entry key="app/src/main/res/layout/reclamo_list_fragment.xml" value="0.2210144927536232" />
+        <entry key="app/src/main/res/layout/registro1_fragment.xml" value="0.17299898682877407" />
+        <entry key="app/src/main/res/layout/registro2_fragment.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/subcategoria_reclamo_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/subcategoria_reclamo_list_fragment.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/tipo_reclamo_item.xml" value="0.5" />
