@@ -103,6 +103,7 @@ class FragmentNuevoReclamo:Fragment() {
                             v.findNavController().navigate(action)
                         }
                         else{
+                            progresBar.visibility = View.INVISIBLE
                             verElementos()
                             Snackbar.make(v,getString(R.string.errorGeneral), Snackbar.LENGTH_SHORT).show()
 
