@@ -48,7 +48,7 @@ class LogIn : Fragment() {
             if(validarCampos(txtUsuario, txtPassword)){
                 usuarioViewModel.iniciarSesion(txtUsuario.text.toString(), txtPassword.text.toString())
                 usuarioViewModel.usuarioLogueadoOk.observe(viewLifecycleOwner, Observer { list ->
-                    if (usuarioViewModel.usuarioLogueadoOk.value == true){
+                    if (list){
                         val action = LogInDirections.actionLogInToInicioCiudadano()
                         v.findNavController().navigate(action)
                     }

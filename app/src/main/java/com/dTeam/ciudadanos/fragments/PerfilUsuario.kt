@@ -49,6 +49,7 @@ class PerfilUsuario : Fragment() {
 
         btnCerrarSesion.setOnClickListener{
             usuarioViewModel.usuarioLogueadoOk.value=false
+            usuarioViewModel.error=""
             usuarioViewModel.cerrarSesion()
             val action = PerfilUsuarioDirections.actionPerfilUsuarioToLogIn()
             v.findNavController().navigate(action)
