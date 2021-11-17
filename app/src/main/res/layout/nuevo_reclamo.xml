@@ -6,7 +6,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
     tools:context=".fragments.FragmentNuevoReclamo">
-
+    <ProgressBar
+        android:id="@+id/progressBarNuevoReclamo"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:indeterminateTint="@color/azulOscuro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/lbltipoReclamoNuevoReclamo"
         android:layout_width="0dp"
@@ -38,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lbltipoReclamoNuevoReclamo" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/lblDescNuevoReclamo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -61,8 +71,8 @@
         android:padding="14dp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintStart_toStartOf="@+id/lblDescNuevoReclamo"
+        app:layout_constraintTop_toBottomOf="@+id/lblDescNuevoReclamo" />
 
     <Button
         android:id="@+id/btnGenerarReclamo"
@@ -79,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSubirImgsReclamo" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/lblDireccNuevoReclamo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -102,8 +112,8 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintStart_toStartOf="@+id/lblDireccNuevoReclamo"
+        app:layout_constraintTop_toBottomOf="@+id/lblDireccNuevoReclamo" />
 
     <ImageView
         android:id="@+id/imgReclamo"
@@ -112,7 +122,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:background="@color/amarillo"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/lblDireccNuevoReclamo"
         app:layout_constraintEnd_toStartOf="@+id/lbltipoReclamoNuevoReclamo"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

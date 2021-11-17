@@ -50,12 +50,17 @@ class FragmentNuevoReclamo:Fragment() {
     private lateinit var categoriaViewModel: CategoriaViewModel
     private lateinit var lblCategoriaReclamo : TextView
     private lateinit var lblSubcategoriaReclamo : TextView
+    private lateinit var lblDireccion : TextView
+    private lateinit var lblDescripcion : TextView
     private lateinit var imgReclamo : ImageView
+    private lateinit var lbltipoReclamoNuevoReclamo : TextView
+    private lateinit var lblSubtipoReclamoNuevoReclamo : TextView
     private var listaImgs : List<Uri> = listOf()
     val PERMISSION_ID = 42
     lateinit var mFusedLocationClient: FusedLocationProviderClient
     lateinit var  geocoder : Geocoder
     lateinit var addresses : List<Address>
+    private lateinit var progresBar: ProgressBar
 
     private var pedirDosVeceslaUbicacion = true
 
@@ -65,8 +70,13 @@ class FragmentNuevoReclamo:Fragment() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         txtDescripcion=v.findViewById(R.id.txtDescripcion)
         txtDireccion=v.findViewById(R.id.txtDireccion)
+        lblDireccion=v.findViewById(R.id.lblDireccNuevoReclamo)
+        lblDescripcion=v.findViewById(R.id.lblDescNuevoReclamo)
         btnGenerarReclamo = v.findViewById(R.id.btnGenerarReclamo)
         btnCargarImgs = v.findViewById(R.id.btnSubirImgsReclamo)
+        progresBar = v.findViewById(R.id.progressBarNuevoReclamo)
+        lbltipoReclamoNuevoReclamo = v.findViewById(R.id.lbltipoReclamoNuevoReclamo)
+        lblSubtipoReclamoNuevoReclamo = v.findViewById(R.id.lblSubtipoReclamoNuevoReclamo)
         btnGenerarReclamo.setOnClickListener{
             if (validarCampos(txtDescripcion, txtDireccion)){
                val builder = AlertDialog.Builder(context)
@@ -81,17 +91,21 @@ class FragmentNuevoReclamo:Fragment() {
                         usuarioViewModel.obtenerUsuarioLogueado()!!.uid,
                         "Abierto"
                     )
-
+                    progresBar.visibility = View.VISIBLE
+                    ocultarElementos()
                     reclamoViewModel.generarReclamo(reclamo, listaImgs)
 
 
                     reclamoViewModel.reclamoGeneradoOk.observe(viewLifecycleOwner, Observer { list ->
                         if (reclamoViewModel.reclamoGeneradoOk.value == true){
+                            progresBar.visibility = View.INVISIBLE
                             val action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToExitoReclamo()
                             v.findNavController().navigate(action)
                         }
                         else{
+                            verElementos()
                             Snackbar.make(v,getString(R.string.errorGeneral), Snackbar.LENGTH_SHORT).show()
+
                         }
                     })
                 }
@@ -141,6 +155,10 @@ class FragmentNuevoReclamo:Fragment() {
         return camposValidos
     }
 
+    override fun onResume() {
+        super.onResume()
+        progresBar.visibility = View.INVISIBLE
+    }
     override fun onStart() {
         super.onStart()
         lblCategoriaReclamo = v.findViewById(R.id.lbltipoReclamoNuevoReclamo)
@@ -169,6 +187,8 @@ class FragmentNuevoReclamo:Fragment() {
 
 
     }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         reclamoViewModel = ViewModelProvider(requireActivity()).get(ReclamoViewModel::class.java)
@@ -178,6 +198,28 @@ class FragmentNuevoReclamo:Fragment() {
             var action = FragmentNuevoReclamoDirections.actionFragmentNuevoReclamoToLogIn()
             v.findNavController().navigate(action)
         }
+    }
+    private fun ocultarElementos(){
+        txtDescripcion.visibility = View.INVISIBLE
+        txtDireccion.visibility = View.INVISIBLE
+        btnGenerarReclamo.visibility = View.INVISIBLE
+        btnCargarImgs.visibility = View.INVISIBLE
+        imgReclamo.visibility = View.INVISIBLE
+        lblDescripcion.visibility = View.INVISIBLE
+        lblDireccion.visibility = View.INVISIBLE
+        lbltipoReclamoNuevoReclamo.visibility = View.INVISIBLE
+        lblSubtipoReclamoNuevoReclamo.visibility = View.INVISIBLE
+    }
+    private fun verElementos(){
+        txtDescripcion.visibility = View.VISIBLE
+        txtDireccion.visibility = View.VISIBLE
+        btnGenerarReclamo.visibility = View.VISIBLE
+        btnCargarImgs.visibility = View.VISIBLE
+        imgReclamo.visibility = View.VISIBLE
+        lblDescripcion.visibility = View.VISIBLE
+        lblDireccion.visibility = View.VISIBLE
+        lbltipoReclamoNuevoReclamo.visibility = View.VISIBLE
+        lblSubtipoReclamoNuevoReclamo.visibility = View.VISIBLE
     }
 
     @SuppressLint("MissingPermission")
