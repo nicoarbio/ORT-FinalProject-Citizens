@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -108,6 +109,8 @@ class DetalleReclamoFragment : Fragment() {
         recDetalleObservaciones.setHasFixedSize(true)
         recDetalleObservaciones.layoutManager = LinearLayoutManager(context)
 
+        recImgReclamo.adapter = ImgReclamoAdapter(mutableListOf(), requireContext()) { pos -> onItemClick(pos)}
+
         setObserver()
 
     }
@@ -120,7 +123,7 @@ class DetalleReclamoFragment : Fragment() {
             txtDetalleComentario.text = it.descripcion
             txtEstadoReclamo.text = it.estado
             recDetalleObservaciones.adapter = ListaObservacionesAdaper(it.observaciones)
-            recImgReclamo.adapter = ImgReclamoAdapter(it.imagenes, requireContext())
+            recImgReclamo.adapter = ImgReclamoAdapter(it.imagenes, requireContext()) { pos -> onItemClick(pos)}
 
             reclamoViewModel.getImgEstado()
             reclamoViewModel.imgEstadoReclamo.observe(viewLifecycleOwner, Observer {
@@ -177,6 +180,10 @@ class DetalleReclamoFragment : Fragment() {
 
         builder.show()
 
+    }
+
+    fun onItemClick(pos: Int){
+        Snackbar.make(v,"url: " + reclamoViewModel.reclamo.value!!.imagenes[pos], Snackbar.LENGTH_SHORT).show()
     }
 
 
