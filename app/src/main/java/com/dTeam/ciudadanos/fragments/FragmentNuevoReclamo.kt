@@ -21,7 +21,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
-import androidx.core.net.toFile
+import androidx.core.view.allViews
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +39,7 @@ import com.google.android.material.snackbar.Snackbar
 import gun0912.tedimagepicker.builder.TedImagePicker
 import gun0912.tedimagepicker.builder.type.MediaType
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FragmentNuevoReclamo:Fragment() {
@@ -59,6 +60,7 @@ class FragmentNuevoReclamo:Fragment() {
     private lateinit var lblSubtipoReclamoNuevoReclamo : TextView
     private var listaImgs : List<Uri> = listOf()
     val PERMISSION_ID = 42
+    val ID_CONTRAINT_LAYOUT = -1
     lateinit var mFusedLocationClient: FusedLocationProviderClient
     lateinit var  geocoder : Geocoder
     lateinit var addresses : List<Address>
@@ -94,7 +96,7 @@ class FragmentNuevoReclamo:Fragment() {
                         "Abierto"
                     )
                     progresBar.visibility = View.VISIBLE
-                    ocultarElementos()
+                    visibilidadElementos(View.INVISIBLE, progresBar.id)
                     reclamoViewModel.generarReclamo(reclamo, listaImgs)
 
 
@@ -106,7 +108,7 @@ class FragmentNuevoReclamo:Fragment() {
                         }
                         else{
                             progresBar.visibility = View.INVISIBLE
-                            verElementos()
+                            visibilidadElementos(View.VISIBLE, progresBar.id)
                             Snackbar.make(v,getString(R.string.errorGeneral), Snackbar.LENGTH_SHORT).show()
 
                         }
@@ -205,35 +207,25 @@ class FragmentNuevoReclamo:Fragment() {
             v.findNavController().navigate(action)
         }
     }
-    private fun ocultarElementos(){
-        txtDescripcion.visibility = View.INVISIBLE
-        txtDireccion.visibility = View.INVISIBLE
-        btnGenerarReclamo.visibility = View.INVISIBLE
-        btnCargarImgs.visibility = View.INVISIBLE
-        imgReclamo.visibility = View.INVISIBLE
-        lblDescripcion.visibility = View.INVISIBLE
-        lblDireccion.visibility = View.INVISIBLE
-        lbltipoReclamoNuevoReclamo.visibility = View.INVISIBLE
-        lblSubtipoReclamoNuevoReclamo.visibility = View.INVISIBLE
-    }
-    private fun verElementos(){
-        txtDescripcion.visibility = View.VISIBLE
-        txtDireccion.visibility = View.VISIBLE
-        btnGenerarReclamo.visibility = View.VISIBLE
-        btnCargarImgs.visibility = View.VISIBLE
-        imgReclamo.visibility = View.VISIBLE
-        lblDescripcion.visibility = View.VISIBLE
-        lblDireccion.visibility = View.VISIBLE
-        lbltipoReclamoNuevoReclamo.visibility = View.VISIBLE
-        lblSubtipoReclamoNuevoReclamo.visibility = View.VISIBLE
+
+    private fun visibilidadElementos(vis:Int, vararg views:Int) {
+        //Las views a excluir la pasamos a una mutableList y le agregamos el ContraintLayout para que nunca lo modifique
+        val viewsFueraDeAlcance = views.toMutableList()
+        viewsFueraDeAlcance.add(ID_CONTRAINT_LAYOUT)
+
+        //Filtramos todas las vistas que no sean ni el contraint layout, ni las recibidas por parámetro
+        val allViews = v.allViews.filter { vista -> !viewsFueraDeAlcance.contains(vista.id) }
+
+        //Ejecutamos el View. GONE, VISIBLE o INVISIBLE que haya llegado en "vis"
+        for (e: View in allViews) {
+            e.visibility = vis
+        }
     }
 
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
-
-
                 mFusedLocationClient.lastLocation.addOnCompleteListener(requireActivity()) { task ->
                     var location: Location? = task.result
                     if (location == null) {
@@ -243,13 +235,10 @@ class FragmentNuevoReclamo:Fragment() {
                         txtDireccion.setText(addresses.get(0).getAddressLine(0))
                         Log.d ("Test",location.latitude.toString())
                         Log.d ("Test",location.longitude.toString())
-
-//                        findViewById<TextView>(R.id.latTextView).text = location.latitude.toString()
-//                        findViewById<TextView>(R.id.lonTextView).text = location.longitude.toString()
+                        //findViewById<TextView>(R.id.latTextView).text = location.latitude.toString()
+                        //findViewById<TextView>(R.id.lonTextView).text = location.longitude.toString()
                     }
                 }
-
-
             } else {
                 Toast.makeText(requireContext(), "Por favor, encienda la ubicación", Toast.LENGTH_LONG).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
