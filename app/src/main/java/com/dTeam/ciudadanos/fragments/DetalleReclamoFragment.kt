@@ -205,7 +205,9 @@ class DetalleReclamoFragment : Fragment() {
         })
         val imageView = ImageView(this.requireContext())
         var imageUri = Uri.parse(imageUriSting)
-        imageView.setImageURI(imageUri)
+        Glide.with(this)
+            .load(imageUri)
+            .into(imageView)
         builder.addContentView(
             imageView, RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
