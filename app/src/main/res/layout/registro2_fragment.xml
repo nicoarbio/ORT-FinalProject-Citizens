@@ -11,7 +11,7 @@
         android:id="@+id/logo"
         android:layout_width="93dp"
         android:layout_height="91dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/logociudades"
         app:layout_constraintBottom_toTopOf="@+id/lblTituloReg"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,8 +20,9 @@
 
     <EditText
         android:id="@+id/editTelefono"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
+        android:layout_marginBottom="57dp"
         android:background="@color/white"
         android:drawableStart="@drawable/outline_phone_android_24"
         android:ems="10"
@@ -29,14 +30,14 @@
         android:inputType="number"
         android:paddingLeft="10dp"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/btnReg2"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubirFotoUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblTelefono"/>
+        app:layout_constraintTop_toBottomOf="@+id/lblTelefono" />
 
     <EditText
         android:id="@+id/editDni"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
         android:background="@color/white"
         android:drawableStart="@drawable/ic_baseline_emoji_people_24"
@@ -52,7 +53,7 @@
 
     <EditText
         android:id="@+id/txtFechaNac"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
         android:background="@color/white"
         android:clickable="true"
@@ -61,7 +62,6 @@
         android:focusable="false"
         android:hint=" Ingrese su fecha de nacimiento"
         android:inputType="date"
-        android:paddingLeft="10dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/lblTelefono"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,6 @@
         android:id="@+id/lblTituloReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:text="Ingrese sus datos"
         android:textColor="@color/primario"
         android:textSize="22dp"
@@ -103,6 +102,7 @@
         android:id="@+id/editNombre"
         android:layout_width="0dp"
         android:layout_height="64dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/white"
         android:drawableStart="@drawable/ic_baseline_emoji_people_24"
         android:ems="10"
@@ -111,8 +111,8 @@
         android:paddingRight="10dp"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@id/lblDni"
+        app:layout_constraintEnd_toStartOf="@+id/editApellido"
         app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/editApellido"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblNombre" />
 
@@ -120,17 +120,20 @@
         android:id="@+id/btnSubirFotoUsuario"
         android:layout_width="132dp"
         android:layout_height="49dp"
-        android:background="@color/secundario"
+        android:background="@drawable/button_colorsegundario"
         android:text="Subir Foto"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/btnReg2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTelefono" />
+
     <Button
         android:id="@+id/btnReg2"
         android:layout_width="132dp"
         android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_rosa"
         android:text="Registrarme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -142,12 +145,13 @@
         android:id="@+id/lblNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Nombre"
         android:textColor="@color/primario"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/editNombre"
         app:layout_constraintEnd_toStartOf="@id/lblTituloReg"
-        app:layout_constraintHorizontal_bias="0.268"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lblTituloReg" />
 
@@ -155,24 +159,28 @@
         android:id="@+id/lblApellido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Apellido"
         android:textColor="@color/primario"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/lblNombre"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toEndOf="@+id/lblNombre"
-        app:layout_constraintTop_toTopOf="@+id/lblNombre" />
+        app:layout_constraintTop_toTopOf="@+id/lblNombre"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/lblDni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="DNI"
         android:textColor="@color/primario"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/editDni"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editNombre" />
 
@@ -180,12 +188,13 @@
         android:id="@+id/lblFechaNac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Fecha de nacimiento"
         android:textColor="@color/primario"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/txtFechaNac"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDni" />
 
@@ -193,13 +202,14 @@
         android:id="@+id/lblTelefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Telefono"
         android:textColor="@color/primario"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/editTelefono"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFechaNac"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaNac" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
