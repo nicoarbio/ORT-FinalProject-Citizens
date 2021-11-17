@@ -60,7 +60,6 @@ class FragmentNuevoReclamo:Fragment() {
     private lateinit var lblSubtipoReclamoNuevoReclamo : TextView
     private var listaImgs : List<Uri> = listOf()
     val PERMISSION_ID = 42
-    val ID_CONTRAINT_LAYOUT = -1
     lateinit var mFusedLocationClient: FusedLocationProviderClient
     lateinit var  geocoder : Geocoder
     lateinit var addresses : List<Address>
@@ -209,6 +208,7 @@ class FragmentNuevoReclamo:Fragment() {
     }
 
     private fun visibilidadElementos(vis:Int, vararg views:Int) {
+        val ID_CONTRAINT_LAYOUT = -1
         //Las views a excluir la pasamos a una mutableList y le agregamos el ContraintLayout para que nunca lo modifique
         val viewsFueraDeAlcance = views.toMutableList()
         viewsFueraDeAlcance.add(ID_CONTRAINT_LAYOUT)

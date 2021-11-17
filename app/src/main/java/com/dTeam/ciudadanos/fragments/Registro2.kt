@@ -10,7 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.allViews
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -39,6 +42,8 @@ class Registro2 : Fragment() {
     lateinit var txtTelefono : EditText
     var imgUsuario : Uri = Uri.EMPTY
 
+    private lateinit var progressBar: ProgressBar
+
     private lateinit var usuarioViewModel: UsuarioViewModel
     lateinit var v : View
 
@@ -57,6 +62,7 @@ class Registro2 : Fragment() {
         txtDni =  v.findViewById(R.id.editDni)
         txtTelefono =  v.findViewById(R.id.editTelefono)
 
+        progressBar = v.findViewById(R.id.progressBarRegistro)
 
         val fechaNacimiento : EditText = v.findViewById(R.id.txtFechaNac)
         val c = Calendar.getInstance()
@@ -103,20 +109,44 @@ class Registro2 : Fragment() {
                 OrionApi.USER_ENABLED
             )
 
+            progressBar.visibility = View.VISIBLE
+            visibilidadElementos(View.INVISIBLE, progressBar.id)
             usuarioViewModel.registrarUsuario(user, Registro2Args.fromBundle(requireArguments()).password, imgUsuario)
 
             usuarioViewModel.usuarioRegistadoOk.observe(viewLifecycleOwner, Observer {
                 //Cuando el registro falla al primer intento, cuando un segundo intento legal se ejecuta, se observa
                 // nuevamente que el Ok está en falso, lo que no permite la correcta circulación en la aplicación.
                 if (usuarioViewModel.usuarioRegistadoOk.value == true){
+                    progressBar.visibility = View.INVISIBLE
                     val action = Registro2Directions.actionRegistro2ToRegistro3()
                     v.findNavController().navigate(action)
                 } else {
+                    progressBar.visibility = View.INVISIBLE
+                    visibilidadElementos(View.VISIBLE, progressBar.id)
                     Log.d("testRegistro", usuarioViewModel.error)
                     Snackbar.make(v, usuarioViewModel.error, Snackbar.LENGTH_SHORT).show()
                     v.findNavController().navigate(R.id.action_registro2_to_registro1)
                 }
             })
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        progressBar.visibility = View.INVISIBLE
+    }
+
+    private fun visibilidadElementos(vis:Int, vararg views:Int) {
+        //Las views a excluir la pasamos a una mutableList y le agregamos el ContraintLayout para que nunca lo modifique
+        val viewsFueraDeAlcance = views.toMutableList()
+        viewsFueraDeAlcance.add(v.findViewById<ConstraintLayout>(R.id.frameLayout6).id)
+
+        //Filtramos todas las vistas que no sean ni el contraint layout, ni las recibidas por parámetro
+        val allViews = v.allViews.filter { vista -> !viewsFueraDeAlcance.contains(vista.id) }
+
+        //Ejecutamos el View. GONE, VISIBLE o INVISIBLE que haya llegado en "vis"
+        for (e: View in allViews) {
+            e.visibility = vis
         }
     }
 
