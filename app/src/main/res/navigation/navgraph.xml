@@ -21,10 +21,6 @@
             app:destination="@id/logIn" />
     </fragment>
     <fragment
-        android:id="@+id/estadoReclamo2"
-        android:name="com.dTeam.ciudadanos.fragments.EstadoReclamo"
-        android:label="EstadoReclamo" />
-    <fragment
         android:id="@+id/registro1"
         android:name="com.dTeam.ciudadanos.fragments.Registro1"
         android:label="registro1_fragment"

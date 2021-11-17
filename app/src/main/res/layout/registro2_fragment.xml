@@ -5,18 +5,16 @@
     android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Registro2"
-   >
+    tools:context=".fragments.Registro2">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logo"
         android:layout_width="93dp"
         android:layout_height="91dp"
         android:layout_marginBottom="13dp"
         android:src="@drawable/logociudades"
-        app:layout_constraintBottom_toTopOf="@+id/textView22"
+        app:layout_constraintBottom_toTopOf="@+id/lblTituloReg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +22,6 @@
         android:id="@+id/editTelefono"
         android:layout_width="409dp"
         android:layout_height="64dp"
-        android:layout_marginTop="80dp"
         android:background="@color/white"
         android:drawableStart="@drawable/outline_phone_android_24"
         android:ems="10"
@@ -32,190 +29,177 @@
         android:inputType="number"
         android:paddingLeft="10dp"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnReg2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.748" />
+        app:layout_constraintTop_toBottomOf="@+id/lblTelefono"/>
 
     <EditText
         android:id="@+id/editDni"
         android:layout_width="409dp"
         android:layout_height="64dp"
-        android:layout_marginTop="48dp"
         android:background="@color/white"
-        android:paddingLeft="10dp"
         android:drawableStart="@drawable/ic_baseline_emoji_people_24"
         android:ems="10"
         android:hint=" Ingrese su dni"
         android:inputType="number"
+        android:paddingLeft="10dp"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/lblFechaNac"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.376" />
+        app:layout_constraintTop_toBottomOf="@+id/lblDni" />
 
     <EditText
         android:id="@+id/txtFechaNac"
         android:layout_width="409dp"
         android:layout_height="64dp"
-        android:layout_marginTop="60dp"
         android:background="@color/white"
+        android:clickable="true"
         android:drawableStart="@drawable/ic_baseline_calendar_today_24"
         android:ems="10"
-        android:hint=" Ingrese su fecha de nacimiento"
         android:focusable="false"
-        android:clickable="true"
+        android:hint=" Ingrese su fecha de nacimiento"
         android:inputType="date"
         android:paddingLeft="10dp"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lblTelefono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintTop_toBottomOf="@+id/lblFechaNac" />
 
     <EditText
         android:id="@+id/editApellido"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_marginTop="48dp"
         android:background="@color/white"
         android:drawableStart="@drawable/ic_baseline_emoji_people_24"
         android:ems="10"
-        android:paddingLeft="10dp"
         android:hint=" Ingrese su apellido"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/editNombre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/editNombre"
+        app:layout_constraintTop_toTopOf="@+id/editNombre" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/lblTituloReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginBottom="10dp"
         android:text="Ingrese sus datos"
         android:textColor="@color/primario"
         android:textSize="22dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/lblNombre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <EditText
         android:id="@+id/editNombre"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_marginTop="40dp"
         android:background="@color/white"
         android:drawableStart="@drawable/ic_baseline_emoji_people_24"
         android:ems="10"
-        android:hint=" Ingrese su nombre"
+        android:hint="Ingrese su nombre"
         android:inputType="textPersonName"
-        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/lblDni"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/editApellido"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblNombre" />
+
+    <Button
+        android:id="@+id/btnSubirFotoUsuario"
+        android:layout_width="132dp"
+        android:layout_height="49dp"
+        android:background="@color/secundario"
+        android:text="Subir Foto"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/btnReg2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintTop_toBottomOf="@id/editTelefono" />
     <Button
         android:id="@+id/btnReg2"
         android:layout_width="132dp"
         android:layout_height="49dp"
-        android:background="@color/secundario"
+        android:background="@drawable/button_rosa"
         android:text="Registrarme"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintTop_toBottomOf="@id/btnSubirFotoUsuario" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/lblNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Nombre"
         android:textColor="@color/primario"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintBottom_toTopOf="@id/editNombre"
+        app:layout_constraintEnd_toStartOf="@id/lblTituloReg"
+        app:layout_constraintHorizontal_bias="0.268"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintTop_toBottomOf="@id/lblTituloReg" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/lblApellido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-
         android:text="Apellido"
         android:textColor="@color/primario"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/lblNombre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintStart_toEndOf="@+id/lblNombre"
+        app:layout_constraintTop_toTopOf="@+id/lblNombre" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/lblDni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="DNI"
         android:textColor="@color/primario"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editDni"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView28"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintTop_toBottomOf="@+id/editNombre" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/lblFechaNac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Fecha de nacimiento"
         android:textColor="@color/primario"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txtFechaNac"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintTop_toBottomOf="@+id/editDni" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/lblTelefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Telefono"
         android:textColor="@color/primario"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editTelefono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaNac"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

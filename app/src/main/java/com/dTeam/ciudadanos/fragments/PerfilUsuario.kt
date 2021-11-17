@@ -1,5 +1,6 @@
 package com.dTeam.ciudadanos.fragments
 
+import android.media.Image
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -30,6 +31,7 @@ class PerfilUsuario : Fragment() {
     private lateinit var txtTelefono : TextView
     private lateinit var txtDireccion : TextView
     private lateinit var txtDni : TextView
+    private lateinit var imgUsuario : ImageView
 
 
     override fun onCreateView(
@@ -43,6 +45,7 @@ class PerfilUsuario : Fragment() {
         txtDireccion = v.findViewById(R.id.lblDireccionPerfil)
         txtTelefono = v.findViewById(R.id.lblTelefonoPerfil)
         btnCerrarSesion = v.findViewById(R.id.btnCerrarSesion)
+        imgUsuario = v.findViewById(R.id.imgPerfil)
 
         btnCerrarSesion.setOnClickListener{
             usuarioViewModel.usuarioLogueadoOk.value=false
@@ -73,6 +76,12 @@ class PerfilUsuario : Fragment() {
             txtTelefono.text = it.telefono
             txtDni.text = it.dni
             txtEmail.text = it.email
+            if(it.fotoPerfil.isNotEmpty()){
+            Glide.with(this)
+                .load(it.fotoPerfil.replace('*','='))
+                .into(imgUsuario)
+            }
+
         })
     }
 

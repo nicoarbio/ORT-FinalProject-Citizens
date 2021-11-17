@@ -1,6 +1,7 @@
 package com.dTeam.ciudadanos.fragments
 
 import android.app.DatePickerDialog
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.dTeam.ciudadanos.entities.Usuario
 import com.dTeam.ciudadanos.network.OrionApi
 import com.dTeam.ciudadanos.viewmodels.UsuarioViewModel
 import com.google.android.material.snackbar.Snackbar
+import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.flow.callbackFlow
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,11 +31,14 @@ class Registro2 : Fragment() {
     }
 
     lateinit var btnReg : Button
+    lateinit var btnSubirFoto : Button
     lateinit var txtNombre : EditText
     lateinit var txtApellido : EditText
     lateinit var txtFechaNac : EditText
     lateinit var txtDni : EditText
     lateinit var txtTelefono : EditText
+    var imgUsuario : Uri = Uri.EMPTY
+
     private lateinit var usuarioViewModel: UsuarioViewModel
     lateinit var v : View
 
@@ -44,6 +49,7 @@ class Registro2 : Fragment() {
         v= inflater.inflate(R.layout.registro2_fragment, container, false)
 
         btnReg = v.findViewById(R.id.btnReg2)
+        btnSubirFoto = v.findViewById(R.id.btnSubirFotoUsuario)
 
         txtNombre =  v.findViewById(R.id.editNombre)
         txtApellido =  v.findViewById(R.id.editApellido)
@@ -66,6 +72,12 @@ class Registro2 : Fragment() {
 
         fechaNacimiento.setOnClickListener {
             dpd.show()
+        }
+
+        btnSubirFoto.setOnClickListener{
+
+            TedImagePicker.with(requireContext())
+                .start { uri -> imgUsuario = uri}
         }
         return v
     }
@@ -91,7 +103,7 @@ class Registro2 : Fragment() {
                 OrionApi.USER_ENABLED
             )
 
-            usuarioViewModel.registrarUsuario(user, Registro2Args.fromBundle(requireArguments()).password)
+            usuarioViewModel.registrarUsuario(user, Registro2Args.fromBundle(requireArguments()).password, imgUsuario)
 
             usuarioViewModel.usuarioRegistadoOk.observe(viewLifecycleOwner, Observer {
                 //Cuando el registro falla al primer intento, cuando un segundo intento legal se ejecuta, se observa

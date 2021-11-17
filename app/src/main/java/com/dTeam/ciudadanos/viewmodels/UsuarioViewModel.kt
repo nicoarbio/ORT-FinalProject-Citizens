@@ -1,4 +1,5 @@
 package com.dTeam.ciudadanos.viewmodels
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,8 @@ import com.dTeam.ciudadanos.entities.Usuario
 import com.dTeam.ciudadanos.network.OrionApi
 import com.google.firebase.auth.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
@@ -22,18 +25,33 @@ class UsuarioViewModel : ViewModel() {
     var error = String()
 
     private var  auth: FirebaseAuth? = null
+    val storage = FirebaseStorage.getInstance()
+    val storageRef = storage.reference
 
     init {
         auth = FirebaseAuth.getInstance()
         usuario.value = Usuario()
     }
 
-    fun registrarUsuario(user: Usuario, pwd : String) {
+    fun registrarUsuario(user: Usuario, pwd : String, img : Uri) {
         viewModelScope.launch {
+
             try {
                 OrionApi.retrofitService.verificarConexion()
                 auth!!.createUserWithEmailAndPassword(user.email, pwd).await()
                 user.documentId = auth!!.uid!!
+                if(!Uri.EMPTY.equals(img)){
+                    var uploadTask: UploadTask
+                    val imgReclamo = storageRef.child("usuarios/${img.lastPathSegment}")
+                    uploadTask = imgReclamo.putFile(img)
+                    uploadTask.await()
+                    if (uploadTask.isSuccessful()) {
+                        var url = storageRef.child("usuarios/${img.lastPathSegment}").downloadUrl.await()
+                        user.fotoPerfil = url.toString().replace('=', '*') //ORION NO PERMITE GUARDAR /
+                    }
+                }
+
+                Log.d("usuarioViewModel", user.toString())
                 OrionApi.retrofitService.registrarUsuario(user)
                 usuario.value = user
                 Log.d("ORION_API", "Usuario registrado correctamente: " + usuario.value.toString())
