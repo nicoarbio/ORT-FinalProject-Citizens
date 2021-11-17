@@ -191,14 +191,14 @@ class DetalleReclamoFragment : Fragment() {
     }
 
     fun onItemClick(pos: Int){
-        Snackbar.make(v,"url: " + reclamoViewModel.reclamo.value!!.imagenes[pos], Snackbar.LENGTH_SHORT).show()
         showImage(reclamoViewModel.reclamo.value!!.imagenes[pos])
     }
+
     fun showImage(imageUriSting : String) {
-        val builder = Dialog(this.requireContext())
+        val builder = Dialog(this.requireContext(), android.R.style.Theme_Light)
         builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
         builder.window!!.setBackgroundDrawable(
-            ColorDrawable(Color.TRANSPARENT)
+            ColorDrawable(Color.BLACK)
         )
         builder.setOnDismissListener(DialogInterface.OnDismissListener {
             //nothing;
@@ -211,7 +211,7 @@ class DetalleReclamoFragment : Fragment() {
         builder.addContentView(
             imageView, RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
+                ViewGroup.LayoutParams.MATCH_PARENT,
             )
         )
         builder.show()
