@@ -31,13 +31,14 @@
         android:id="@+id/imgPerfil"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="25dp"
+        android:src="@drawable/outline_account_circle_white"
         app:layout_constraintBottom_toTopOf="@+id/lblNombreYApellidoPerfil"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/outline_account_circle_white"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lblEmailPerfil"
@@ -58,13 +59,11 @@
         android:id="@+id/lblTelefonoPerfil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="167dp"
         android:text="Telefono"
         android:textColor="#F8F8F8"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCerrarSesion"
+        app:layout_constraintBottom_toBottomOf="@+id/imgTelefono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toEndOf="@+id/imgTelefono"
@@ -77,7 +76,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="17dp"
         android:src="@drawable/card_account_details_outline"
         app:layout_constraintBottom_toTopOf="@+id/imgDireccion"
         app:layout_constraintEnd_toStartOf="@+id/lblDni"
@@ -88,11 +86,9 @@
         android:id="@+id/imgTelefono"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="254dp"
         android:src="@drawable/ic_baseline_phone_android_24"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/lblTelefonoPerfil"
         app:layout_constraintStart_toStartOf="@+id/imgDireccion"
         app:layout_constraintTop_toBottomOf="@+id/imgDireccion" />
@@ -105,17 +101,17 @@
         android:text="Direccion"
         android:textColor="#F8F6F6"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/imgTelefono"
+        app:layout_constraintBottom_toBottomOf="@+id/imgDireccion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imgDireccion"
-        app:layout_constraintTop_toTopOf="@+id/imgDireccion"
-        app:layout_constraintVertical_bias="0.288" />
+        app:layout_constraintTop_toTopOf="@+id/imgDireccion" />
 
     <Button
         android:id="@+id/btnCerrarSesion"
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
         android:background="@color/secundario"
         android:text="Cerrar Sesion"
         android:textColor="@color/white"
@@ -123,9 +119,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgTelefono"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/lblDni"
@@ -135,11 +129,10 @@
         android:text="Dni del usuario"
         android:textColor="#FAFAFA"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/imgDireccion"
+        app:layout_constraintBottom_toBottomOf="@+id/imgDni"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgDni"
-        app:layout_constraintTop_toTopOf="@+id/imgDni"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toTopOf="@+id/imgDni" />
 
     <ImageView
         android:id="@+id/imgDireccion"
