@@ -1,7 +1,9 @@
 package com.dTeam.ciudadanos.fragments
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.DialogInterface
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.InputType
@@ -28,6 +30,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import android.widget.RelativeLayout
+
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
+import android.view.Window
+
 
 class DetalleReclamoFragment : Fragment() {
 
@@ -184,6 +192,27 @@ class DetalleReclamoFragment : Fragment() {
 
     fun onItemClick(pos: Int){
         Snackbar.make(v,"url: " + reclamoViewModel.reclamo.value!!.imagenes[pos], Snackbar.LENGTH_SHORT).show()
+        showImage(reclamoViewModel.reclamo.value!!.imagenes[pos])
+    }
+    fun showImage(imageUriSting : String) {
+        val builder = Dialog(this.requireContext())
+        builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        builder.window!!.setBackgroundDrawable(
+            ColorDrawable(Color.TRANSPARENT)
+        )
+        builder.setOnDismissListener(DialogInterface.OnDismissListener {
+            //nothing;
+        })
+        val imageView = ImageView(this.requireContext())
+        var imageUri = Uri.parse(imageUriSting)
+        imageView.setImageURI(imageUri)
+        builder.addContentView(
+            imageView, RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+        builder.show()
     }
 
 
