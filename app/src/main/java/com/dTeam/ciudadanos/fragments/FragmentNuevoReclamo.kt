@@ -106,7 +106,9 @@ class FragmentNuevoReclamo:Fragment() {
         btnCargarImgs.setOnClickListener{
 
             TedImagePicker.with(requireContext())
+                .max(5,"No puede subir más de 5 imágenes" )
                 .startMultiImage { uriList -> listaImgs = uriList }
+
         }
 
         val callback = object : OnBackPressedCallback(true){
