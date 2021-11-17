@@ -2,19 +2,10 @@ package com.dTeam.ciudadanos.viewmodels
 
 import android.net.Uri
 import android.util.Log
-import android.view.View
-import androidx.core.net.toUri
 import androidx.lifecycle.*
-import androidx.navigation.NavDirections
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.dTeam.ciudadanos.SingleLiveEvent
 import com.dTeam.ciudadanos.entities.Observacion
 import com.dTeam.ciudadanos.entities.Reclamo
-import com.dTeam.ciudadanos.fragments.FragmentNuevoReclamo
-import com.dTeam.ciudadanos.fragments.FragmentNuevoReclamoDirections
-import com.google.android.material.snackbar.Snackbar
-import com.dTeam.ciudadanos.entities.Subcategoria
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -22,12 +13,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.math.log
 
 class ReclamoViewModel : ViewModel() {
 

@@ -21,6 +21,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toFile
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +37,7 @@ import com.google.android.gms.location.*
 import com.google.android.material.snackbar.Snackbar
 
 import gun0912.tedimagepicker.builder.TedImagePicker
+import gun0912.tedimagepicker.builder.type.MediaType
 import java.util.*
 
 
@@ -121,7 +123,10 @@ class FragmentNuevoReclamo:Fragment() {
         btnCargarImgs.setOnClickListener{
 
             TedImagePicker.with(requireContext())
+                .title("Seleccione Imágenes")
                 .max(5,"No puede subir más de 5 imágenes" )
+                .buttonText("Listo")
+                .mediaType(MediaType.IMAGE)
                 .startMultiImage { uriList -> listaImgs = uriList }
 
         }
