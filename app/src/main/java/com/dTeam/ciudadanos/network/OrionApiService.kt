@@ -8,17 +8,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.Retrofit
 import retrofit2.http.*
 
-//IP Fede
-//private const val IP = "192.168.0.162"
-//IP Nico
-//private const val IP = "192.168.0.11"
-//IP Ari
-//private const val IP = "192.168.0.106"
-//IP Alan
-//private const val IP = "192.168.0.104"
-
-//IP Publica Nico
-private const val IP = "190.247.194.64"
+private const val IP = "" //COMPLETAR CON LA INFORMACIÓN DE LA DIRECCIÓN IP DEL SERVIDOR QUE ALOJA ORION
 
 private const val BASE_URL = "http://${IP}:1026/v2/"
 
